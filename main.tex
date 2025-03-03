@@ -177,11 +177,32 @@
 那么盒型窗的标准设计流程便已经确定了：1、首先我们要确定匹配的频点$f$。2、根据频点选取合适的矩形波导尺寸以及窗片的材料进一步得到盒型窗的几何尺寸$a, b, D$与窗片的相对介电常数$\varepsilon_{d}$。3、使用式子\ref{eq:B_T}计算矩形波导与圆柱形波导之间不连续性引入的电纳，使用式子\ref{eq:B_d}和不等式\ref{eq:Delta}判断窗片厚度的取值范围。4、综合考量解的存在性、加工的难易程度以及机械结构的牢固性之后选取一个合适的窗片厚度$t$，之后使用软件找到式子\ref{eq:B-C-simplify2}的解，进而得到真空填充的圆柱形波导的长度。5、使用电磁仿真软件进行建模，验算刚才的参数，并且使用优化进而得到最佳的参数。
 
 \subsection{同轴窗的理论研究}
+相比于波导窗，由于其基本模式为$TEM$模式的原因，基模的截止频率为0，次高模式截止频率距离其基本模式截止频率更远，带宽更宽。
 \section{阻抗匹配的设计}
 \subsection{常见微波传输线的特性阻抗}
 
-\subsection{双脊波导的特性与相关参数}
+\subsection{脊波导的特性与相关参数}
+脊波导作为一种常见的宽带传输线，针对其主要的理论分析方法是横向谐振法(Transverse Resonance Method, TRM)。根据参考文献\citing{helszajn_double_ridge_2000, pingwang_double_ridge_2004,pingyingjiang_double_ridge_2007,hopefer_design_ridge_1955}使用横向谐振法可以分析出脊波导的截止频率、主模带宽以及其特性阻抗。需要注意的是，本文主要涉及以及本小节主要分析的脊波导为脊位于矩形波导长边或者短边正中间的对称情况，如果有不对称脊波导的需求的话，可以参考文献\cite{ramesh_asymmetri_2001}。
 
+脊波导传输的基本模式是主模类$TE_{10}$模式，其次高模式为类$TE_{20}$模式，为了分析这两个模式的截止频率，有必要画出脊波导在横向上的等效电路。其中，脊两边的空隙可以分别被等效为两端传输线，脊凸起的平台也可以被等效为一段传输线，凸起的脊的两侧所引入的不连续性由于会与对侧的脊或者底边产生电势差，故可以分别被等效为两端电容。当模式截止时，根据横向谐振法，相当于横向的等效电路陷入谐振情况。此时以脊的左侧为参考平面，假设向左看得到的等效导纳为$Y_{1}$，向右看得到的等效导纳为$Y_{2}$，如果产生了横向谐振那么可以得到横向谐振方程\ref{eq:Y1Y2}：
+\begin{equation}\label{eq:Y1Y2}
+    Y_{1}=-Y_{2}
+\end{equation}
+
+以此为基础，我们可以得到分析脊波导的截止频率的横向谐振方程\ref{eq:TRM_DW}:
+\begin{equation}\label{eq:TRM_DW}
+    -\cot \theta_1 + \left( \frac{Y_{02}}{Y_{01}} \right) \tan \theta_2 + \frac{B}{Y_{01}} = 0 
+\end{equation}
+其中参数可被表示为等式\ref{eq:TRM_DW_parameters}中的\ref{eq:Y01}到\ref{eq:theta2}：
+\begin{subequations}\label{eq:TRM_DW_parameters}
+    \begin{align}
+    Y_{01} &= \frac{k_c}{\omega \mu_0} \left( \frac{1}{b} \right) \label{eq:Y01} \\
+    Y_{02} &= \frac{k_c}{\omega \mu_0} \left( \frac{1}{d} \right) \label{eq:Y02} \\
+    \theta_1 &= \frac{\pi (a - s)}{\lambda_c} = \pi \left( 1 - \frac{s}{a} \right) \left( \frac{a}{\lambda_c} \right) \label{eq:theta1} \\
+    \theta_2 &= \frac{\pi s}{\lambda_c} = \pi \left( \frac{s}{a} \right) \left( \frac{a}{\lambda_c} \right) \label{eq:theta2}
+    \end{align}
+\end{subequations}
+式子\ref{eq:TRM_DW_parameters}中的参数$a$为脊波导长边长，参数$b$为脊波导短边长，$s$为脊的宽度，$d$为脊凸起后留下的空腔的缝隙宽度，$\omega$为当前的角频率，$\mu_0$为真空的磁导率，$k_c$为波导的波数，$\lambda_c$为截止频率的波长。
 \subsection{双脊波导的匹配设计}
 脊波导由于其主模带宽非常宽，其经常由于优秀的几何结构特性便于被设计为过渡波导。并且由于其在真空填充时特性阻抗位于常用的标准矩形波导(377$\Omega$ )与同轴线(50$\Omega$)之间便于被设计为矩形波导与同轴线之间的过渡波导，故其是在许多宽带微波器件中常用的微波传输线之一\citing{helszajn_ridge_2000}。并且由于同频率之下的脊波导的长边长度要短于矩形波导，更加有利于器件的小型化。为了便于后续窗片的测量，有必要确定脊波导到标准矩形波导之间的过渡段的设计方案。常见的脊波导到矩形波导的过渡
 \chapter{6-18GHz 宽频带脊波导窗的设计}
