@@ -1,0 +1,48 @@
+In[1111]:=
+(* 清除可能冲突的符号 *)
+ClearAll["Global`*"];
+
+(* 修正矩阵定义，避免使用内置符号 *)
+matrixM1 = {{\[Sqrt]k, 0}, {I*BT*\[Sqrt]k, 1/\[Sqrt]k}};
+matrixM2 = {{Cos[\[Gamma] l], I Sin[\[Gamma] l]}, {I Sin[\[Gamma] l], Cos[\[Gamma] l]}};
+matrixM3 = {{1, 0}, {I*Bd, 1}};
+matrixM4 = {{Cos[\[Gamma] l], I Sin[\[Gamma] l]}, {I Sin[\[Gamma] l], Cos[\[Gamma] l]}};
+matrixM5 = {{1/\[Sqrt]k, 0}, {I*BT*\[Sqrt]k, \[Sqrt]k}};
+
+(* 分步计算时使用新变量名 *)
+tempResult = matrixM1.matrixM2.matrixM3.matrixM4.matrixM5;
+finalResult = tempResult // FullSimplify;
+
+(* 正确应用顺序 *)
+finalResult = tempResult // FullSimplify;
+Print[ToString[TeXForm[finalResult]]]
+
+(* 使用非保留字符命名 *)
+bElement = finalResult[[1, 2]]; 
+cElement = finalResult[[2, 1]];
+
+(* 建立方程并化简 *)
+Assuming[{
+  k > 0, 
+  \[Gamma] \[Element] Reals, 
+  l \[Element] Reals, 
+  BT \[Element] Reals, 
+  Bd \[Element] Reals
+}, 
+SimplifyResult = FullSimplify[Tan[\[Gamma] l]*(bElement - cElement)*2*k/(-I*2*Sin[\[Gamma] l]*Cos[\[Gamma] l])]
+];
+
+(* 显示方程化简结果 *)
+Print["B - C = " ToString[TeXForm[FullSimplify[bElement - cElement]]]]
+Print["简化之后可以得到\n" ToString[TeXForm[SimplifyResult]]]
+
+
+\:6B63\:5728\:8BA1\:7B97In[1111]:= \left(
+\begin{array}{cc}
+ \frac{1}{2} (-(\text{Bd}+2 \text{BT} k) \sin (2 \gamma  l)+(2-\text{Bd} \text{BT} k) \cos (2 \gamma  l)+\text{Bd} \text{BT} k) & -i k \sin (\gamma  l) (\text{Bd} \sin (\gamma  l)-2 \cos (\gamma  l)) \\
+ \frac{i (\cos (\gamma  l)-\text{BT} k \sin (\gamma  l)) ((2-\text{Bd} \text{BT} k) \sin (\gamma  l)+(\text{Bd}+2 \text{BT} k) \cos (\gamma  l))}{k} & \frac{1}{2} (-(\text{Bd}+2 \text{BT} k) \sin (2 \gamma  l)+(2-\text{Bd} \text{BT} k) \cos (2 \gamma  l)+\text{Bd} \text{BT} k) \\
+\end{array}
+\right)
+\:6B63\:5728\:8BA1\:7B97In[1111]:= B - C =  -\frac{i \left(\left(-\text{Bd} \left(\text{BT}^2+1\right) k^2+\text{Bd}+4 \text{BT} k\right) \cos (2 \gamma  l)+\text{Bd} \left(\text{BT}^2+1\right) k^2-2 (k (\text{BT} (\text{Bd}+\text{BT} k)+k)-1) \sin (2 \gamma  l)+\text{Bd}\right)}{2 k}
+\:6B63\:5728\:8BA1\:7B97In[1111]:= 简化之后可以得到
+ \tan (\gamma  l) \left(k \left(\text{Bd} \left(\text{BT}^2+1\right) k-2 \text{BT}\right) \tan (\gamma  l)-2 k (\text{BT} (\text{Bd}+\text{BT} k)+k)+2\right)+\text{Bd}+2 \text{BT} k

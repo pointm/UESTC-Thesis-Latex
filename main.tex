@@ -65,7 +65,89 @@
 随着时代的发展，微波窗的这种累也趋于多种多样，在理论研究方面比较完备的微波窗是盒型窗与同轴窗，这两种窗的结构较为简单便于使用场匹配或者等效电路法进行研究。由于对这两种窗的结构理论研究有助于后续的窗片设计，故现在此对这两种窗的基本理论进行相应的论述。
 \subsection{盒型窗的理论研究}
 常见的盒型窗的主要是由负责进行传输的矩形波导、一个薄圆片形状的介质窗片以及窗片两侧的匹配圆柱波导组成，这其中蕴含了的电磁场边界条件的不连续性，可以使用等效电路法来进行研究。此时将盒型窗的两侧波导以及窗片两侧的空气圆柱部分等效为波导传输线，将较为薄的窗片、矩形波导与圆柱形波导之间的不连续性和窗片与圆柱形波导之间的不连续性等效为电纳。并以此等效思路为基础构建微波窗的等效电路，进而求解电路的频率响应。
-常规的盒型窗的矩形波导的工作频率为$TE_{10}$模式，其中的圆形窗片的主要工作模式为$TE_{11}$模式，这两种模式均为波导的基模。当矩形波导和圆波导进行直接耦合的时候根据文章\citing{Bharathi2015DESIGNAD, marcuvitz_waveguide_1986_rec_cylinder}
+
+常规的盒型窗的矩形波导的工作频率为$TE_{10}$模式，其中的圆形窗片的主要工作模式为$TE_{11}$模式，这两种模式均为波导的基模。当矩形波导和圆波导进行直接耦合的时候根据文章\citing{Bharathi2015DESIGNAD, marcuvitz_waveguide_1986_rec_cylinder}的研究表明，此时会出现不连续性，在等效电路中相当于引入了一个等效电纳$B_{T}$，此时根据式子\ref{eq:B_T}这个等效电纳可以被表示为：
+\begin{equation}\label{eq:B_T}
+    B_{T}=\frac{b}{\lambda_{g r}}\left\{2 \ln \left(\frac{D^{2}-b^{2}}{4 b D}\right)+\left(\frac{b}{D}+\frac{D}{b}\right) \ln \left(\frac{D+b}{D-b}\right)+2 \sum_{n=1}^{\infty} \frac{\sin ^{2} n \phi}{n^{3} \phi^{2}} \delta_{2 n}\right\}
+\end{equation}
+此时式子中的$D$为圆形波导的直径，$a$和$b$分别为矩形波导的长边长度和短边长度，$\beta$为矩形波导的传播常数，$\lambda_{g r}$为矩形波导的工作波长，$\lambda_{g c}$为圆形波导的工作波长，$t$为圆柱形介质窗片的厚度，$\omega$为微波窗的角工作频率，$c$为真空的光速，$\epsilon_{r}$为矩形窗片介质片的相对介电常数，$\lambda$为自由空间中的波长。
+
+为了便于封装焊接，窗片的直径最好等于矩形波导的对角线长度，此时根据勾股定理我们可以得到窗片直径$D$和矩形波导长短边之间的关系$D=\sqrt{a^2+b^2} $。关于计算式最后的求和式中的$\delta_{2n}$和$\phi$的计算方法可以被表示为式子\ref{eq:delta_phi}中的\ref{eq:delta}到\ref{eq:phi}所示：
+\begin{subequations}\label{eq:delta_phi}
+\begin{align}
+    \delta_{2 n} &= \frac{1}{\sqrt{1-\left(\frac{\beta \mathrm{D}}{2 \pi n}\right)^{2}}}-1 \label{eq:delta}\\
+    \beta &= \frac{2 \pi}{\lambda_{gr}} \label{eq:beta}\\
+    \phi &= \frac{\pi b}{D} \label{eq:phi}
+\end{align}
+\end{subequations}
+根据之前分析的盒型窗中存在的三个不连续性边界条件，可以将原先的盒型窗等效为如--所示的等效电路，在这个等效电路中，$Z_{1}$是真空填充的圆柱形波导的特征阻抗，$Z_{2}$是矩形波导的特征阻抗，$B_{d}$是圆形窗片引入不连续性所等效的归一化电纳，$B_{T}$是由于矩形波导与圆柱形波导之间的不连续性引入的归一化电纳。
+
+根据微波网络理论，这个两端口的等效电路可以被表示为一个如\ref{eq:ABCD}所示的$ABCD$矩阵，其中$k=Z_{1}/Z_{2}$，是真空填充的圆柱形的特征阻抗按照矩形波导的特征阻抗所归一化的特征阻抗比值；$\gamma=\frac{2 \pi}{\lambda_{gr}}$是真空填充的圆柱形波导的传播常数，$l$是介质窗片两侧的真空填充的圆柱形波导的纵向长度。
+\begin{equation}\label{eq:ABCD}
+    \begin{split}
+        \begin{bmatrix}
+            A & B \\
+            C & D
+        \end{bmatrix} 
+        & = 
+        \begin{bmatrix}
+            \sqrt{k} & 0 \\
+            jB_{T}\sqrt{k} & 1/\sqrt{k}
+        \end{bmatrix}
+        \begin{bmatrix}
+            \cos{\gamma l} & j\sin{\gamma l} \\
+            j\sin{\gamma l} & \cos{\gamma l}
+        \end{bmatrix}
+        \begin{bmatrix}
+            1 & 0 \\
+            jB_{d} & 1
+        \end{bmatrix} \\
+        & \quad \times 
+        \begin{bmatrix}
+            \cos{\gamma l} & j\sin{\gamma l} \\
+            j\sin{\gamma l} & \cos{\gamma l}
+        \end{bmatrix}
+        \begin{bmatrix}
+            1/\sqrt{k} & 0 \\
+            jB_{T}\sqrt{k} & \sqrt{k}
+        \end{bmatrix}
+    \end{split}
+\end{equation}
+
+由于此时的窗片的厚度相比于使用窗片介质填充的圆柱形波导的工作波长来说太短，其引入的不连续性可以被等效为电纳$B_{d}$，详细的计算式是式\ref{eq:B_d}，其中$t$为窗片的厚度，$\varepsilon_d$为窗片的相对介电常数：
+\begin{equation}\label{eq:B_d}
+    B_{d} = t (\varepsilon_d - 1) \left( \frac{\omega}{c} \right) \left( \frac{\lambda_{gc}}{\lambda} \right)
+\end{equation}
+
+此时，假设盒型窗的输入功率为$P_{1}$，通过盒型窗之后输出功率为$P_{2}$，根据S参数以及$ABCD$矩阵的定义，我们可以得到$P_{2}$与$P_{1}$的比值为式子\ref{eq:P2P1}：
+\begin{equation}\label{eq:P2P1}
+    \frac{P_{2}}{P_{1}} = \frac{1}{1+\frac{1}{4} (B-C)^2}
+\end{equation}
+那么根据能量守恒定律，假设窗片不存在损耗，那么其反射系数$|\Gamma|$可以被表示为式子\ref{eq:Gamma}：
+\begin{equation}\label{eq:Gamma}
+    |\Gamma| = \left| 1 - \left( \frac{P_{2}}{P_{1}} \right) \right|^{\frac{1}{2}}
+\end{equation}
+假设窗片完全传输，那么此时的$P_{2}=P_{1}$，进而根据式子\ref{eq:P2P1}可以推理出来$ABCD$矩阵中的$B=C$。为了获得一个可以确定盒型窗的几何参数的进行求解的方程，我们假设此时的圆柱形波导长度$l$和要求匹配到的频点$f$均为已经确定的值。
+
+现在我们将原先式子\ref{eq:ABCD}的几个矩阵元素完全相乘，可以得到计算式\ref{eq:ABCD_solved}，式子中\ref{eq:A}到\ref{eq:D}为计算式\ref{eq:ABCD}中$ABCD$矩阵的四个元素：
+\begin{subequations}\label{eq:ABCD_solved}
+    \begin{align}
+        A &= \frac{1}{2} \big[-(B_d + 2 B_T k) \sin(2\gamma l) + (2 - B_d B_T k)\cos(2\gamma l) + B_d B_T k \big] \label{eq:A} \\
+        B &= -i k \sin(\gamma l) (B_d \sin(\gamma l) - 2 \cos(\gamma l)) \label{eq:B} \\
+        C &= \frac{i (\cos(\gamma l) - B_T k \sin(\gamma l)) \big[(2 - B_d B_T k)\sin(\gamma l) + (B_d + 2 B_T k)\cos(\gamma l)\big]}{k} \label{eq:C} \\
+        D &= \frac{1}{2} \big[-(B_d + 2 B_T k) \sin(2\gamma l) + (2 - B_d B_T k)\cos(2\gamma l) + B_d B_T k \big] \label{eq:D}
+    \end{align}
+\end{subequations}
+
+注意到推演结果中$A$元素与$D$元素相等，这与微波网络中的理论描述相符。此时为了满足$ABCD$矩阵的$B$与$C$元素相等，我们可以将这两个元素进行作差处理，如果相等的话那么可以得到$B-C=0$，进一步的，可以得到如下关于作差后的表达式\ref{eq:B-C}：
+
+\begin{equation}\label{eq:B-C}
+    \begin{split}
+        B - C = & -\frac{i}{2k} \Big[ \big(-B_{d}(B_{T}^2 + 1)k^2 + B_{d} + 4B_{T}k\big)\cos(2\gamma l) \\
+                & + B_{d}(B_{T}^2 + 1)k^2 - 2\big[k(B_{T}(B_{d} + B_{T}k) + k) - 1\big]\sin(2\gamma l) \\
+                & + B_{d} \Big] = 0
+    \end{split}
+\end{equation}
 \subsection{同轴窗的理论研究}
 \section{阻抗匹配的设计}
 \subsection{常见微波传输线的特性阻抗}
