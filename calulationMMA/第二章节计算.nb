@@ -1,4 +1,4 @@
-In[1111]:=
+In[115]:=
 (* 清除可能冲突的符号 *)
 ClearAll["Global`*"];
 
@@ -33,16 +33,19 @@ SimplifyResult = FullSimplify[Tan[\[Gamma] l]*(bElement - cElement)*2*k/(-I*2*Si
 ];
 
 (* 显示方程化简结果 *)
-Print["B - C = " ToString[TeXForm[FullSimplify[bElement - cElement]]]]
+Print["直接计算结果可以得到\nB - C = " ToString[TeXForm[FullSimplify[bElement - cElement]]]]
 Print["简化之后可以得到\n" ToString[TeXForm[SimplifyResult]]]
 
-
-\:6B63\:5728\:8BA1\:7B97In[1111]:= \left(
+\:6B63\:5728\:8BA1\:7B97In[115]:= \left(
 \begin{array}{cc}
  \frac{1}{2} (-(\text{Bd}+2 \text{BT} k) \sin (2 \gamma  l)+(2-\text{Bd} \text{BT} k) \cos (2 \gamma  l)+\text{Bd} \text{BT} k) & -i k \sin (\gamma  l) (\text{Bd} \sin (\gamma  l)-2 \cos (\gamma  l)) \\
  \frac{i (\cos (\gamma  l)-\text{BT} k \sin (\gamma  l)) ((2-\text{Bd} \text{BT} k) \sin (\gamma  l)+(\text{Bd}+2 \text{BT} k) \cos (\gamma  l))}{k} & \frac{1}{2} (-(\text{Bd}+2 \text{BT} k) \sin (2 \gamma  l)+(2-\text{Bd} \text{BT} k) \cos (2 \gamma  l)+\text{Bd} \text{BT} k) \\
 \end{array}
 \right)
-\:6B63\:5728\:8BA1\:7B97In[1111]:= B - C =  -\frac{i \left(\left(-\text{Bd} \left(\text{BT}^2+1\right) k^2+\text{Bd}+4 \text{BT} k\right) \cos (2 \gamma  l)+\text{Bd} \left(\text{BT}^2+1\right) k^2-2 (k (\text{BT} (\text{Bd}+\text{BT} k)+k)-1) \sin (2 \gamma  l)+\text{Bd}\right)}{2 k}
-\:6B63\:5728\:8BA1\:7B97In[1111]:= 简化之后可以得到
+\:6B63\:5728\:8BA1\:7B97In[115]:= 直接计算结果可以得到
+B - C =  -\frac{i \left(\left(-\text{Bd} \left(\text{BT}^2+1\right) k^2+\text{Bd}+4 \text{BT} k\right) \cos (2 \gamma  l)+\text{Bd} \left(\text{BT}^2+1\right) k^2-2 (k (\text{BT} (\text{Bd}+\text{BT} k)+k)-1) \sin (2 \gamma  l)+\text{Bd}\right)}{2 k}
+\:6B63\:5728\:8BA1\:7B97In[115]:= 简化之后可以得到
  \tan (\gamma  l) \left(k \left(\text{Bd} \left(\text{BT}^2+1\right) k-2 \text{BT}\right) \tan (\gamma  l)-2 k (\text{BT} (\text{Bd}+\text{BT} k)+k)+2\right)+\text{Bd}+2 \text{BT} k
+In[145]:= \[CapitalDelta]=FullSimplify[(2-2k*(B\[Tau]*(B\[Delta]+B\[Tau]*k)+k))^2-4*(k*(B\[Delta]*(B\[Tau]^2+1)*k-2B\[Tau]))*(B\[Delta]+2B\[Tau]*k)]
+
+Out[145]= 4-4 (2+B\[Delta]^2-2 B\[Tau]^2) k^2+4 (1+B\[Tau]^2)^2 k^4

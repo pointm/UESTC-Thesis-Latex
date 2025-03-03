@@ -70,7 +70,7 @@
 \begin{equation}\label{eq:B_T}
     B_{T}=\frac{b}{\lambda_{g r}}\left\{2 \ln \left(\frac{D^{2}-b^{2}}{4 b D}\right)+\left(\frac{b}{D}+\frac{D}{b}\right) \ln \left(\frac{D+b}{D-b}\right)+2 \sum_{n=1}^{\infty} \frac{\sin ^{2} n \phi}{n^{3} \phi^{2}} \delta_{2 n}\right\}
 \end{equation}
-此时式子中的$D$为圆形波导的直径，$a$和$b$分别为矩形波导的长边长度和短边长度，$\beta$为矩形波导的传播常数，$\lambda_{g r}$为矩形波导的工作波长，$\lambda_{g c}$为圆形波导的工作波长，$t$为圆柱形介质窗片的厚度，$\omega$为微波窗的角工作频率，$c$为真空的光速，$\epsilon_{r}$为矩形窗片介质片的相对介电常数，$\lambda$为自由空间中的波长。
+此时式子中的$D$为圆形波导的直径，$a$和$b$分别为矩形波导的长边长度和短边长度，$\beta$为矩形波导的传播常数，$\lambda_{g r}$为矩形波导的工作波长，$\lambda_{g c}$为圆形波导的工作波长，$t$为圆柱形介质窗片的厚度，$\omega$为微波窗的角工作频率，$c$为真空的光速，$\lambda$为自由空间中的波长。
 
 为了便于封装焊接，窗片的直径最好等于矩形波导的对角线长度，此时根据勾股定理我们可以得到窗片直径$D$和矩形波导长短边之间的关系$D=\sqrt{a^2+b^2} $。关于计算式最后的求和式中的$\delta_{2n}$和$\phi$的计算方法可以被表示为式子\ref{eq:delta_phi}中的\ref{eq:delta}到\ref{eq:phi}所示：
 \begin{subequations}\label{eq:delta_phi}
@@ -127,7 +127,13 @@
 \begin{equation}\label{eq:Gamma}
     |\Gamma| = \left| 1 - \left( \frac{P_{2}}{P_{1}} \right) \right|^{\frac{1}{2}}
 \end{equation}
-假设窗片完全传输，那么此时的$P_{2}=P_{1}$，进而根据式子\ref{eq:P2P1}可以推理出来$ABCD$矩阵中的$B=C$。为了获得一个可以确定盒型窗的几何参数的进行求解的方程，我们假设此时的圆柱形波导长度$l$和要求匹配到的频点$f$均为已经确定的值。
+假设窗片完全传输，那么此时的$P_{2}=P_{1}$，进而根据式子\ref{eq:P2P1}可以推理出来$ABCD$矩阵中的$B=C$。为了获得一个可以确定盒型窗的几何参数的进行求解的方程，有必要进行几点假设：
+\begin{enumerate}
+    \item 此时的真空填充的圆柱形波导的长度$l$可以较为任意的进行选取。
+    \item 窗片的材料已经确定，也就是窗片的相对介电常数$\varepsilon_{d}$是一定的。
+    \item 要求匹配到的频点$f$为已经确定的值，也就是$\lambda$和$\lambda_{gc}$是已经确定的。
+\end{enumerate}
+
 
 现在我们将原先式子\ref{eq:ABCD}的几个矩阵元素完全相乘，可以得到计算式\ref{eq:ABCD_solved}，式子中\ref{eq:A}到\ref{eq:D}为计算式\ref{eq:ABCD}中$ABCD$矩阵的四个元素：
 \begin{subequations}\label{eq:ABCD_solved}
@@ -139,15 +145,37 @@
     \end{align}
 \end{subequations}
 
-注意到推演结果中$A$元素与$D$元素相等，这与微波网络中的理论描述相符。此时为了满足$ABCD$矩阵的$B$与$C$元素相等，我们可以将这两个元素进行作差处理，如果相等的话那么可以得到$B-C=0$，进一步的，可以得到如下关于作差后的表达式\ref{eq:B-C}：
+注意到推演结果中$A$元素与$D$元素相等，这与微波网络中的理论描述相符。此时为了满足$ABCD$矩阵的$B$与$C$元素相等，我们可以将这两个元素进行作差处理，如果相等的话那么可以得到$B-C=0$，进一步的，可以得到如下关于作差后的表达式\ref{eq:B-C-simplify1}：
 
-\begin{equation}\label{eq:B-C}
+\begin{equation}\label{eq:B-C-simplify1}
     \begin{split}
-        B - C = & -\frac{i}{2k} \Big[ \big(-B_{d}(B_{T}^2 + 1)k^2 + B_{d} + 4B_{T}k\big)\cos(2\gamma l) \\
-                & + B_{d}(B_{T}^2 + 1)k^2 - 2\big[k(B_{T}(B_{d} + B_{T}k) + k) - 1\big]\sin(2\gamma l) \\
-                & + B_{d} \Big] = 0
+        B - C = & -\frac{i}{2k} \Bigg( \Big[-B_{d}(B_{T}^2 + 1)k^2 + B_{d} + 4B_{T}k\Big]\cos(2\gamma l) 
+                  + B_{d}(B_{T}^2 + 1)k^2 \\
+                & - 2\Big\{k\big[B_{T}(B_{d} + B_{T}k) + k\big] - 1\Big\}\sin(2\gamma l) 
+                  + B_{d} \Bigg) \\
+                = & -\frac{i}{2k} \Bigg(B_{d}(B_{T}^2 + 1)k^2(1-\cos(2\gamma l)) + B_{d}(1+\cos(2\gamma l)) \\
+                & +4B_{T}k\cos(2\gamma l) - 2\Big\{k\big[B_{T}(B_{d} + B_{T}k) + k\big] - 1\Big\}\sin(2\gamma l) \Bigg) = 0
     \end{split}
 \end{equation}
+
+此时在表达式\ref{eq:B-C-simplify1}中，在两边约去$-\frac{i}{2k} $后，在两边同时乘以$\frac{\tan(\gamma l)}{\sin(2 \gamma l)}$，运用倍角公式并且进行整理后可以得到式子\ref{eq:B-C-simplify1}的等价形式\ref{eq:B-C-simplify2}，也就是：
+\begin{equation}\label{eq:B-C-simplify2}
+    \begin{split}
+     & k \big[B_{d}(B_{T}^2+1)k - 2B_{T}\big]\tan^2(\gamma l) 
+       + \Big\{ 2- 2k\Big[B_{T}\big(B_{d} + B_{T}k\big) + k\Big] \Big\}\tan(\gamma l) \\
+    & + B_{d} + 2B_{T}k = 0
+    \end{split}
+\end{equation}
+
+假设真空填充的圆柱形波导的长度$l$是可以任意选取的，并且此时的要求频点已经确定，式子\ref{eq:B-C-simplify2}确定了一个关于$\tan(\gamma l)$的一元二次方程，要求情况下的盒型窗有存在的参数的充分必要条件是这个一元二次方程有解，那么此时可以确定的是这个方程的$\Delta >0$，这个非常的$\Delta$可以得到式子\ref{eq:Delta}：
+\begin{equation}\label{eq:Delta}
+    \Delta = 4 - 4 (2 + B_{d}^2 - 2 B_{T}^2) k^2 + 4 (1 + B_{T}^2)^2 k^4>0
+\end{equation}
+
+此时$\Delta$中，$B_{T}$为矩形波导与圆波导直接耦合的归一化电纳，$k$为真空填充的圆柱形波导的特征阻抗按照矩形波导的特征阻抗所归一化的特征阻抗比值。这两条均为随着矩形波导的尺寸选取进而已经确定的数值。$B_{d}$为窗片引入的归一化电纳，其与窗片的厚度$t$相关。
+
+那么盒型窗的标准设计流程便已经确定了：1、首先我们要确定匹配的频点$f$。2、根据频点选取合适的矩形波导尺寸以及窗片的材料进一步得到盒型窗的几何尺寸$a, b, D$与窗片的相对介电常数$\varepsilon_{d}$。3、使用式子\ref{eq:B_T}计算矩形波导与圆柱形波导之间不连续性引入的电纳，使用式子\ref{eq:B_d}和不等式\ref{eq:Delta}判断窗片厚度的取值范围。4、综合考量解的存在性、加工的难易程度以及机械结构的牢固性之后选取一个合适的窗片厚度$t$，之后使用软件找到式子\ref{eq:B-C-simplify2}的解，进而得到真空填充的圆柱形波导的长度。5、使用电磁仿真软件进行建模，验算刚才的参数，并且使用优化进而得到最佳的参数。
+
 \subsection{同轴窗的理论研究}
 \section{阻抗匹配的设计}
 \subsection{常见微波传输线的特性阻抗}
