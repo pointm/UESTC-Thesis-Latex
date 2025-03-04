@@ -177,7 +177,7 @@
 那么盒型窗的标准设计流程便已经确定了：1、首先我们要确定匹配的频点$f$。2、根据频点选取合适的矩形波导尺寸以及窗片的材料进一步得到盒型窗的几何尺寸$a, b, D$与窗片的相对介电常数$\varepsilon_{d}$。3、使用式子\ref{eq:B_T}计算矩形波导与圆柱形波导之间不连续性引入的电纳，使用式子\ref{eq:B_d}和不等式\ref{eq:Delta}判断窗片厚度的取值范围。4、综合考量解的存在性、加工的难易程度以及机械结构的牢固性之后选取一个合适的窗片厚度$t$，之后使用软件找到式子\ref{eq:B-C-simplify2}的解，进而得到真空填充的圆柱形波导的长度。5、使用电磁仿真软件进行建模，验算刚才的参数，并且使用优化进而得到最佳的参数。
 
 \subsection{同轴窗的理论研究}
-相比于波导窗，由于其基本模式为$TEM$模式的原因，基模的截止频率为0，次高模式截止频率距离其基本模式截止频率更远，带宽更宽。
+相比于波导窗，由于其基本模式为$TEM$模式，基模的截止频率为0，次高模式截止频率距离其基本模式截止频率更远，带宽更宽。
 \section{阻抗匹配的设计}
 \subsection{常见微波传输线的特性阻抗}
 
@@ -193,16 +193,62 @@
 \begin{equation}\label{eq:TRM_DW}
     -\cot \theta_1 + \left( \frac{Y_{02}}{Y_{01}} \right) \tan \theta_2 + \frac{B}{Y_{01}} = 0 
 \end{equation}
-其中参数可被表示为等式\ref{eq:TRM_DW_parameters}中的\ref{eq:Y01}到\ref{eq:theta2}：
+其中参数可被表示为等式\ref{eq:TRM_DW_parameters}中的\ref{eq:Y01}到\ref{eq:BY01}：
 \begin{subequations}\label{eq:TRM_DW_parameters}
     \begin{align}
     Y_{01} &= \frac{k_c}{\omega \mu_0} \left( \frac{1}{b} \right) \label{eq:Y01} \\
     Y_{02} &= \frac{k_c}{\omega \mu_0} \left( \frac{1}{d} \right) \label{eq:Y02} \\
     \theta_1 &= \frac{\pi (a - s)}{\lambda_c} = \pi \left( 1 - \frac{s}{a} \right) \left( \frac{a}{\lambda_c} \right) \label{eq:theta1} \\
-    \theta_2 &= \frac{\pi s}{\lambda_c} = \pi \left( \frac{s}{a} \right) \left( \frac{a}{\lambda_c} \right) \label{eq:theta2}
+    \theta_2 &= \frac{\pi s}{\lambda_c} = \pi \left( \frac{s}{a} \right) \left( \frac{a}{\lambda_c} \right) \label{eq:theta2} \\
+    \frac{B}{Y_{01}} & \approx 2 \delta_{r} \left( \frac{b}{a} \right) \left( \frac{a}{\lambda_c} \right) \ln \csc \left( \frac{\pi d}{2b} \right) \label{eq:BY01}
     \end{align}
 \end{subequations}
-式子\ref{eq:TRM_DW_parameters}中的参数$a$为脊波导长边长，参数$b$为脊波导短边长，$s$为脊的宽度，$d$为脊凸起后留下的空腔的缝隙宽度，$\omega$为当前的角频率，$\mu_0$为真空的磁导率，$k_c$为波导的波数，$\lambda_c$为截止频率的波长。
+式子\ref{eq:TRM_DW_parameters}中的参数定义如下：$a$为脊波导长边长，$b$为脊波导短边长，$s$为脊的宽度，$d$为脊凸起后留下的空腔缝隙宽度。$\delta_{r}$为与脊波导相关的几何系数：双脊波导时$\delta_{r}=1$，单脊波导时$\delta_{r}=2$。$\omega$为当前角频率；$\mu_0$为真空磁导率。波导截止波数$k_c=2\pi / \lambda_c$，截止波长$\lambda_c$在真空填充脊波导时与截止频率$f_c$满足$\lambda_c=c/f_c$。$Y_{01}$为脊两侧空腔所引入的导纳，$Y_{02}$为脊所引入的导纳，$\frac{B}{Y_{01}}$为脊引入电纳按照$Y_{01}$进行归一化之后的结果。
+
+此时如果式子\ref{eq:BY01}中的对数函数套三角函数造成超越方程以至于求解，可以使用近似替代公式\ref{eq:ln_csc}：
+\begin{equation}
+    \ln \csc \left( \frac{\pi \alpha}{2} \right) \approx \frac{1}{2} \left[ \left( \frac{1 + \alpha^2}{\alpha} \right) \ln \left( \frac{1 + \alpha}{1 - \alpha} \right) - 2 \ln \left( \frac{4 \alpha}{1 - \alpha^2} \right) \right] \label{eq:ln_csc}
+\end{equation}
+其中，$\alpha=d/b$，为脊的空隙与脊波导短边之比。
+
+关于双脊波导的截止频率有近似的显式解\citing{Hoefer1982AnalyticalEF}，如果双脊波导的几何形状满足以下约束关系\ref{eq:DRW_constraints}：
+\begin{equation}\label{eq:DRW_constraints}
+    \begin{aligned}
+    0.01 &\leq \frac{d}{b} \leq 1 \\
+    0 &\leq \frac{b}{a} \leq 1 \\
+    0 &\leq \frac{s}{a} \leq 0.45
+    \end{aligned}
+\end{equation}
+使用式子\ref{eq:DRW_closed}求解时候的误差小于1\%
+
+\begin{equation}\label{eq:DRW_closed}
+    \begin{split}
+        \frac{a}{\lambda_c} = \frac{a}{2(a - s)} & \left[ 1 + \frac{4}{\pi} \left( 1 + 0.2 \sqrt{\frac{b}{a - s}} \right) \left( \frac{b}{a - s} \right) \ln \csc \left( \frac{\pi d}{2b} \right) \right. \\
+        & \left. + \left( 2.45 + 0.2 \frac{s}{a} \right) \left( \frac{sb}{d(a - s)} \right) \right]^{-\frac{1}{2}}
+    \end{split}
+\end{equation}
+
+配合MATLAB或者Mathematica等数学软件，可以对以上式子进行数值求解，进而得到给定几何参数下的脊波导的截止频率。这些公式对要设计一个指定截止频率的脊波导的情况，也有着不错的先验能力。
+
+脊波导跟其他波导类似，其特性阻抗有着不同的定义方式，这里主要介绍电压-电流定义的特性阻抗与功率-电压定义的特性阻抗。根据文章\cite{Hoefer1982AnalyticalEF}的描述，脊波导的电压-电流定义的特性阻抗可以根据式子\ref{eq:Z_IV}进行计算：
+\begin{equation}\label{eq:Z_IV}
+    Z_{\mathrm{VI}}(\infty) = \left( \frac{b}{a} \right) \left( \frac{d}{b} \right) \left( \frac{a}{\lambda_c} \right) \frac{\pi \eta_0}{\sin \theta_2 + \left( \frac{d}{b} \right) \left[ \frac{B}{Y_{01}} + \tan \left( \frac{\theta_1}{2} \right) \right] \cos \theta_2}
+\end{equation}
+式子中的参数已经在\ref{eq:TRM_DW_parameters}中被定义过，其中$\eta_0$为真空波阻抗。本公式单脊波导或者双脊波导都可以套用，区别为截止频率不同以及\ref{eq:BY01}中定义的$\delta_{r}$不同。
+
+脊波导的功率-电压定义的特性阻抗可以根据式子\ref{eq:Z_PV}进行计算：
+\begin{equation}\label{eq:Z_PV}
+    Z_{\mathrm{PV}}(\infty) = \frac{\pi \eta_0 \left( \frac{b}{a} \right) \left( \frac{d}{b} \right) \left( \frac{a}{\lambda_c} \right)}{
+        \left\{ 
+            \begin{aligned}
+                & \left( \frac{d}{b} \right) \left( \frac{b}{a} \right) \left( \frac{2 \delta_r a}{\lambda_c} \right) \ln \csc \left( \frac{\pi d}{2b} \right) \cos^2 \theta_2 \\
+                & + \frac{\theta_2}{2} + \frac{\sin 2\theta_2}{4} \\
+                & + \left( \frac{d}{b} \right) \left( \frac{\cos \theta_2}{\sin \theta_1} \right)^2 \left[ \frac{\theta_1}{2} - \frac{\sin 2\theta_1}{4} \right]
+            \end{aligned}
+        \right\}
+    }
+\end{equation}
+式子中的$\delta_{r}$与之前\ref{eq:BY01}中的定义相同，在单脊波导中取2，在双脊波导中取1。其余参数也与\ref{eq:TRM_DW_parameters}中的定义相同。
 \subsection{双脊波导的匹配设计}
 脊波导由于其主模带宽非常宽，其经常由于优秀的几何结构特性便于被设计为过渡波导。并且由于其在真空填充时特性阻抗位于常用的标准矩形波导(377$\Omega$ )与同轴线(50$\Omega$)之间便于被设计为矩形波导与同轴线之间的过渡波导，故其是在许多宽带微波器件中常用的微波传输线之一\citing{helszajn_ridge_2000}。并且由于同频率之下的脊波导的长边长度要短于矩形波导，更加有利于器件的小型化。为了便于后续窗片的测量，有必要确定脊波导到标准矩形波导之间的过渡段的设计方案。常见的脊波导到矩形波导的过渡
 \chapter{6-18GHz 宽频带脊波导窗的设计}
