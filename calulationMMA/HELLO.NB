@@ -1,0 +1,40 @@
+In[1]:=
+(* 参数定义 *)
+a = 10.668; (* 矩形波导长边，单位mm *)
+b = 4.318;  (* 矩形波导短边，单位mm *)
+f = 19.65;  (* 中心频率，单位GHz *)
+\[CurlyEpsilon]r = 9.4;   (* 蓝宝石相对介电常数 *)
+\[Mu]11 = 1.841; (* 圆波导TE11模特征值 *)
+
+(* 圆波导半径计算 *)
+Dia = Sqrt[a^2 + b^2]; (* 矩形波导对角线作为圆波导直径 *)
+R = Dia/2; (* 圆波导半径 *)
+
+(* 自由空间波长计算 *)
+lambda = 3*10^11/(f*10^9); (* 波长\[Lambda] = c/f，单位mm *)
+
+(* 矩形波导计算 *)
+lambdaCRect = 2a; (* 矩形波导截止波长 *)
+lambdaGRect = lambda / Sqrt[1 - (lambda/lambdaCRect)^2]; (* 工作波长 *)
+
+(* 圆波导计算 *)
+lambdaCCirc = (2 \[Pi] R)/\[Mu]11; (* 圆波导截止波长 *)
+lambdaGCirc = lambda / Sqrt[1 - (lambda/lambdaCCirc)^2]; (* 工作波长 *)
+
+(* 输出结果 *)
+Print["矩形波导参数:"]
+Print["截止波长 \[Lambda]_c = ", NumberForm[lambdaCRect, 4], " mm"]
+Print["工作波长 \[Lambda]_g = ", NumberForm[lambdaGRect, 4], " mm\n"]
+
+Print["圆波导参数:"]
+Print["半径 R = ", NumberForm[R, 4], " mm"]
+Print["截止波长 \[Lambda]_c = ", NumberForm[lambdaCCirc, 4], " mm"]
+Print["工作波长 \[Lambda]_g = ", NumberForm[lambdaGCirc, 4], " mm"]
+\:6B63\:5728\:8BA1\:7B97In[1]:= 矩形波导参数:
+\:6B63\:5728\:8BA1\:7B97In[1]:= 截止波长 \[Lambda]_c = 21.34 mm
+\:6B63\:5728\:8BA1\:7B97In[1]:= 工作波长 \[Lambda]_g = 21.86 mm
+
+\:6B63\:5728\:8BA1\:7B97In[1]:= 圆波导参数:
+\:6B63\:5728\:8BA1\:7B97In[1]:= 半径 R = 5.754 mm
+\:6B63\:5728\:8BA1\:7B97In[1]:= 截止波长 \[Lambda]_c = 19.64 mm
+\:6B63\:5728\:8BA1\:7B97In[1]:= 工作波长 \[Lambda]_g = 24.27 mm
