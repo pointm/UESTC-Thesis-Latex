@@ -127,8 +127,8 @@ plt.show()
 # 新处理逻辑 ==============================================
 gamma = 2 * math.pi / lambda_g_circ
 
-t_list = []
-l_list = []
+# 修改为存储元组的列表
+pair_list = []  # 元素格式为 (t(mm), l(mm))
 
 for bd, tan_gl in positive_solutions:
     # 计算窗片厚度t
@@ -140,15 +140,49 @@ for bd, tan_gl in positive_solutions:
         gl_radians += math.pi
     l = gl_radians / gamma
 
-    t_list.append(t * 1000)  # 转换为毫米
-    l_list.append(l * 1000)  # 转换为毫米
+    # 将两个值封装为元组存入列表
+    pair_list.append((t * 1000, l * 1000))  # 同时转换毫米单位
 
 # 新可视化窗口 ============================================
 plt.figure(figsize=(12, 6))
-plt.scatter(t_list, l_list, c="blue", s=30, alpha=0.6)
-plt.xlabel("窗片厚度 t (mm)")
-plt.ylabel("传播长度 l (mm)")
-plt.title("窗片厚度与传播长度关系")
+ax1 = plt.gca()  # 获取当前坐标轴
+
+# 绘制物理长度（左轴）
+sc = ax1.scatter(
+    [x[0] for x in pair_list],
+    [x[1] for x in pair_list],
+    c="blue",
+    s=30,
+    alpha=0.6,
+    label="物理长度",
+)
+ax1.set_xlabel("窗片厚度 t (mm)")
+ax1.set_ylabel("传播长度 l (mm)", color="blue")
+
+# 创建右轴显示电长度
+ax2 = ax1.twinx()
+# 计算电长度（l/λ_g） λ_g单位已转换为mm
+electrical_lengths = [
+    (l / 1000) / (lambda_g_circ) for _, l in pair_list
+]  # 单位转换为米后计算
+ax2.scatter(
+    [x[0] for x in pair_list],
+    electrical_lengths,
+    c="red",
+    s=30,
+    alpha=0.6,
+    marker="x",
+    label="电长度",
+)
+ax2.set_ylabel("电长度 l/λ_g", color="red")
+
+plt.title("窗片厚度与传播长度关系（红×为电长度）")
 plt.grid(True)
 plt.tight_layout()
+
+# 合并图例
+lines, labels = ax1.get_legend_handles_labels()
+lines2, labels2 = ax2.get_legend_handles_labels()
+ax1.legend(lines + lines2, labels + labels2, loc="best")
+
 plt.show()
