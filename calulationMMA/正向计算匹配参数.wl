@@ -93,21 +93,17 @@ solveTanGammaL[BdVal_] := Module[{a, b, c, solutions},
 (* \:793a\:4f8b\:8ba1\:7b97\:ff1a\:53d6Bd=0.5\:65f6 *)
 exampleSolutions = solveTanGammaL[2.65];
 Print["\:5f53Bd=2.65\:65f6\:ff0ctan(\[Gamma]l)\:7684\:5b9e\:6570\:89e3\:4e3a\:ff1a", exampleSolutions]
+
 (* \:53ef\:89c6\:5316\:89e3\:7684\:5206\:5e03 *)
-normalizationFactor = (\[CurlyEpsilon]r-1)(omega/c)(lambdaGCirc/lambda); (* 新增归一化因子 *)
 BdValues = Subdivide[First@BdRange, Last@BdRange, 50];
 realSolutions = Table[
-   {BdVal/normalizationFactor, (* 对Bd进行归一化处理 *)
-    Min[ArcTan[#]/gammaRect] & /@ solveTanGammaL[BdVal]}, 
+   {BdVal, #} & /@ solveTanGammaL[BdVal],
    {BdVal, BdValues}];
  
 ListPlot[Flatten[realSolutions, 1], 
  PlotStyle -> Red,
- AxesLabel -> {"Bd/((\!\(\*SubscriptBox[\(\[CurlyEpsilon]\), \(r\)]\)-1)(\:6ce2\u6570))", 
-   "\[Gamma]l_min (normalized)"},  (* 修改横轴标签 *)
- PlotLabel -> "\:5f52\:4e00\:5316Bd\u4e0e\u89d2\u5ea6\u5206\u5e03"]
-
-PlotLabel -> "\:5f52\:4e00\:5316\:6700\:5c0f\:89d2\:5ea6\:5206\:5e03"]
+ AxesLabel -> {"Bd", "tan(\[Gamma]l)"}, 
+ PlotLabel -> "\:5b9e\:6570\:89e3\:5206\:5e03"]
 
 
 
