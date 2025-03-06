@@ -84,7 +84,7 @@ tmax=Bdmax/((\[CurlyEpsilon]r-1)(omega/c)(lambdaGCirc/lambda));
 Print["\:7a97\:7247\:539a\:5ea6\:7684\:6700\:5927\:503c = ", tmax*1000]
 
 (*\:8fdb\:884c\:4e8c\:6b21\:65b9\:7a0b\:7684\:6c42\:89e3*)
-BdRange = {0, Bdmax};  (* \:6765\:81eadelta\:7684Bd\:7ea6\:675f *)
+BdRange = {0.01, Bdmax};  (* \:6765\:81eadelta\:7684Bd\:7ea6\:675f\:ff0c\:9632\:6b62Bd\:4e3a0 *)
 
 
 gammaRect=2 Pi /lambdaGCirc;  (* \:539f\:4ee3\:7801\:4e2dlambdaGC\:5e94\:8be5\:662flambdaGCirc *)
@@ -93,7 +93,10 @@ gammaRect=2 Pi /lambdaGCirc;  (* \:539f\:4ee3\:7801\:4e2dlambdaGC\:5e94\:8be5\:6
 Acoeff[Bd_] := k*(Bd*(BT^2 + 1)*k - 2*BT);
 Bcoeff[Bd_] := 2 - 2*k*(BT*(Bd + BT*k) + k);
 Ccoeff[Bd_] := Bd + 2*BT*k;
+
+
 (* \:53ef\:89c6\:5316\:89e3\:7684\:539f\:59cb\:6570\:636e\:7ed3\:6784 *)
+BdValues = Subdivide[First@BdRange, Last@BdRange, 50]
 realSolutions = Table[
    {BdVal, #} & /@ solveTanGammaL[BdVal],
    {BdVal, BdValues}];
@@ -113,3 +116,4 @@ ListPlot[Flatten[realSolutions, 1],
 
 
 
+Print[realSolutions]
