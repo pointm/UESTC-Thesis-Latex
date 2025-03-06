@@ -1,5 +1,21 @@
 (* ::Package:: *)
 
+CreateWindow@PaletteNotebook@Dynamic[Grid[
+    Select[
+     With[{expr = ToExpression@#},
+        {#,
+         Head[expr],
+         Which[
+          ListQ[expr], Dimensions[expr],
+          NumericQ[expr], expr,
+          StringQ[expr], StringLength[expr],
+          True, "-"]}] & /@ Names["Global`*"],
+     (#[[2]] =!= Symbol) &],
+    Alignment -> Left],
+    UpdateInterval -> 10, TrackedSymbols->{}]
+
+
+
 (* \:53c2\:6570\:5b9a\:4e49 *)
 a = 10.668*^-3; (* \:77e9\:5f62\:6ce2\:5bfc\:957f\:8fb9\:ff0c\:5355\:4f4dm *)
 b = 4.3188*^-3;  (* \:77e9\:5f62\:6ce2\:5bfc\:77ed\:8fb9\:ff0c\:5355\:4f4dm *)
@@ -77,33 +93,23 @@ gammaRect=2 Pi /lambdaGCirc;  (* \:539f\:4ee3\:7801\:4e2dlambdaGC\:5e94\:8be5\:6
 Acoeff[Bd_] := k*(Bd*(BT^2 + 1)*k - 2*BT);
 Bcoeff[Bd_] := 2 - 2*k*(BT*(Bd + BT*k) + k);
 Ccoeff[Bd_] := Bd + 2*BT*k;
-
-(* \:6c42\:89e3\:8d85\:8d8a\:65b9\:7a0b\:7684\:51fd\:6570 *)
-solveTanGammaL[BdVal_] := Module[{a, b, c, solutions},
-  a = Acoeff[BdVal];
-  b = Bcoeff[BdVal];
-  c = Ccoeff[BdVal];
-  
-  solutions = NSolve[a*t^2 + b*t + c == 0, t];
-  
-  (* \:8fc7\:6ee4\:5b9e\:6570\:89e3\:5e76\:8f6c\:6362\:4e3a\:89d2\:5ea6\:89e3 *)
-  Select[t /. solutions, Element[#, Reals] &]
-]
-
-(* \:793a\:4f8b\:8ba1\:7b97\:ff1a\:53d6Bd=0.5\:65f6 *)
-exampleSolutions = solveTanGammaL[2.65];
-Print["\:5f53Bd=2.65\:65f6\:ff0ctan(\[Gamma]l)\:7684\:5b9e\:6570\:89e3\:4e3a\:ff1a", exampleSolutions]
-
-(* \:53ef\:89c6\:5316\:89e3\:7684\:5206\:5e03 *)
-BdValues = Subdivide[First@BdRange, Last@BdRange, 50];
+(* \:53ef\:89c6\:5316\:89e3\:7684\:539f\:59cb\:6570\:636e\:7ed3\:6784 *)
 realSolutions = Table[
    {BdVal, #} & /@ solveTanGammaL[BdVal],
    {BdVal, BdValues}];
- 
+
+(* \:65b0\:589e\:ff1a\:5c06\:89e3\:5bfc\:51fa\:4e3a\:4e24\:4e2a\:5206\:79bb\:7684\:6570\:7ec4 *)
+bdList = First /@ Flatten[realSolutions, 1];      (* \:6240\:6709Bd\:503c\:7684\:4e00\:7ef4\:6570\:7ec4 *)
+tanGammaList = Last /@ Flatten[realSolutions, 1]; (* \:6240\:6709tan(\[Gamma]l)\:7684\:4e00\:7ef4\:6570\:7ec4 *)
+
+(* \:6216\:8005\:5bfc\:51fa\:4e3a{ {Bd, tan\[Gamma]l}, ... } \:683c\:5f0f\:7684\:89e3\:5bf9 *)
+solutionPairs = Flatten[realSolutions, 1];        (* \:4fdd\:6301Bd\:4e0e\:89e3\:7684\:5bf9\:5e94\:5173\:7cfb *)
+
 ListPlot[Flatten[realSolutions, 1], 
  PlotStyle -> Red,
  AxesLabel -> {"Bd", "tan(\[Gamma]l)"}, 
  PlotLabel -> "\:5b9e\:6570\:89e3\:5206\:5e03"]
+
 
 
 
