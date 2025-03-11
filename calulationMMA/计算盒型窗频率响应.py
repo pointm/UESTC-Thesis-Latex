@@ -8,16 +8,16 @@ plt.rcParams["axes.unicode_minus"] = False  # 解决负号显示问题
 # ================================
 
 # 参数定义 (单位转换: 1e-3 转换为米)
-a = 10.668e-3  # 矩形波导长边
-b = 4.3188e-3  # 矩形波导短边
-frequency_range = np.linspace(17.6e9, 21.7e9, 1001)
-f = 19.65e9  # 匹配频率
+a = 34.849e-3  # 矩形波导长边
+b = 15.799e-3  # 矩形波导短边
+frequency_range = np.linspace(6e9, 11e9, 1001)
+f = 8.5e9  # 匹配频率
 omega = 2 * math.pi * f
 c = 3e8  # 光速
 epsilon_r = 9.4  # 蓝宝石相对介电常数
 mu_11 = 1.841  # 圆波导TE11模特征值
-match_l = 4.66649648663073e-3  # 匹配段长度
-thickness = 0.156691182086307e-3  # 窗片厚度
+match_l = 6.091486503470641e-3  # 匹配段长度
+thickness = 0.9837318888278744e-3  # 窗片厚度
 
 # 圆波导等效直径计算
 Dia = math.sqrt(a**2 + b**2)
