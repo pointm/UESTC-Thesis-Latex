@@ -316,8 +316,39 @@
     \label{fig:脊波导初步仿真}
 \end{figure}
 
-接下来选取脊波导圆形窗片的材料，根据文章\cite{han_sapphire_2011}里面对窗片材料的论述，蓝宝石的特性包括低介电损耗和高强度，使其能够制造出0.1毫米厚的精细气密层；由于它是致密无孔的晶体材料，内部结构均匀，所以在高功率操作环境下不易发生熔解破坏。此外，它还能应对焊接和真空脱气过程中的高温，当实现大规模生产时，成本控制良好，且环保方面的问题较少。因为蓝宝石的上述优点，本文选取蓝宝石作为窗片的材料。
+接下来选取脊波导圆形窗片的材料，根据文章\cite{han_sapphire_2011}里面对窗片材料的论述，蓝宝石的特性包括低介电损耗和高机械强度，使其能够制造出0.1毫米厚的精细层而不会因为管内外压差而产生破损；由于它是致密无孔的晶体材料，内部结构均匀，所以在高功率操作环境下不易发生熔解破坏。此外，它还能应对焊接和真空脱气过程中的高温，当实现大规模生产时，成本控制良好，且环保方面的问题较少。因为蓝宝石的上述优点，本文选取蓝宝石作为窗片的材料。根据材料\cite{thumm_2020_State}所示，将蓝宝石的相对电介质常数设定为$\varepsilon_r=9.4$，损耗角正切被设定为$\tan \delta = 0.0004$。
 
+经过计算仿真，最终确定脊波导窗片的整体结构为图\ref{fig:脊波导窗的整体结构}所示。
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=0.6\linewidth]{pic/chapter3/输入窗的总体视图.png}
+    \caption{脊波导窗的整体结构}
+    \label{fig:脊波导窗的整体结构}
+\end{figure}
+
+为了方便设计加工与焊接，窗片被设置为圆形窗片。为了减少匹配段的长度，窗片与脊波导之间的过渡部分被设计为倒圆角的矩形过渡段，其中对过渡部分倒圆角是为了降低过渡段的最大场强，提升窗片的功率容量，防止窗片被击穿。各个部分的详细尺寸被记载于图\ref{fig:窗片与脊波导之间过渡段的尺寸}中。其中\ref{fig:纵向长度}展示了窗片的纵向长度，圆角矩形过渡段的纵向长度为1.69mm，窗片的厚度为0.91mm。
+
+\begin{figure}[!htb]
+    \small
+    \centering
+    \begin{tabular}{@{\ }c@{\ }c}
+        \includegraphics[width=0.45\textwidth]{pic/chapter3/纵向长度视图.png} & 
+        \hspace{5pt}
+        \includegraphics[width=0.45\textwidth]{pic/chapter3/圆形窗片视图.png}     \\
+        \mbox{\small (a)过渡段纵向长度}                                                                               & 
+        \mbox{\small (b)圆形窗片参数}                                                                                  \\
+    \end{tabular}
+    \\[6bp]
+    \setcounter{subfigure}{2}
+    \begin{subfigure}[t]{0.65\linewidth}
+        \centering
+        \includegraphics[scale=0.55]{pic/chapter3/圆角矩形视图.png}
+        \caption{Fig. 3}
+        \label{fig:圆角矩形过渡段参数}
+    \end{subfigure}
+    \caption{窗片与圆角矩形过渡段尺寸}
+    \label{fig:窗片与脊波导之间过渡段的尺寸}
+\end{figure}
 
 \subsection{计算脊波导窗功率容量}
 \subsubsection{使用最大场强法计算脊波导窗的功率容量}
