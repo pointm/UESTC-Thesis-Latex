@@ -321,37 +321,71 @@
 经过计算仿真，最终确定脊波导窗片的整体结构为图\ref{fig:脊波导窗的整体结构}所示。
 \begin{figure}[!htb]
     \centering
-    \includegraphics[width=0.6\linewidth]{pic/chapter3/输入窗的总体视图.png}
+    \includegraphics[width=0.45\linewidth]{pic/chapter3/输入窗的总体视图.png}
     \caption{脊波导窗的整体结构}
     \label{fig:脊波导窗的整体结构}
 \end{figure}
 
-为了方便设计加工与焊接，窗片被设置为圆形窗片。为了减少匹配段的长度，窗片与脊波导之间的过渡部分被设计为倒圆角的矩形过渡段，其中对过渡部分倒圆角是为了降低过渡段的最大场强，提升窗片的功率容量，防止窗片被击穿。各个部分的详细尺寸被记载于图\ref{fig:窗片与脊波导之间过渡段的尺寸}中。其中\ref{fig:纵向长度}展示了窗片的纵向长度，圆角矩形过渡段的纵向长度为1.69mm，窗片的厚度为0.91mm。
+为了方便设计加工与焊接，窗片被设置为圆形窗片。为了减少匹配段的长度，窗片与脊波导之间的过渡部分被设计为倒圆角的矩形过渡段。其中对过渡部分倒圆角不仅是为了降低过渡段的最大场强，提升窗片的功率容量，防止窗片被击穿；另一方面也方便了之后对过渡段部分的加工。
 
-\begin{figure}[!htb]
+各个部分的详细尺寸被记载于图\ref{fig:窗片与过渡段的尺寸}中。其中\ref{fig:窗片与过渡段的尺寸} (a) 展示了窗片的直径为22.98mm。图片\ref{fig:窗片与过渡段的尺寸} (b)展示了圆窗片与脊波导之间的圆角矩形过渡段的具体尺寸，其长边为16.03mm，短边为10.61mm，四个角均倒圆角，倒圆角的半径为2.85mm。结构具体的纵向长度如图\ref{fig:窗片与过渡段的尺寸} (c)所示，圆角矩形过渡段的纵向长度为1.69mm，窗片的厚度为0.91mm。
+
+\begin{figure}[!htbp]
     \small
     \centering
     \begin{tabular}{@{\ }c@{\ }c}
-        \includegraphics[width=0.45\textwidth]{pic/chapter3/纵向长度视图.png} & 
+        \includegraphics[width=0.25\textwidth]{pic/chapter3/圆形窗片视图.png} & 
         \hspace{5pt}
-        \includegraphics[width=0.45\textwidth]{pic/chapter3/圆形窗片视图.png}     \\
-        \mbox{\small (a)过渡段纵向长度}                                                                               & 
-        \mbox{\small (b)圆形窗片参数}                                                                                  \\
+        \includegraphics[width=0.45\textwidth]{pic/chapter3/圆角矩形视图.png}     \\
+        \mbox{\small (a)圆形窗片视图}                                                                               & 
+        \mbox{\small (b)圆角矩形视图}                                                                                  \\
     \end{tabular}
     \\[6bp]
-    \setcounter{subfigure}{2}
-    \begin{subfigure}[t]{0.65\linewidth}
+    \begin{subfigure}[t]{0.75\linewidth}
+        \setcounter{subfigure}{2}
         \centering
-        \includegraphics[scale=0.55]{pic/chapter3/圆角矩形视图.png}
-        \caption{Fig. 3}
-        \label{fig:圆角矩形过渡段参数}
+        \includegraphics[scale=0.21]{pic/chapter3/纵向长度视图.png}
+        \caption{纵向长度}
+        \label{subfig:纵向长度视图}
     \end{subfigure}
-    \caption{窗片与圆角矩形过渡段尺寸}
-    \label{fig:窗片与脊波导之间过渡段的尺寸}
+    \caption{窗片与过渡段的尺寸}
+    \label{fig:窗片与过渡段的尺寸}
 \end{figure}
 
+
+此时对脊波导窗的过渡段部分电长度进行分析，并与传统盒型窗进行对比。根据上文的分析，为了满足盒型窗窗片两侧过渡部分能够被等效为传输线的物理模型这一目的，传统盒型窗的匹配段部分不得小于0.1倍电长度。如果不满足这一要求就会因为无法被等效为传输线模型进而导致设计的匹配点出现频偏。此时新型盒型窗的过渡段可以被视作工作在$TE_{01}$下的长边为16.03mm，短边为10.61mm矩形波导，计算其在$10GHz$的工作波长为$\lambda_{gRec}=\lambda / \sqrt{1-(\lambda / \lambda_c)^2}=85.06mm$，匹配部分的电长度小于0.1倍电长度，相比于传统盒型窗的匹配部分的电长度更短，故新型窗片的匹配部分结构更加紧凑。
+
+此时对原先参数的脊波导窗在CST里面进行建模，并且使用频域求解器在匹配频段内进行仿真，计算得到窗片的S参数如图\ref{fig:输入窗的S参数}所示：
+
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=0.5\linewidth]{pic/chapter3/脊波导窗S参数.png}
+    \caption{输入窗的S参数}
+    \label{fig:输入窗的S参数}
+\end{figure}
+对窗片的S参数进行考察，发现其反射系数$S_{11}$在要求的频段6-11GHz之内小于-20dB，满足匹配要求。此时结合图片可以得到满足反射系数$S_{11}<-20$的频带范围为6-11.5GHz，此时计算其相对带宽为62.9\%。
+
 \subsection{计算脊波导窗功率容量}
+为了探究输入窗的适用范围，有必要对脊波导窗的功率容量进行分析。微波窗通常在电场强度最强处出现击穿，并且在扫参时候发现，在同一匹配频段内，低频点的电场强更强。根据之前的结论，现在对脊波导窗的在低频点处的电场场强进行仿真，得到如图\ref{fig:脊波导窗低频点场强仿真}所示的结果：
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=0.25\linewidth]{pic/ERROR.jpg}
+    \caption{脊波导窗6GHz场强仿真}
+    \label{fig:脊波导窗低频点场强仿真}
+\end{figure}
+
+为了方便进一步地分析，需要找到最大电长场强所在位置，使用CST进行仿真之后可以得到其最大场强出现在ERROR，具体位置如\ref{fig:脊波导窗低频点场强仿真}所示：
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=0.2\linewidth]{pic/ERROR.jpg}
+    \caption{脊波导窗6GHz场强仿真}
+    \label{fig:脊波导窗6GHz场强仿真}
+\end{figure}
+
+完成最大场强所在位置之后，可以开始对脊波导窗功率容量进行进一步的分析。为了确保结果的准确性，本文采用了两种不同的仿真方式进行对照。
 \subsubsection{使用最大场强法计算脊波导窗的功率容量}
+最大场强法主要是通过对端口的输入功率进行扫参，在最大场强达到30kV/mm的时候被视为击穿，本文分析的最大场强值的参考主要来源于REFERROR，，，还没找到我去了都。
+
 \subsubsection{使用二次电子发射计算脊波导窗的功率容量}
 \subsection{关于窗的多物理场分析}
 \subsubsection{窗片的温度场分析}
@@ -433,7 +467,7 @@ $\mathcal{C}_i$
     \begin{subfigure}[t]{0.35\linewidth}
         \centering
         \includegraphics[scale=0.25]{logo.pdf}
-        \caption{Fig. 3}
+        \caption{求实求真}
         \label{fig:1-3}
     \end{subfigure}
     \begin{subfigure}[t]{0.35\linewidth}
