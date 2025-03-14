@@ -402,11 +402,64 @@ ERRORFIX。
 首先对窗片进行温度场分析，根据图片显示
 根据经验，蓝宝石窗片在经过加热之后会出现热胀冷缩的现象
 \section{模式变换部分的设计}
-根据之前\ref{fig:6-11GHzDRW}的脊波导几何参数可以看出，此时的脊波导并非公用的标准脊波导，没有标准的同轴转脊波导的模式转换器。如果想要进行进一步的脊波导窗的测试，有必要设计脊波导转同轴的模式转换器。此时结合实际的测试情况，由于之前已经有标准矩形波导转同轴的模式转换器，并且在需要带宽内满足反射系数$S_{11}<-25dB$的反射系数要求。故设计脊波导到标准矩形波导的模式转换器。根据查表显示，标准矩形波导WR112的参数为28.499*12.624mm。并且为了标准矩形波导到脊波导之间测试件的纵向长度足够短足够紧凑，本文选取的模式变换主要结构为阶梯过渡，而不是渐变过渡。
+根据之前\ref{fig:6-11GHzDRW}的脊波导几何参数可以看出，此时的脊波导并非公用的标准脊波导，没有标准的同轴转脊波导的模式转换器。如果想要进行进一步的脊波导窗的测试，有必要设计脊波导转同轴的模式转换器。此时结合实际的测试情况，由于之前已经有标准矩形波导转同轴的模式转换器，并且在需要带宽内满足反射系数$S_{11}<-25dB$的反射系数要求。故设计脊波导到标准矩形波导的模式转换器。根据查表显示，标准矩形波导WR112的参数为28.499*12.624mm，本波导的截止频率为5.25GHz，低于所需要频段的最低频点。并且为了标准矩形波导到脊波导之间测试件的纵向长度足够短足够紧凑，本文选取的模式变换主要结构为阶梯过渡，而不是渐变过渡。
 
+[ERRORFIX可能需要补充一点理论相关的。]
+经过上述分析，再加上CST方面的优化，得到了如图\ref{fig:脊波导模式变换}所示的模式变换结构：
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=0.5\linewidth]{pic/chapter3/脊波导模式变换.png}
+    \caption{脊波导模式变换}
+    \label{fig:脊波导模式变换}
+\end{figure}
+靠近z轴正轴的脊波导为之前\ref{fig:6-11GHzDRW}中所示的双脊波导，而原理z轴正轴的矩形波导纪委之前所提到的WR112标准矩形波导。关于阶梯过度过渡段的各个段落的纵向长度如图片\ref{fig:脊波导模式变换纵向长度} 所示，图中所示的两端过渡段长度均相等，过渡段的总体长度为21.22mm。：
 
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=0.5\linewidth]{pic/chapter3/模式变换纵向长度.png}
+    \caption{脊波导模式变换纵向长度}
+    \label{fig:脊波导模式变换纵向长度}
+\end{figure}
+此时过渡段中间两个脊波导的脊的宽度与之前所设计的脊波导的脊宽相同，但是脊的高度不同，进而形成阶梯状过渡。过渡段脊波导的空隙高度如图\ref{fig:脊波导模式变换脊的高度}所示：
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=0.25\linewidth]{pic/ERROR.jpg}
+    \caption{脊波导模式变换脊的高度}
+    \label{fig:脊波导模式变换脊的高度}
+\end{figure}
+
+此时过渡段的几何参数已经确定，在将过渡段整体耦合到窗片之前应该单独对过渡段进行S参数仿真。由于1端口（此时为脊波导端口）与2端口（此时为标准矩形波导端口）并不完全一致，故需要分别分析过渡段结构在1端口馈入和2端口馈入时候的情况。仿真结果如图\ref{fig:过渡段不同端馈入的S参数}中所示，其中\ref{fig:过渡段不同端馈入的S参数} (a)展示了脊波导馈入能量时候的S参数，\ref{fig:过渡段不同端馈入的S参数} (b)展示了标准矩形波导馈入能量时候的S参数，此时在两种情况下反射系数$S_{11}$均在频段6-11GHz之内小于-20dB：
+
+\begin{figure}[!htb]
+    \small
+    \centering
+    \begin{tabular}{@{\ }c@{\ }c}
+        \includegraphics[width=0.49\textwidth]{pic/chapter3/一端口馈入.png} & 
+        \hspace{5pt}
+        \includegraphics[width=0.49\textwidth]{pic/chapter3/二端口馈入.png}     \\
+        \mbox{\small (a)脊波导馈入能量}                                                                               & 
+        \mbox{\small (b)标准矩形波导馈入能量}                                                                                  \\
+    \end{tabular}
+    \caption{过渡段不同端S参数}
+    \label{fig:过渡段不同端馈入的S参数}
+\end{figure}
+
+此时将过渡段连接到脊波导窗两端，整体的结构如图\ref{fig:脊波导窗的整体测试结构}所示，此时窗片两端均使用阶梯过渡过渡到标准矩形波导WR112。
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=0.5\linewidth]{pic/chapter3/脊波导窗整体测试结构.png}
+    \caption{脊波导窗的整体测试结构}
+    \label{fig:脊波导窗的整体测试结构}
+\end{figure}
+
+此时针对整体接上过渡段之后的窗片进行S参数仿真，得到的结果如图\ref{fig:脊波导窗整体测试结构S参数}所示，此时在频带范围之内（6-11GHz），整体的反射系数也均小于-20dB，满足测试的需求：
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=0.5\linewidth]{pic/chapter3/脊波导窗整体S参数.png}
+    \caption{脊波导窗整体测试结构S参数}
+    \label{fig:脊波导窗整体测试结构S参数}
+\end{figure}
 \section{输出窗的相关研究}
-
 \subsection{计算脊波导窗功率容量}
 \subsubsection{使用最大场强法计算脊波导窗的功率容量}
 \subsubsection{使用二次电子发射计算脊波导窗的功率容量}
