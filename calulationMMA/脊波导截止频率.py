@@ -35,9 +35,9 @@ def calculate_frequency(lambda_c_mm):
 
 
 # 示例参数（单位：mm）
-a = 20
-b = 10
-s = 4
+a = 63
+b = 32
+s = 29
 d = 5
 
 # 新增参数校验
@@ -58,5 +58,5 @@ print(
 
 # 在输出部分添加频率计算
 result = calculate_lambda_c(a, b, s, d)
-print(f"\n计算得到的截止波长λ_c为: {result:.2f} mm")
-print(f"对应的截止频率f_c为: {calculate_frequency(result):.2f} GHz")  # 新增输出行
+print(f"\n计算得到的截止波长λ_c为: {result:.3f} mm")
+print(f"对应的截止频率f_c为: {calculate_frequency(result):.3f} GHz")  # 新增输出行
