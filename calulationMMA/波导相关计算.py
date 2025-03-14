@@ -123,7 +123,7 @@ class DoubleRidgeWaveguide(WaveGuide):
         """计算波导截止波长"""
         DRWfactor = self.a / (2 * (self.a - self.s))
         DRWsum1 = (
-            2
+            4
             / math.pi
             * (1 + 0.2 * math.sqrt(self.b / (self.a - self.s)))
             * (self.b / (self.a - self.s))
