@@ -493,41 +493,86 @@ ERRORFIX。
 \end{figure}。
 
 此时可以看到，在1.13-1.4GHz 的所需频段之内，此时的反射系数$S_{11}<-25dB$，满足匹配要求，可以作为设计窗片所需的脊波导。
-\section{频带搬移时候出现的问题分析}
-此时仿照之前的6-11GHz 频段所设计的脊波导配圆形窗，并且使用圆角矩形结构作为脊波导和圆窗之间的过渡段进行设计。初步进行频段搬移并且进行优化之后，得到的窗片结构如图\ref{fig:L波段脊波导窗的整体结构}所示：
+\section{频带搬移时候出现的问题分析}\label{sec:频带搬移时候出现的问题分析}
+此时仿照之前的6-11GHz 频段所设计的脊波导配圆形窗，并且使用圆角矩形结构作为脊波导和圆窗之间的过渡段进行设计。初步进行频段搬移并且进行优化之后，得到的窗片结构如图\ref{fig:L波段脊波导圆窗的整体结构}所示：
 \begin{figure}[!htb]
     \centering
-    \includegraphics[width=0.5\linewidth]{pic/chapter4/L波段脊波导窗的整体结构.png}
-    \caption{L波段脊波导窗的整体结构}
-    \label{fig:L波段脊波导窗的整体结构}
+    \includegraphics[width=0.35\linewidth]{pic/chapter4/L波段脊波导圆窗的整体结构.png}
+    \caption{L波段脊波导圆窗的整体结构}
+    \label{fig:L波段脊波导圆窗的整体结构}
 \end{figure}
 
-此时窗片的具体几何参数如图\ref{fig:L波段脊波导窗的几何参数}所示，此时的L波段脊波导窗纵向参数如图\ref{fig:L波段脊波导窗的几何参数} (a)所示，此时窗片厚度为5.91mm，圆角矩形过渡段的厚度为3.10mm；圆形窗片的直径如图\ref{fig:L波段脊波导窗的几何参数} (b)，圆形窗片的直径为85.14mm；圆角矩形的参数如图\ref{fig:L波段脊波导窗的几何参数} (c)所示，此时圆角矩形的长边长度为69.2mm，宽边长度为12.63mm，倒圆角的半径为6.41mm。
+此时窗片的具体几何参数如图\ref{fig:L波段脊波导圆窗的详细几何参数}所示，此时的L波段脊波导窗纵向参数如图\ref{fig:L波段脊波导圆窗的详细几何参数} (a)所示，此时窗片厚度为5.91mm，圆角矩形过渡段的厚度为3.10mm；圆形窗片的直径如图\ref{fig:L波段脊波导圆窗的详细几何参数} (b)，圆形窗片的直径为85.14mm；圆角矩形的参数如图\ref{fig:L波段脊波导圆窗的详细几何参数} (c)所示，此时圆角矩形的长边长度为69.2mm，宽边长度为12.63mm，倒圆角的半径为6.41mm。
 
 \begin{figure}[!htb]
     \small
     \centering
     \begin{tabular}{@{\ }c@{\ }c}
-        \includegraphics[width=0.25\textwidth]{pic/chapter4/L波段窗纵向长度ORI.png} & 
+        \includegraphics[width=0.19\textwidth]{pic/chapter4/L波段窗纵向长度ORI.png} & 
         \hspace{5pt}
-        \includegraphics[width=0.25\textwidth]{pic/chapter4/L波段圆形窗片.png}     \\
+        \includegraphics[width=0.19\textwidth]{pic/chapter4/L波段圆形窗片.png}     \\
         \mbox{\small (a)L波段脊波导圆窗纵向长度}                                                                               & 
-        \mbox{\small (b)L波段脊波导圆窗参数}                                                               \\[6bp]
-        \multicolumn{2}{c}{\includegraphics[width=0.5\textwidth]{pic/chapter4/L波段圆角矩形过渡段ORI.png}} \\  % 使用跨列居中
+        \mbox{\small (b)L波段脊波导圆窗参数}                                                           \\[6bp]
+        \multicolumn{2}{c}{\includegraphics[width=0.35\textwidth]{pic/chapter4/L波段圆角矩形过渡段ORI.png}} \\  % 使用跨列居中
         \multicolumn{2}{c}{\mbox{\small (c)L波段脊波导圆角矩形过渡段参数}}             
     \end{tabular}
-    \caption{L波段脊波导窗的几何参数}
-    \label{fig:L波段脊波导窗的几何参数}
+    \caption{L波段脊波导圆窗的详细几何参数}
+    \label{fig:L波段脊波导圆窗的详细几何参数}
 \end{figure}
 
 此时对L 波段脊波导圆窗进行关于S参数的仿真，可以得到S参数如图\ref{fig:L波段脊圆波导窗的S参数}所示，可以看到在1.13-1.4GHz 的频段之内，此时的反射系数$S_{11}<-25dB$，满足匹配要求，可以作为设计窗片所需的脊波导。
 \begin{figure}[!htb]
     \centering
-    \includegraphics[width=0.5\linewidth]{pic/chapter4/L波段脊圆波导窗的S参数.png}
+    \includegraphics[width=0.45\linewidth]{pic/chapter4/L波段脊圆波导窗的S参数.png}
     \caption{L波段脊圆波导窗的S参数}
     \label{fig:L波段脊圆波导窗的S参数}
 \end{figure}
+
+此时设计的脊波导窗虽说在所需要的频段内能够满足$S_{11}$的匹配要求，但是此时的圆形窗片的直径到达了85mm，厚度为5.91mm，此时的圆形窗片实在是过于巨大难以进行加工。并且大窗片更加容易在焊接过程中或者是日常抵挡真空器件的内外压差由于应力过大而发生损坏。针对以上的分析，有必要针对现有的脊波导圆窗结构在L频段施行具体设计时进行相应的改进。
+
+由于此时主要的矛盾集中在窗片过大之上，需要对窗片的场分布进行分析。此时将L波段脊波导圆窗在中轴对称面取横截面，观察截掉之后的电场强度分布如图\ref{fig:L波段脊波导圆窗的电场强度分布}所示。经过观察可以发现，此时窗片在此横截面上面的电场分布更加靠近于脊波导中心处，而圆形窗片的上下两端的电场强度分布并不是特别强。此时可以考虑将圆形窗片的上下两端进行削去，减小窗片在上下的长度，进而减小窗片的体积，使得其结构更加紧凑并且能够加强窗片的机械强度。
+
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=0.35\linewidth]{pic/chapter4/L波段脊波导圆窗的电场强度分布.png}
+    \caption{L波段脊波导圆窗的电场强度分布}
+    \label{fig:L波段脊波导圆窗的电场强度分布}
+\end{figure}
+
 \section{L 波段宽频带脊波导窗的结构设计}
+根据之前\ref{sec:频带搬移时候出现的问题分析}节中的分析，此时将从X波段进行频段搬移的窗片结构进行改造。将原先的圆形窗片在电场强度较弱的地方直接进行削除的操作，操作的示意图如图\ref{fig:L频段改造}。示意图中展示了窗片的截面，此时将圆形窗片上下两端以直线进行削除，削除的类似于飞机跑道的结果从外形上看起来更像是倒圆角的矩形。为了方便进一步的加工，此时将不按照被消除上下端的圆窗进行进一步设计，而按照\ref{fig:L频段改造}里面最后的倒圆角的矩形窗片示意图进行进一步地设计。
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=0.5\linewidth]{pic/chapter4/L脊波导窗片改造.png}
+    \caption{L频段窗片改造示意图}
+    \label{fig:L频段改造}
+\end{figure}
+
+在完成之前的设计方案的设计之后的整体窗片结构如图\ref{fig:L波段脊波导窗的整体结构}所示，此时由于脊波导窗的上下端被削去，使得窗的几何结构发生了变化，故两侧的圆角矩形匹配段也会进行重新设计。
+
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=0.3\linewidth]{pic/chapter4/L波段脊波导窗整体结构.png}
+    \caption{L波段脊波导窗的整体结构}
+    \label{fig:L波段脊波导窗的整体结构}
+\end{figure}
+
+此时窗片的详细几何结构参数如图\ref{fig:L波段脊波导窗的详细几何参数}所示，图中\ref{fig:L波段脊波导窗的详细几何参数} (a)展示了窗片的厚度为10.05mm，匹配段的厚度为3.91mm；图中\ref{fig:L波段脊波导窗的详细几何参数} (b)展示了窗片的长度为74.97mm，高度为11.96mm，倒圆角的半径为3.01mm；图中\ref{fig:L波段脊波导窗的详细几何参数} (c)展示了圆角矩形匹配段的长度为
+\begin{figure}[!htb]
+    \small
+    \centering
+    \begin{tabular}{@{\ }c@{\ }c}
+        \includegraphics[width=0.19\textwidth]{pic/chapter4/L波段脊波导窗纵向长度.png} & 
+        \hspace{5pt}
+        \includegraphics[width=0.19\textwidth]{pic/chapter4/L波段圆角矩形窗片尺寸.png}     \\
+        \mbox{\small (a)L波段脊波导窗纵向长度}                                                                               & 
+        \mbox{\small (b)L波段脊波导圆角矩形窗参数}                                                           \\[6bp]
+        \multicolumn{2}{c}{\includegraphics[width=0.35\textwidth]{pic/chapter4/L波段过渡段尺寸.png}} \\  % 使用跨列居中
+        \multicolumn{2}{c}{\mbox{\small (c)新设计L波段脊波导圆角矩形过渡段参数}}             
+    \end{tabular}
+    \caption{L波段脊波导窗的详细几何参数}
+    \label{fig:L波段脊波导窗的详细几何参数}
+\end{figure}
 
 \section{计算L波段脊波导窗功率容量}
 \subsection{使用最大场强法计算脊波导窗的功率容量}
