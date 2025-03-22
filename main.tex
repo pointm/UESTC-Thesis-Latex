@@ -494,7 +494,7 @@ ERRORFIX。
 \begin{figure}[!htb]
     \centering
     \includegraphics[width=0.5\linewidth]{pic/chapter3/X波段Spark3D中的功率.png}
-    \caption{X波段脊波导Spark3D中的功率}
+    \caption{X波段脊波导Spark3D中计算的功率}
     \label{fig:X波段Spark3D中的功率}
 \end{figure}
 不同与SPARK3D的材料设定，CST的PIC求解器不能设置背景材料的二次电子发射系数，此时需要对窗片套上一定厚度的外壳后进行进一步的二次电子仿真。为了方便建模，将原先的真空仿真模型外侧套上了一个宽和高比最大模型外侧还要大2mm的立方体外壳，套上外壳之后的窗整体如图\ref{fig:X无氧铜外壳}所示。
@@ -723,6 +723,65 @@ ERRORFIX。
 \section{计算L波段脊波导窗功率容量}
 \subsection{使用最大场强法计算脊波导窗的功率容量}
 \subsection{使用电子倍增计算脊波导窗的功率容量}
+
+使用电子倍增方法来计算L波段脊波导窗的方法与X波段的大致相同，首先选取的二次电子发射模型依然是Vaughan模型。此时选用的铜的二次电子发射曲线依然跟原先X波段的相同，但是此时选择氧化铍(BeO)相关的二次电子发射曲线必须重新检索文献并且使用文献中的结果。此时根据文献\cite{shih_1994_beosee}中的数据，BeO的二次电子发射曲线的关键参数为$\delta_{max}=2.8 \pm 0.1, E_{max}=420 \pm 20 eV, E_1 = 40 \pm 2 eV$，本文献实验的入射电子的能量范围为从10到2900eV；根据文献\cite{ritz_1988_secondary}中的记述，关键参数为$\delta_{max}=2.27, E_{max}= 443  eV, E_1 =54.9 eV$，测试的入射电子能量范围为从10到900eV。综合上述文献的参数，此时将BeO的二次电子发射曲线在Vaughan模型中的关键参数设定为$\delta_{max}=2.8 , E_{max}=420 , E_1 = 40 eV$，并且入射电子的能量范围为从10到2900eV，设置好关键参数之后的曲线如图\ref{fig:BeO二次电子发射曲线}所示。
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=0.5\linewidth]{pic/chapter4/BeO二次电子发射曲线.png}
+    \caption{BeO二次电子发射曲线}
+    \label{fig:BeO二次电子发射曲线}
+\end{figure}
+
+此时为了方便设置Spark3D和CST中的PIC模块中的材料的二次电子发射曲线，在床片外侧套了一层矩形的铜制外壳，矩形外层的最窄数值为2mm。在加入铜制外壳之后，窗片的整体结构如图\ref{fig:L波段脊波导窗的整体结构}所示。
+
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=0.3\linewidth]{pic/chapter4/L波段加上铜制外壳.png}
+    \caption{L波段脊波导窗加上铜制外壳的整体结构}
+    \label{fig:L波段脊波导窗的整体结构}
+\end{figure}
+
+在套上铜制外壳之后，由于窗片在低频点更容易被击穿，故在所需频段的最低频点1.14GHz频点导出Spark3D所需的电场与磁场结果。并且为了查看铜制外壳是否会对窗片的S曲线产生影响，对加上铜制外壳后的窗片的S曲线进行了仿真，仿真的结果如图\ref{fig:L波段加上铜外壳后的S参数}所示。仿真结果显示，铜制外壳对窗片的S参数并没有明显的影响。
+
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=0.45\linewidth]{pic/chapter4/L波段加上铜外壳后的S参数.png}
+    \caption{L波段加上铜外壳后的S参数}
+    \label{fig:L波段加上铜外壳后的S参数}
+\end{figure}
+
+此时对导入Spark3D之后的电场强度进行观察，观察结果图\ref{fig:L波段Spark3D仿真结果} (a)所示，此时窗片整体中电场强度较高的部分集中在脊波导窗片的脊之间，其次便是脊波导与窗片之间过渡段靠近脊波导的那一条边，这个仿真结果与X波段中脊波导窗的仿真结果相类似。此时在Spark3D中按照之前所查到的参数，设置好每一种材料的二次电子发射系数。并且将馈入窗的能量设置为1.14GHz连续波，此时由于Spark3D中的电子为随机散布，为了确保仿真结果的准确性相比于Spark3D的初始电子数目三百进行相应的增加，于是将窗中的初始电子数目设置为8000。在Spark3D中进行好上述材料的曲线设置之后，此时判断击穿的标准依然是窗的电子数目随着时间的变化呈现出下降的趋势及被视为不被击穿，如果呈现出如指数一般的急剧上升趋势或者先下降后上升的趋势则被视为已经击穿。观察此时如图\ref{fig:L波段Spark3D仿真结果} (b)的Spark3D的仿真结果，可以看到此时的窗的功率容量为1012W。
+
+\begin{figure}[!htb]
+    \small
+    \centering
+    \begin{tabular}{@{\ }c@{\ }c}
+        \includegraphics[width=0.49\textwidth]{pic/chapter4/L波段Spark3D电场.png} & 
+        \hspace{5pt}
+        \includegraphics[width=0.49\textwidth]{pic/chapter4/Spark3D中的电子随时间的变化.png}     \\
+        \mbox{\small (a)Spark3D中的电场强度}                                                                               & 
+        \mbox{\small (b)Spark3D中的电子随时间的变化}                                                                                  \\
+    \end{tabular}
+    \caption{L波段Spark3D仿真结果}
+    \label{fig:L波段Spark3D仿真结果}
+\end{figure}
+
+有了之前的Spark3D所展示的基于电子倍增效应计算的功率容量的仿真结果，此时可以进行CST中使用PIC求解器进行关于电子倍增效应。首先根据之前的仿真结果，应该将初始电子填充在窗片的脊波导的脊与脊波导和窗片之间的过渡段之中，具体的填充区域如图\ref{fig:L波段CST电子填充方法}所示，为了保证求解的真实可靠性，综合前面的分析，本次每个区域中填充电子的密度不低于$10^9 m^{-3}$。
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=0.25\linewidth]{pic/chapter4/L波段CST电子填充方法.png}
+    \caption{L波段CST中PIC的初始电子填充区域}
+    \label{fig:L波段CST电子填充方法}
+\end{figure}
+
+在完成了PIC求解器中的电子填充之后，此时便可以设置激励信号进行仿真。由于期间比较容易在低频点击穿，故此时设置的连续波的频率为1.14GHz。并且在进行一些初步仿真之后发现初始电子的消失时间大概为150ns，为了确保查看电子数目随着时间的变化的趋势足够充分，故总仿真时长不应低于初始电子消失时间的两倍，本次仿真的总时长被设定为320ns。经过不同功率1.14GHz连续波的激励之后，查看器件中电子数目随着时间的变化趋势如图\ref{fig:L波段PIC基于二次电子仿真计算功率容量结果}所示。综上上述分析，此时的器件的功率容量大致上为1175W。
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=0.5\linewidth]{pic/ERROR.jpg}
+    \caption{L波段PIC基于二次电子仿真计算功率容量结果}
+    \label{fig:L波段PIC基于二次电子仿真计算功率容量结果}
+\end{figure}
+
 \section{关于L波段脊波导窗片的多物理场分析}
 \subsection{窗片的温度场分析}
 \subsection{窗片的应力分析}
