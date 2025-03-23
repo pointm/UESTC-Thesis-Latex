@@ -348,9 +348,10 @@ $$
 \end{enumerate}
 
 由于脊波导相比于同等频段的矩形波导结构更加紧凑，主模带宽更宽，以及双脊波导的功率容量比单脊波导的功率容量更大。结合小节\ref{subsec:DoubleRidgeTheory}里面的关于双脊波导理论研究，现在初步确定双脊波导的几何参数参数如下：$a=20mm, b=10mm, d=5mm, s=4mm $，具体的脊波导横截面如图\ref{fig:6-11GHzDRW}所示：
-\begin{figure}[!htb]\label{fig:6-11GHzDRW}
+\begin{figure}[!htb]
     \includegraphics[width=0.7\linewidth]{pic/chapter3/6-11GHzDRW.png}
     \caption[short catption 1]{输入窗脊波导几何参数选取}
+    \label{fig:6-11GHzDRW}
 \end{figure}
 
 很明显，这个脊波导的几何参数满足式子\ref{eq:DRW_constraints}的限制条件，此时可以通过简化式子\ref{eq:DRW_closed}计算双脊波导的截止频率进行计算，得到的计算结果为$f_c=5.85GHz$。此时截止频率小于所需带宽的下限，表明此时选取的脊波导几何参数满足要求。现在使用CST对脊波导的真实截止频率以及直通情况下的S参数进行仿真，得到如图\ref{fig:脊波导初步仿真}的结果。根据图\ref{fig:脊波导初步仿真} (a)结果显示，脊波导的截止频率为$f_c=5.84GHz$，与式子\ref{eq:DRW_closed}的计算结果基本一致。根据图\ref{fig:脊波导初步仿真} (b)显示，此时的双脊波导在要求的频段6-11GHz之内$S_{11}<25dB$，满足匹配要求。
@@ -732,13 +733,13 @@ ERRORFIX。
     \label{fig:BeO二次电子发射曲线}
 \end{figure}
 
-此时为了方便设置Spark3D和CST中的PIC模块中的材料的二次电子发射曲线，在床片外侧套了一层矩形的铜制外壳，矩形外层的最窄数值为2mm。在加入铜制外壳之后，窗片的整体结构如图\ref{fig:L波段脊波导窗的整体结构}所示。
+此时为了方便设置Spark3D和CST中的PIC模块中的材料的二次电子发射曲线，在床片外侧套了一层矩形的铜制外壳，矩形外层的最窄数值为2mm。在加入铜制外壳之后，窗片的整体结构如图\ref{fig:L波段加上铜制外壳}所示。
 
 \begin{figure}[!htb]
     \centering
     \includegraphics[width=0.3\linewidth]{pic/chapter4/L波段加上铜制外壳.png}
     \caption{L波段脊波导窗加上铜制外壳的整体结构}
-    \label{fig:L波段脊波导窗的整体结构}
+    \label{fig:L波段加上铜制外壳}
 \end{figure}
 
 在套上铜制外壳之后，由于窗片在低频点更容易被击穿，故在所需频段的最低频点1.14GHz频点导出Spark3D所需的电场与磁场结果。并且为了查看铜制外壳是否会对窗片的S曲线产生影响，对加上铜制外壳后的窗片的S曲线进行了仿真，仿真的结果如图\ref{fig:L波段加上铜外壳后的S参数}所示。仿真结果显示，铜制外壳对窗片的S参数并没有明显的影响。
