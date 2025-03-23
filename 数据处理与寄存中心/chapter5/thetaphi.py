@@ -2,7 +2,11 @@ import numpy as np
 from scipy.optimize import least_squares
 import matplotlib.pyplot as plt
 
-# 用户提供的数据点（角度和Δz）
+# 设置中文字体
+plt.rcParams["font.sans-serif"] = ["SimHei"]
+plt.rcParams["axes.unicode_minus"] = False
+
+# 用户数据点
 points = [
     (0, -0.018),
     (45, 0.000),
@@ -14,51 +18,88 @@ points = [
     (315, -0.034),
 ]
 
-# 将角度转换为弧度
-alphas = [np.deg2rad(angle) for angle, _ in points]
+# 转换角度为弧度
+alphas = np.deg2rad([angle for angle, _ in points])
 dz_values = [dz for _, dz in points]
+
+
+# 改进模型：包含二次项（sin(2θ)）
+# 添加模型参数
+R = 8.0  # 圆柱半径 (mm)
+wt = 1.035  # 窗片厚度 (mm)
 
 
 def residual(params):
     theta, phi = params
     res = []
     for alpha, dz in zip(alphas, dz_values):
-        predicted = 8 * np.sin(theta) * np.sin(phi - alpha)
-        res.append(predicted - dz)
+        # 新Δz公式包含半径和厚度参数
+        delta = R * np.tan(theta) * np.sin(phi - alpha) - (wt / 2) * (
+            np.tan(theta) ** 2
+        ) * (np.cos(phi - alpha) ** 2)
+        res.append(delta - dz)
     return res
 
 
-# 初始猜测（θ=0.18°, φ=225°）
-initial_theta = np.deg2rad(0.18)
-initial_phi = np.deg2rad(225)
-initial_guess = [initial_theta, initial_phi]
+# 初始猜测（应包含θ和φ两个参数）
+initial_theta = np.deg2rad(0.18)  # 初始θ猜测（0.18度转弧度）
+# 调整初始猜测的φ值为等效角度
+initial_phi = np.deg2rad(-135)  # 225°等效于-135°
 
-# 使用最小二乘法优化
+initial_guess = [initial_theta, initial_phi]  # 仅包含两个参数的初始值
+
+# 使用最小二乘法优化（保持边界约束）
 result = least_squares(
-    residual, initial_guess, bounds=([-np.pi, 0], [np.pi, 2 * np.pi])  # 修改边界范围
+    residual, initial_guess, bounds=([-np.pi, -np.pi], [np.pi, np.pi])
 )
 
+# 正确解包优化结果（两个参数）
 theta_opt, phi_opt = result.x
-theta_deg = np.rad2deg(theta_opt)
-phi_deg = np.rad2deg(phi_opt)
 
-print(f"Optimized theta: {theta_opt:.6f} rad")  # 修改为直接输出弧度值
-print(f"Optimized phi: {phi_deg:.6f}°")  # 保持phi角度输出不变
+# 删除以下旧参数解包
+# A_opt, B_opt, C_opt = result.x
 
-# 计算优化后的预测值
-predicted_dz = []
-for alpha in alphas:
-    pred = 8 * np.sin(theta_opt) * np.sin(phi_opt - alpha)
-    predicted_dz.append(pred)
+# 更新结果输出部分
+residual_sq = np.sum(result.fun**2)
+print("优化结果：")
+print(f"旋转轴倾角θ: {np.rad2deg(theta_opt):.6f}°")
+print(f"旋转轴方位角φ: {np.rad2deg(phi_opt) % 360:.6f}°")
+print(f"残差平方和: {residual_sq:.6f}")
 
 # 绘制结果
 angles = [angle for angle, _ in points]
+# 更新后的预测值计算（替换第90-92行）
+predicted_dz = [
+    R * np.tan(theta_opt) * np.sin(phi_opt - alpha)
+    - (wt / 2) * (np.tan(theta_opt) ** 2) * (np.cos(phi_opt - alpha) ** 2)
+    for alpha in alphas
+]
+
 plt.figure(figsize=(10, 6))
-plt.scatter(angles, dz_values, label="Measured Δz", color="blue")
-plt.scatter(angles, predicted_dz, label="Predicted Δz", color="red", marker="x")
-plt.xlabel("Angle (degrees)")
-plt.ylabel("Δz (mm)")
-plt.title("Measured vs Predicted Δz Values")
+plt.scatter(angles, dz_values, label="实测Δz", color="blue", zorder=5)
+plt.scatter(
+    angles,
+    predicted_dz,
+    label="预测Δz（改进模型）",
+    color="orange",
+    marker="x",
+    s=100,
+    zorder=5,
+)
+# 修改结果输出部分
+print(f"优化结果：")
+print(f"旋转轴倾角θ: {np.rad2deg(theta_opt):.4f}°")
+print(f"旋转轴方位角φ: {np.rad2deg(phi_opt) % 360:.2f}°")
+print(f"窗片半径R: {R} mm")
+print(f"窗片厚度wt: {wt} mm")
+
+# 修改绘图标签
+plt.xlabel("测量角度（度）")
+plt.ylabel("z坐标差Δz (mm)")
+plt.title(f"圆柱窗片旋转模型拟合 (R={R}mm, wt={wt}mm)")
+plt.xlabel("角度（度）")
+plt.ylabel("Δz（mm）")
+plt.title("改进模型与实测对比（包含二次项）")
 plt.legend()
-plt.grid(True)
+plt.grid(True, linestyle="--", alpha=0.7)
 plt.show()
