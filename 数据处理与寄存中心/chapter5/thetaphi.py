@@ -30,7 +30,7 @@ theta_deg = degrees(theta_rad)
 
 # 旋转轴方程
 print(f"旋转轴方程：{a:.6f}x + {b:.6f}y + {c:.6f} = 0，位于 z=0 平面")
-print(f"旋转角度：{theta_deg:.3f} 度")
+print(f"旋转角度：{theta_rad:.6f} 弧度")
 
 # 计算预测值并与实际值对比
 print("\n角度 | 实际Δz (mm) | 预测Δz (mm)")
