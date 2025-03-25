@@ -107,11 +107,11 @@ def dp_part2():
         for angle in alpha_degrees
     ]
 
-    plt.figure(figsize=(10, 6))
+    plt.figure(figsize=(8, 5))
     plt.plot(alpha_degrees, computed_dz, "r-", marker="o", label="理论计算值")
     plt.scatter(alpha_degrees, dz, s=100, zorder=3, label="实际测量值")
 
-    plt.title("Δz 角度分布对比 (dp_part2)")
+    # plt.title("Δz 角度分布对比 (dp_part2)")
     plt.xlabel("角度 (度)")
     plt.ylabel("Δz (mm)")
     plt.xticks(range(0, 360, 45))
