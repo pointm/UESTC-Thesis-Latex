@@ -817,8 +817,8 @@ $S_{11}$曲线根据$\phi$出现周期性的变化的原因是脊波导传输的
     \caption{W频段测试示意图}
     \label{fig:W频段测试示意图}
 \end{figure}
+
 \subsection{窗片测试与仿真的不一致性}
-\subsection{针对不一致性的仿真分析}
 
 首先对窗片进行反射系数$S_{11}$的测试时发现，窗片相对于原先在理想情况下仿真得到的在95GHz处的匹配频点，实际测试的窗的谐振频点略微往下漂移1GHz，反射系数匹配的频点位于94GHz处。具体的测试图片如图\ref{fig:W波段实际测试结果}所示。但是此时在95GHz处的反射系数为-25dB，符合反射系数要求，在此频点处可以正常使用。
 \begin{figure}[!htb]
@@ -830,17 +830,103 @@ $S_{11}$曲线根据$\phi$出现周期性的变化的原因是脊波导传输的
 
 并且在实际测试时，如果将信号传输方向定义为z轴方向，发现窗片和过渡段在绕着z轴旋转时候时反射系数会周期性的发生变化。如果将反射系数$S_{11}$数据最好的旋转角度定义为0°的话，当旋转角度达到90°时，$S_{11}$的反射情况会到达最差，最差时候在95GHz频点处的反射系数值系数值只有15dB。并且旋转到45°和135°时候的反射系数值是一致的，在到达67.5°和112.5°时候反射系数也是一致的，简要来说的话测试时候得到的反射系数的值的旋转角度关于90°对称。
 
-具体测试环境下的图片如图\ref{fig:W频段反射与旋转角度关系}所示，为了使得仿真过程中的旋转角度能够更方便的被看到，在旋转到反射系数旋转到达最佳值的时候在窗片四周的孔位上面放了一颗螺丝钉作为标记。
+具体测试环境下的图片如图\ref{fig:W频段反射与旋转角度关系}所示，为了使得仿真过程中的旋转角度能够更方便的被看到，在旋转到反射系数旋转到达最佳值的时候在窗片某一个的孔位上面放了一颗螺丝钉作为标记。此时测试过程中旋转的角度已经使用文字在图中进行了相应的标注。
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=0.55\linewidth]{pic/chapter5/W频段反射系数与旋转角度关系.png}
+    \caption{W频段反射系数与旋转角度关系}
+    \label{fig:W频段反射系数与旋转角度关系}
+\end{figure}
+
+\subsection{针对不一致性的仿真分析}
+此时猜测匹配的频偏是由于装配误差和矩形-圆波导过渡段所共同造成的，并且结合之前小节\ref{sec:6-11GHz脊波导窗片旋转误差分析}的分析，可以看到此时的装配误差和绕z轴旋转的角度周期性的相关。此时初步推测是由于圆形窗片在装配过程中引起的装配误差是旋转误差，进而引起了这种周期性的误差。
+
+此时使用高度规针对窗片顶面进行高度测量，此时测量出来窗片顶面圆周相对于圆心在z轴方向上有着一定的高度差，具体的圆周相对于圆心的高度差如图\ref{fig:W频段圆周高度差测试结果}所示。此时关于度数的定义与之前相同，窗片反射系数$S_{11}$测试结果最好的地方定义为0°，并且按照逆时针逐渐增大，每旋转45°测量一次窗片顶面圆周相对于圆心的高度差。经过高度规的测试发现，此时的高度差随着角度的变化而呈现出正弦幅值的变化，合理推测此时窗片发生了旋转，但是具体的旋转方向与装配的旋转角度仍需要进一步的预估计算。
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=0.5\linewidth]{pic/chapter5/可视化高度差.png}
+    \caption{W频段圆周高度差测试结果}
+    \label{fig:W频段圆周高度差测试结果}
+\end{figure}
+
+假设此时窗片发生了过圆柱体质心的旋转，旋转轴位于平行于窗片顶面与底面的平面之内，相对于标定的0°的偏离角度是$\Delta \psi$，此时窗片绕着旋转轴旋转的角度为$\theta$，窗片的半径为R。此时根据原先的假设旋转轴OB与原先标定为0°的夹角为$\Delta \psi$，旋转之后的圆面上有一点P，过P点作垂直于旋转之前的圆面的垂线，垂足为A交于原平面。此时根据几何知识可以得到$\angle AOB$的值为$\alpha - \Delta \psi$，并且$\angle PBA$=$\theta$，进而可以得知此时P点偏离原先平面的z值PA的长度为如公式\ref{eq:deltazcenter}所示。
+\begin{equation}\label{eq:deltaz_center}
+    PA = PB \cdot \sin \theta = 2 R \sin \left( \frac{\alpha - \Delta \psi}{2}\right) \sin \theta
+\end{equation}
+时根据已经测量得到的数据结合几何知识所计算出来了的公式并且使用Python代码进行拟合，可以得到\( \Delta \psi = 175.8 ^ \circ, \theta = -0.001rad \)，此时将拟合得到的值重新带入计算公式\ref{eq:deltaz_center}进行计算并且进行将拟合结果和测量结果进行对比并且作图，得到如图\ref{fig:过圆心高度差拟合结果}所示的结果，可以看到，拟合的效果并不理想。于是怀疑此时窗片的旋转偏离了圆心，而不是之前所猜测的过圆心的旋转。
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=0.5\linewidth]{pic/chapter5/过圆心高度差拟合.png}
+    \caption{高度差拟合结果}
+    \label{fig:过圆心高度差拟合结果}
+\end{figure}
+
+此时设定测量的反射系数结果最好的那个方向为x轴，窗片顶面所在平面为xOy平面，窗片顶面与底面的法向量为z轴所在的法向量。此时假设圆窗片的上面沿着直线l发生弧度为\(\theta\)的旋转，此时直线l到圆心的最短距离是d，直线l与x轴的夹角为\(\psi\)，那么此时直线在xOy平面上的方程可以被表示为\(x \cos \psi + y \sin \psi = d\)，直线的方向向量为 \(\mathbf{k} = (-\sin\psi, \cos\psi, 0)\)，通过点 \(P_0 = (d \cos\psi, d \sin\psi, 0)\)，此点为原点到直线所引垂线垂足的坐标。此时我们要计算绕着方向向量旋转的点的坐标，需要使用罗德里格斯旋转公式，但是在那之前需要先使用坐标变换将圆上面的点的坐标平移到以\(P_0\)为原点的坐标系。假设圆面上点在发生旋转之前的坐标是\(P = (x,y,0)\)，变换之后的向量变为\(\mathbf{v} = (x - d\cos\psi, y - d\sin\psi, 0)\)。此时应用旋转公式，将向量\(\mathbf{v}\)转化为旋转后的向量\(\mathbf{v'}\)，可以得到结论\ref{eq:罗德里格斯旋转公式}：
+\begin{equation}\label{eq:罗德里格斯旋转公式}
+    \mathbf{v}' = \cos\theta \cdot \mathbf{v} + (1 - \cos\theta) \cdot (\mathbf{v} \cdot \mathbf{k}) \mathbf{k} + \sin\theta \cdot (\mathbf{k} \times \mathbf{v})
+\end{equation}
+由于原先的坐标变换只做了xOy平面内的平移，并且此时最开始的点位于xOy平面中，故当故当求出。故当求解出进行旋转变换后的向量之后，直接使用其z轴坐标即为旋转后点相对于原先的点的z轴偏移量。此时计算出的旋转后的z坐标的值z'，如式子\ref{eq:直角坐标系中的z值}所示：
+\begin{equation}\label{eq:直角坐标系中的z值}
+    z' = \sin\theta \cdot \left( d - \sin\psi \cdot y - \cos\psi \cdot x \right)
+\end{equation}
+但是由于圆上面的点P的坐标满足\(x = R\cos\alpha\)，\(y = R\sin\alpha\)，其中\(\alpha\)是旋转之前的点的极角，将其带入式子\ref{eq:直角坐标系中的z值}中，得到旋转之后的点的z坐标的值与原先点的极角\(\alpha\)之间的关系，计算完成后的结果如式子\ref{eq:旋转之后的z值}所示：
+\begin{equation}\label{eq:旋转之后的z值}
+    \Delta z = z' = \sin\theta \cdot \left( d - R \cos(\alpha - \psi) \right)
+\end{equation}
+
+式子中，\(\theta\)是窗片旋转的角度，\(\psi\)是旋转轴与x轴的夹角，\(d\)是圆心到旋转轴的距离，\(\alpha\)是圆窗片上的点的极角。
+
+此时需要用原先测试的偏移值来估计\(\theta, \psi\)以及\(d\)的值，依然需要使用线性拟合的方法来进行计算。仔细观察式子\ref{eq:旋转之后的z值}可以发现\(\Delta z\)可以被转化为线性形式，此时\(\Delta z =A+B+\cos \alpha +C \sin \alpha \)，其中\(A = \sin \theta \cdot d, B = -R \sin \theta \cos \psi, C = -R \sin \psi \sin \theta \)。此时根据给定的测量的高度差数据可以对给定的系数\(A, B, C\)使用最小二乘法进行拟合，最后使用系数\(A, B, C\)来进行参数化求解，来求得最开始的\(\theta, \psi\)以及\(d\)的值。关于参数化求解的具体公式被记载在公式\ref{eq:参数化求解TDP}之中。算式中的正负号由模型推导得出，负号表示方向，并非出现负值的距离之意。
+\begin{subequations}\label{eq:参数化求解TDP}
+    \begin{align}
+        \theta &= -\arcsin(\sqrt{B^2 + C^2}/R)  \label{eq:sin_theta}\\
+        d &= A / \sin\theta  \\
+        \psi &= \arctan(C/B) 
+    \end{align}
+\end{subequations}
+
+使用Python进行数据拟合之后可以得到最后的估计结果：\(\psi = 2.0909 rad, d = 1.4901 mm , \theta = -0.0037 rad\)，此时此旋转轴在xOy平面内的方程为\(-0.4970 x + 0.8678 y = 1.4901\)，旋转的角度为\(\theta = -0.0037 rad\)。此时将拟合完成后的数据带入\ref{eq:旋转之后的z值}进行验算，最后得到的预估值与原先的测量值之间的关系可以见于图\ref{fig:测量z值与计算z值}中。此时按照这个方法对窗片进行旋转后的建模，并且计算反射系数\(S_{11}\)值，进而与原先的测量结果进行对比来进行误差分析。
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=0.35\linewidth]{pic/chapter5/不过圆心高度差拟合.png}
+    \caption{拟合参数结果与测试结果对比}
+    \label{fig:测量z值与计算z值}
+\end{figure}
+
+首先针对原先窗所在的由铜制外壁所包裹的空气腔体进行仿真，根据图\ref{fig:W频段测试示意图}进行初步建模，此时仿真的频段跟测试的频段相同都是92-98GHz，并且窗片的材料特性为\(\varepsilon_r = 9.4, \tan \delta = 0.0004\)。此时初步建模的外观如图\ref{fig:W波段误差分析建模}所示，图中标注了矩形波导口、渐变过渡段和圆柱形窗片部分。
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=0.25\linewidth]{pic/chapter5/W频段误差分析建模.png}
+    \caption{W频段误差分析建模}
+    \label{fig:W波段误差分析建模}
+\end{figure}
+
+为了符合实际测量情况，此时对仿真的边界条件和激励进行了相应的配置。为了符合铜制外壁包裹的边界条件，将侧边设置为有耗金属边界(Finite Conductivity)条件，电导率设置为铜的电导率(\(\sigma = 5.8 \times 10 ^ 7 S/m \))，具体配置如图\ref{fig:W频段边界条件与激励条件设置} (a)所示。为了符合圆柱形波导顶端通往大气的实验条件，设置匹配圆柱的顶端为辐射(Radiation)边界条件，具体配置如图\ref{fig:W频段边界条件与激励条件设置} (b)。为了符合矢量网络分析仪的仿真激励条件，此时设置过渡段另一端的激励端口为矩形波导激励端口，具体配置如图\ref{fig:W频段边界条件与激励条件设置} (c)所示。
+\begin{figure}[!htbp]
+    \small
+    \centering
+    \begin{tabular}{@{\ }c@{\ }c}
+        \includegraphics[width=0.25\textwidth]{pic/chapter5/铜制边界条件.png} & 
+        \hspace{5pt}
+        \includegraphics[width=0.25\textwidth]{pic/chapter5/矩形波导激励端口.png}     \\
+        \mbox{\small (a)铜制外壳边界条件}                                                                               & 
+        \mbox{\small (b)矩形波导激励端口}                                                                                  \\[6bp]
+        \multicolumn{2}{c}{\includegraphics[width=0.25\textwidth]{pic/chapter5/辐射边界条件.png}} \\  % 使用跨列居中
+        \multicolumn{2}{c}{\mbox{\small (c)辐射边界条件}}
+    \end{tabular}
+    \caption{W频段边界条件与激励条件设置}
+    \label{fig:W频段边界条件与激励条件设置}
+\end{figure}
+
+此时将在圆形窗片的顶端配置相对坐标系，并且将相对坐标系的x轴转化为之前所计算优化到的直线的位置。然后让窗片绕着x轴进行旋转，旋转角度也为之前所计算优化的角度。最后将窗片整体按照全局坐标系里面的z轴进行旋转，旋转角度步长设置为22.5°，保证每次步进到的角度与测试时候的角度一致。经过这些操作之后，仿真得到的\(S_{11}\)曲线如图\ref{fig:W频段仿真结果}所示。可以看到仿真曲线的变化趋势跟原先的旋转时候出现的测试曲线\(S_{11}\)的变化曲线基本一致，也是在旋转达到90°时候，\(S_{11}\)曲线的匹配状态达到最差。
 \begin{figure}[!htb]
     \centering
     \includegraphics[width=0.5\linewidth]{pic/ERROR.jpg}
-    \caption{W频段反射与旋转角度关系}
-    \label{fig:W频段反射与旋转角度关系}
+    \caption{W频段仿真结果}
+    \label{fig:W频段仿真结果}
 \end{figure}
 
-此时猜测匹配的频偏是由于装配误差和矩形-圆波导过渡段所共同造成的，并且结合之前小节\ref{sec:6-11GHz脊波导窗片旋转误差分析}的分析，可以看到此时的装配误差和绕z轴旋转的角度周期性的相关。此时初步推测是由于圆形窗片在装配过程中引起的装配误差是旋转误差，进而引起了这种周期性的误差。
-
-此时使用高度仪针对窗片
+此时仅仅查看趋势是不是有点不够，要不要试试跟实际的仿真数据放在一起作对比REFERROR？
 \chapter{全文总结与展望}
 \chapter{README图表与相关引用规范}
 
