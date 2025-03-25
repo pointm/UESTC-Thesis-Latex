@@ -29,10 +29,13 @@ for angle, dz in zip(angles_deg, delta_z):
     )
 
 # 坐标轴设置
+x_min = min(angles_deg) - 20
+x_max = max(angles_deg) + 20
+plt.xlim(x_min, x_max)
 y_min = min(delta_z) - 0.007
 y_max = max(delta_z) + 0.007
 plt.ylim(y_min, y_max)
-plt.title("角度-Δz关系散点图", fontsize=14, fontfamily="SimSun")
+# plt.title("角度-Δz关系散点图", fontsize=14, fontfamily="SimSun")
 plt.xlabel("角度（度）", fontsize=12, fontfamily="SimSun")
 plt.ylabel("Δz (mm)", fontsize=12)
 plt.xticks(np.arange(0, 360, 45), fontsize=10)
