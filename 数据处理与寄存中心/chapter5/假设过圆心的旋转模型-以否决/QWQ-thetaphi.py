@@ -138,19 +138,19 @@ def new_method():
     print(f"旋转轴的倾斜角度 θ = {result.x[1]:.5f} rad")
 
     # 新增可视化部分
-    plt.figure(figsize=(10, 6))
+    plt.figure(figsize=(6.5, 5))
     # 计算预测值
     predicted_h = 2 * R * np.sin(result.x[1]) * np.sin((alpha_rad - result.x[0]) / 2)
     # 绘制测量值
-    plt.scatter(alpha_deg, h_values, label="测量值", marker="o", color="blue")
+    plt.scatter(alpha_deg, h_values, label="测量值", marker="o", color="red")
     # 绘制预测值
     plt.scatter(
-        alpha_deg, predicted_h, label="预测值", marker="x", color="red", linewidths=1.5
+        alpha_deg, predicted_h, label="预测值", marker="x", color="blue", linewidths=1.5
     )
 
     plt.xlabel("旋转角度α (度)")
     plt.ylabel("Δz (mm)")
-    plt.title("测量值与预测值对比")
+    # plt.title("测量值与预测值对比")
     plt.legend()
     plt.grid(True)
     plt.xticks(np.arange(0, 360, 45))
