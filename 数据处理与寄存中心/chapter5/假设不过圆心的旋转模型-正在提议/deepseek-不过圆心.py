@@ -103,7 +103,7 @@ def dp_part2():
     # === 新增可视化代码 ===
     # 计算理论值
     computed_dz = [
-        np.sin(theta) * (d_param - 8.0 * np.cos(np.deg2rad(angle) - phi))
+        np.sin(theta) * (d_param - R * np.cos(np.deg2rad(angle) - phi))
         for angle in alpha_degrees
     ]
 
