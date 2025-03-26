@@ -10,18 +10,24 @@ plt.rcParams["axes.unicode_minus"] = False
 
 
 def qwq_part1():
-    ## QWQ的结果
-    R = 8.0
-    phi = 2.0  # rad
-    d = 1.561
-    theta = -0.003523  # rad
+    # 计算计算结果和测量值之间的关系的函数
+    # ## QWQ的结果
+    # R = 8.0
+    # phi = 2.0  # rad
+    # d = 1.561
+    # theta = -0.003523  # rad
 
-    ## 修正QWQ的结果
-    R = 8.0
-    phi = 2.0  # rad
-    d = -1.56  # 修正符号
-    theta = 0.003523  # 修正为正值
+    # ## 修正QWQ的结果
+    # R = 8.0
+    # phi = 2.0  # rad
+    # d = -1.56  # 修正符号
+    # theta = 0.003523  # 修正为正值
 
+    ## DP的结果 目前最好的版本
+    R = 8.0
+    phi = 2.0909  # rad
+    d = 1.4901
+    theta = -0.0037  # rad
     ## DEEPSEEK结果
     # R = 8.0
     # phi = 5.2325  # rad
@@ -142,4 +148,4 @@ def qwq_part2():
 
 
 if __name__ == "__main__":
-    qwq_part2()
+    qwq_part1()
