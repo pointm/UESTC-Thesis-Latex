@@ -55,7 +55,7 @@ def qwq_part1():
     print("验证结果：")
     for angle_deg, delta_z in points:
         alpha = math.radians(angle_deg)
-        term = d - R * math.cos(alpha - phi)
+        term = d + R * math.cos(alpha - phi)
         computed = math.sin(theta) * term
         computed_dz.append(computed)
         print(f"Angle: {angle_deg}°, 实际Δz: {delta_z:.4f}, 计算Δz: {computed:.4f}")
