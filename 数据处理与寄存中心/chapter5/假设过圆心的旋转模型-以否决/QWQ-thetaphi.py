@@ -120,7 +120,7 @@ def new_method():
     # 目标函数：计算残差平方和
     def objective(params):
         delta_phi, theta = params  # 单位：弧度
-        predicted_h = 2 * R * np.sin(theta) * np.sin((alpha_rad - delta_phi) / 2)
+        predicted_h = R * np.sin(theta) * np.sin((alpha_rad - delta_phi))
         residuals = h_values - predicted_h
         return np.sum(residuals**2)
 
