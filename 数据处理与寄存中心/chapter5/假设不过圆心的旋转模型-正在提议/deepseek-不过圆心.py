@@ -1,6 +1,8 @@
 # 可视化对比
 import matplotlib.pyplot as plt
 import numpy as np
+from scipy.optimize import curve_fit
+
 
 # 字体配置
 plt.rcParams["font.serif"] = ["SimSun", "Times New Roman"]
@@ -121,5 +123,59 @@ def dp_part2():
     plt.show()
 
 
+def dp_part3():
+    # 这是在改变公式之后的第一个线性拟合结果，不是很好。
+    # 数据
+    alpha_deg = np.array([0, 45, 90, 135, 180, 225, 270, 315])
+    delta_z = np.array([-0.018, 0.000, 0.021, 0.022, 0.011, -0.014, -0.032, -0.034])
+
+    # 转换为弧度并计算特征
+    alpha_rad = np.deg2rad(alpha_deg)
+    sin_alpha = np.sin(alpha_rad)
+    cos_alpha = np.cos(alpha_rad)
+    X = np.column_stack([np.ones(8), sin_alpha, cos_alpha])
+
+    # 线性回归
+    coefficients, *_ = np.linalg.lstsq(X, delta_z, rcond=None)
+    A, B, C = coefficients
+    R = 8.0  # mm
+
+    # 计算参数
+    B_sq_plus_C_sq = B**2 + C**2
+    sin_theta = np.sqrt(B_sq_plus_C_sq) / R
+    theta = np.arcsin(sin_theta)
+    phi = np.arctan2(-C, B)
+    d = A / sin_theta
+
+    print("phi (rad):", phi)
+    print("phi (degrees):", np.degrees(phi))
+    print("d (mm):", d)
+    print("theta (rad):", theta)
+    print("theta (degrees):", np.degrees(theta))
+
+
+def dp_part4():
+    # 改变模型之后的非线性拟合结果，结果都一样的（悲
+    # 数据
+    alpha_deg = np.array([0, 45, 90, 135, 180, 225, 270, 315])
+    delta_z = np.array([-0.018, 0.000, 0.021, 0.022, 0.011, -0.014, -0.032, -0.034])
+
+    def model_func(alpha_deg, phi, d, theta):
+        R = 8.0
+        alpha_rad = np.deg2rad(alpha_deg)
+        term = d + R * np.sin(alpha_rad - phi)
+        return np.sin(theta) * term
+
+    popt, _ = curve_fit(model_func, alpha_deg, delta_z, p0=[1.290, 0.082, 0.00358])
+    phi_opt, d_opt, theta_opt = popt
+
+    print("优化后参数：")
+    print("phi (rad):", phi_opt)
+    print("phi (degrees):", np.degrees(phi_opt))
+    print("d (mm):", d_opt)
+    print("theta (rad):", theta_opt)
+    print("theta (degrees):", np.degrees(theta_opt))
+
+
 if __name__ == "__main__":
-    dp_part2()
+    dp_part3()
