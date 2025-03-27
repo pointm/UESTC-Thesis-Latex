@@ -62,9 +62,83 @@
 
 \section{论文结构与安排}
 \chapter{微波窗的理论研究}
-\section{经典微波窗的理论分析}
+
+
+\section{微波网络理论}
+\subsection{常见微波传输线的特性阻抗}
+
+\subsection{脊波导的特性与相关参数}\label{subsec:DoubleRidgeTheory}
+脊波导作为一种常见的宽带传输线，针对其主要的理论分析方法是横向谐振法(Transverse Resonance Method, TRM)。根据参考文献\citing{helszajn_double_ridge_2000, pingwang_double_ridge_2004,pingyingjiang_double_ridge_2007,hopefer_design_ridge_1955}使用横向谐振法可以分析出脊波导的截止频率、主模带宽以及其特性阻抗。需要注意的是，本文主要涉及以及本小节主要分析的脊波导为脊位于矩形波导长边或者短边正中间的对称情况，如果有不对称脊波导的需求的话，可以参考文献\cite{ramesh_asymmetri_2001}。
+
+脊波导传输的基本模式是主模类$TE_{10}$模式，其次高模式为类$TE_{20}$模式，为了分析这两个模式的截止频率，有必要画出脊波导在横向上的等效电路。其中，脊两边的空隙可以分别被等效为两端传输线，脊凸起的平台也可以被等效为一段传输线，凸起的脊的两侧所引入的不连续性由于会与对侧的脊或者底边产生电势差，故可以分别被等效为两端电容。当模式截止时，根据横向谐振法，相当于横向的等效电路陷入谐振情况。此时以脊的左侧为参考平面，假设向左看得到的等效导纳为$Y_{1}$，向右看得到的等效导纳为$Y_{2}$，如果产生了横向谐振那么可以得到横向谐振方程\ref{eq:Y1Y2}：
+\begin{equation}\label{eq:Y1Y2}
+    Y_{1}=-Y_{2}
+\end{equation}
+
+以此为基础，我们可以得到分析脊波导的截止频率的横向谐振方程\ref{eq:TRM_DW}:
+\begin{equation}\label{eq:TRM_DW}
+    -\cot \theta_1 + \left( \frac{Y_{02}}{Y_{01}} \right) \tan \theta_2 + \frac{B}{Y_{01}} = 0 
+\end{equation}
+其中参数可被表示为等式\ref{eq:TRM_DW_parameters}中的\ref{eq:Y01}到\ref{eq:BY01}：
+\begin{subequations}\label{eq:TRM_DW_parameters}
+    \begin{align}
+    Y_{01} &= \frac{k_c}{\omega \mu_0} \left( \frac{1}{b} \right) \label{eq:Y01} \\
+    Y_{02} &= \frac{k_c}{\omega \mu_0} \left( \frac{1}{d} \right) \label{eq:Y02} \\
+    \theta_1 &= \frac{\pi (a - s)}{\lambda_c} = \pi \left( 1 - \frac{s}{a} \right) \left( \frac{a}{\lambda_c} \right) \label{eq:theta1} \\
+    \theta_2 &= \frac{\pi s}{\lambda_c} = \pi \left( \frac{s}{a} \right) \left( \frac{a}{\lambda_c} \right) \label{eq:theta2} \\
+    \frac{B}{Y_{01}} & \approx 2 \delta_{r} \left( \frac{b}{a} \right) \left( \frac{a}{\lambda_c} \right) \ln \csc \left( \frac{\pi d}{2b} \right) \label{eq:BY01}
+    \end{align}
+\end{subequations}
+式子\ref{eq:TRM_DW_parameters}中的参数定义如下：$a$为脊波导长边长，$b$为脊波导短边长，$s$为脊的宽度，$d$为脊凸起后留下的空腔缝隙宽度。$\delta_{r}$为与脊波导相关的几何系数：双脊波导时$\delta_{r}=1$，单脊波导时$\delta_{r}=2$。$\omega$为当前角频率；$\mu_0$为真空磁导率。波导截止波数$k_c=2\pi / \lambda_c$，截止波长$\lambda_c$在真空填充脊波导时与截止频率$f_c$满足$\lambda_c=c/f_c$。$Y_{01}$为脊两侧空腔所引入的导纳，$Y_{02}$为脊所引入的导纳，$\frac{B}{Y_{01}}$为脊引入电纳按照$Y_{01}$进行归一化之后的结果。
+
+此时如果式子\ref{eq:BY01}中的对数函数套三角函数造成超越方程以至于难以求解，可以使用近似替代公式\ref{eq:ln_csc}：
+\begin{equation}
+    \ln \csc \left( \frac{\pi \alpha}{2} \right) \approx \frac{1}{2} \left[ \left( \frac{1 + \alpha^2}{\alpha} \right) \ln \left( \frac{1 + \alpha}{1 - \alpha} \right) - 2 \ln \left( \frac{4 \alpha}{1 - \alpha^2} \right) \right] \label{eq:ln_csc}
+\end{equation}
+其中，$\alpha=d/b$，为脊的空隙与脊波导短边之比。
+
+关于双脊波导的截止频率有近似的显式解\citing{Hoefer1982AnalyticalEF}，如果双脊波导的几何形状满足以下约束关系\ref{eq:DRW_constraints}：
+\begin{equation}\label{eq:DRW_constraints}
+    \begin{aligned}
+    0.01 &\leq \frac{d}{b} \leq 1 \\
+    0 &\leq \frac{b}{a} \leq 1 \\
+    0 &\leq \frac{s}{a} \leq 0.45
+    \end{aligned}
+\end{equation}
+使用式子\ref{eq:DRW_closed}求解时候的误差小于1\%
+
+\begin{equation}\label{eq:DRW_closed}
+    \begin{split}
+        \frac{a}{\lambda_c} = \frac{a}{2(a - s)} & \left[ 1 + \frac{4}{\pi} \left( 1 + 0.2 \sqrt{\frac{b}{a - s}} \right) \left( \frac{b}{a - s} \right) \ln \csc \left( \frac{\pi d}{2b} \right) \right. \\
+        & \left. + \left( 2.45 + 0.2 \frac{s}{a} \right) \left( \frac{sb}{d(a - s)} \right) \right]^{-\frac{1}{2}}
+    \end{split}
+\end{equation}
+
+配合MATLAB或者Mathematica等数学软件，可以对以上式子进行数值求解，进而得到给定几何参数下的脊波导的截止频率。这些公式对要设计一个指定截止频率的脊波导的情况，也有着不错的先验能力。
+
+脊波导跟其他波导类似，其特性阻抗有着不同的定义方式，这里主要介绍电压-电流定义的特性阻抗与功率-电压定义的特性阻抗。根据文章\cite{Hoefer1982AnalyticalEF}的描述，脊波导的电压-电流定义的特性阻抗可以根据式子\ref{eq:Z_IV}进行计算：
+\begin{equation}\label{eq:Z_IV}
+    Z_{\mathrm{VI}}(\infty) = \left( \frac{b}{a} \right) \left( \frac{d}{b} \right) \left( \frac{a}{\lambda_c} \right) \frac{\pi \eta_0}{\sin \theta_2 + \left( \frac{d}{b} \right) \left[ \frac{B}{Y_{01}} + \tan \left( \frac{\theta_1}{2} \right) \right] \cos \theta_2}
+\end{equation}
+式子中的参数已经在\ref{eq:TRM_DW_parameters}中被定义过，其中$\eta_0$为真空波阻抗。本公式单脊波导或者双脊波导都可以套用，区别为截止频率不同以及\ref{eq:BY01}中定义的$\delta_{r}$不同。
+
+脊波导的功率-电压定义的特性阻抗可以根据式子\ref{eq:Z_PV}进行计算：
+\begin{equation}\label{eq:Z_PV}
+    Z_{\mathrm{PV}}(\infty) = \frac{\pi \eta_0 \left( \frac{b}{a} \right) \left( \frac{d}{b} \right) \left( \frac{a}{\lambda_c} \right)}{
+        \left\{ 
+            \begin{aligned}
+                & \left( \frac{d}{b} \right) \left( \frac{b}{a} \right) \left( \frac{2 \delta_r a}{\lambda_c} \right) \ln \csc \left( \frac{\pi d}{2b} \right) \cos^2 \theta_2 \\
+                & + \frac{\theta_2}{2} + \frac{\sin 2\theta_2}{4} \\
+                & + \left( \frac{d}{b} \right) \left( \frac{\cos \theta_2}{\sin \theta_1} \right)^2 \left[ \frac{\theta_1}{2} - \frac{\sin 2\theta_1}{4} \right]
+            \end{aligned}
+        \right\}
+    }
+\end{equation}
+式子中的$\delta_{r}$与之前\ref{eq:BY01}中的定义相同，在单脊波导中取2，在双脊波导中取1。其余参数也与\ref{eq:TRM_DW_parameters}中的定义相同。
+\subsection{双脊波导的匹配设计}
+脊波导由于其主模带宽非常宽，其经常由于优秀的几何结构特性便于被设计为过渡波导。并且由于其在真空填充时特性阻抗位于常用的标准矩形波导(377$\Omega$ )与同轴线(50$\Omega$)之间便于被设计为矩形波导与同轴线之间的过渡波导，故其是在许多宽带微波器件中常用的微波传输线之一\citing{helszajn_ridge_2000}。并且由于同频率之下的脊波导的长边长度要短于矩形波导，更加有利于器件的小型化。为了便于后续窗片的测量，有必要确定脊波导到标准矩形波导之间的过渡段的设计方案。常见的脊波导到矩形波导的过渡
+\section{盒型窗的理论研究}\label{sec:PillBoxTheory}
 随着时代的发展，微波窗的这种累也趋于多种多样，在理论研究方面比较完备的微波窗是盒型窗与同轴窗，这两种窗的结构较为简单便于使用场匹配或者等效电路法进行研究。由于对这两种窗的结构理论研究有助于后续的窗片设计，故现在此对这两种窗的基本理论进行相应的论述。
-\subsection{盒型窗的理论研究}\label{subsec:PillBoxTheory}
 常见的盒型窗的主要是由负责进行传输的矩形波导、一个薄圆片形状的介质窗片以及窗片两侧的匹配圆柱波导组成，这其中蕴含了的电磁场边界条件的不连续性，可以使用等效电路法来进行研究。此时将盒型窗的两侧波导以及窗片两侧的空气圆柱部分等效为波导传输线，将较为薄的窗片、矩形波导与圆柱形波导之间的不连续性和窗片与圆柱形波导之间的不连续性等效为电纳。并以此等效思路为基础构建微波窗的等效电路，进而求解电路的频率响应。
 
 常规的盒型窗的矩形波导的工作频率为$TE_{10}$模式，其中的圆形窗片的主要工作模式为$TE_{11}$模式，这两种模式均为波导的基模。当矩形波导和圆波导进行直接耦合的时候根据文章\citing{Bharathi2015DESIGNAD, marcuvitz_waveguide_1986_rec_cylinder}的研究表明，此时会出现不连续性，在等效电路中相当于引入了一个等效电纳$B_{T}$，此时根据式子\ref{eq:B_T}这个等效电纳可以被表示为：
@@ -186,79 +260,6 @@
     \item 使用电磁仿真软件进行建模，验算刚才的参数，并且使用优化进而得到最佳的参数。
 \end{enumerate}
 
-\section{阻抗匹配的设计}
-\subsection{常见微波传输线的特性阻抗}
-
-\subsection{脊波导的特性与相关参数}\label{subsec:DoubleRidgeTheory}
-脊波导作为一种常见的宽带传输线，针对其主要的理论分析方法是横向谐振法(Transverse Resonance Method, TRM)。根据参考文献\citing{helszajn_double_ridge_2000, pingwang_double_ridge_2004,pingyingjiang_double_ridge_2007,hopefer_design_ridge_1955}使用横向谐振法可以分析出脊波导的截止频率、主模带宽以及其特性阻抗。需要注意的是，本文主要涉及以及本小节主要分析的脊波导为脊位于矩形波导长边或者短边正中间的对称情况，如果有不对称脊波导的需求的话，可以参考文献\cite{ramesh_asymmetri_2001}。
-
-脊波导传输的基本模式是主模类$TE_{10}$模式，其次高模式为类$TE_{20}$模式，为了分析这两个模式的截止频率，有必要画出脊波导在横向上的等效电路。其中，脊两边的空隙可以分别被等效为两端传输线，脊凸起的平台也可以被等效为一段传输线，凸起的脊的两侧所引入的不连续性由于会与对侧的脊或者底边产生电势差，故可以分别被等效为两端电容。当模式截止时，根据横向谐振法，相当于横向的等效电路陷入谐振情况。此时以脊的左侧为参考平面，假设向左看得到的等效导纳为$Y_{1}$，向右看得到的等效导纳为$Y_{2}$，如果产生了横向谐振那么可以得到横向谐振方程\ref{eq:Y1Y2}：
-\begin{equation}\label{eq:Y1Y2}
-    Y_{1}=-Y_{2}
-\end{equation}
-
-以此为基础，我们可以得到分析脊波导的截止频率的横向谐振方程\ref{eq:TRM_DW}:
-\begin{equation}\label{eq:TRM_DW}
-    -\cot \theta_1 + \left( \frac{Y_{02}}{Y_{01}} \right) \tan \theta_2 + \frac{B}{Y_{01}} = 0 
-\end{equation}
-其中参数可被表示为等式\ref{eq:TRM_DW_parameters}中的\ref{eq:Y01}到\ref{eq:BY01}：
-\begin{subequations}\label{eq:TRM_DW_parameters}
-    \begin{align}
-    Y_{01} &= \frac{k_c}{\omega \mu_0} \left( \frac{1}{b} \right) \label{eq:Y01} \\
-    Y_{02} &= \frac{k_c}{\omega \mu_0} \left( \frac{1}{d} \right) \label{eq:Y02} \\
-    \theta_1 &= \frac{\pi (a - s)}{\lambda_c} = \pi \left( 1 - \frac{s}{a} \right) \left( \frac{a}{\lambda_c} \right) \label{eq:theta1} \\
-    \theta_2 &= \frac{\pi s}{\lambda_c} = \pi \left( \frac{s}{a} \right) \left( \frac{a}{\lambda_c} \right) \label{eq:theta2} \\
-    \frac{B}{Y_{01}} & \approx 2 \delta_{r} \left( \frac{b}{a} \right) \left( \frac{a}{\lambda_c} \right) \ln \csc \left( \frac{\pi d}{2b} \right) \label{eq:BY01}
-    \end{align}
-\end{subequations}
-式子\ref{eq:TRM_DW_parameters}中的参数定义如下：$a$为脊波导长边长，$b$为脊波导短边长，$s$为脊的宽度，$d$为脊凸起后留下的空腔缝隙宽度。$\delta_{r}$为与脊波导相关的几何系数：双脊波导时$\delta_{r}=1$，单脊波导时$\delta_{r}=2$。$\omega$为当前角频率；$\mu_0$为真空磁导率。波导截止波数$k_c=2\pi / \lambda_c$，截止波长$\lambda_c$在真空填充脊波导时与截止频率$f_c$满足$\lambda_c=c/f_c$。$Y_{01}$为脊两侧空腔所引入的导纳，$Y_{02}$为脊所引入的导纳，$\frac{B}{Y_{01}}$为脊引入电纳按照$Y_{01}$进行归一化之后的结果。
-
-此时如果式子\ref{eq:BY01}中的对数函数套三角函数造成超越方程以至于难以求解，可以使用近似替代公式\ref{eq:ln_csc}：
-\begin{equation}
-    \ln \csc \left( \frac{\pi \alpha}{2} \right) \approx \frac{1}{2} \left[ \left( \frac{1 + \alpha^2}{\alpha} \right) \ln \left( \frac{1 + \alpha}{1 - \alpha} \right) - 2 \ln \left( \frac{4 \alpha}{1 - \alpha^2} \right) \right] \label{eq:ln_csc}
-\end{equation}
-其中，$\alpha=d/b$，为脊的空隙与脊波导短边之比。
-
-关于双脊波导的截止频率有近似的显式解\citing{Hoefer1982AnalyticalEF}，如果双脊波导的几何形状满足以下约束关系\ref{eq:DRW_constraints}：
-\begin{equation}\label{eq:DRW_constraints}
-    \begin{aligned}
-    0.01 &\leq \frac{d}{b} \leq 1 \\
-    0 &\leq \frac{b}{a} \leq 1 \\
-    0 &\leq \frac{s}{a} \leq 0.45
-    \end{aligned}
-\end{equation}
-使用式子\ref{eq:DRW_closed}求解时候的误差小于1\%
-
-\begin{equation}\label{eq:DRW_closed}
-    \begin{split}
-        \frac{a}{\lambda_c} = \frac{a}{2(a - s)} & \left[ 1 + \frac{4}{\pi} \left( 1 + 0.2 \sqrt{\frac{b}{a - s}} \right) \left( \frac{b}{a - s} \right) \ln \csc \left( \frac{\pi d}{2b} \right) \right. \\
-        & \left. + \left( 2.45 + 0.2 \frac{s}{a} \right) \left( \frac{sb}{d(a - s)} \right) \right]^{-\frac{1}{2}}
-    \end{split}
-\end{equation}
-
-配合MATLAB或者Mathematica等数学软件，可以对以上式子进行数值求解，进而得到给定几何参数下的脊波导的截止频率。这些公式对要设计一个指定截止频率的脊波导的情况，也有着不错的先验能力。
-
-脊波导跟其他波导类似，其特性阻抗有着不同的定义方式，这里主要介绍电压-电流定义的特性阻抗与功率-电压定义的特性阻抗。根据文章\cite{Hoefer1982AnalyticalEF}的描述，脊波导的电压-电流定义的特性阻抗可以根据式子\ref{eq:Z_IV}进行计算：
-\begin{equation}\label{eq:Z_IV}
-    Z_{\mathrm{VI}}(\infty) = \left( \frac{b}{a} \right) \left( \frac{d}{b} \right) \left( \frac{a}{\lambda_c} \right) \frac{\pi \eta_0}{\sin \theta_2 + \left( \frac{d}{b} \right) \left[ \frac{B}{Y_{01}} + \tan \left( \frac{\theta_1}{2} \right) \right] \cos \theta_2}
-\end{equation}
-式子中的参数已经在\ref{eq:TRM_DW_parameters}中被定义过，其中$\eta_0$为真空波阻抗。本公式单脊波导或者双脊波导都可以套用，区别为截止频率不同以及\ref{eq:BY01}中定义的$\delta_{r}$不同。
-
-脊波导的功率-电压定义的特性阻抗可以根据式子\ref{eq:Z_PV}进行计算：
-\begin{equation}\label{eq:Z_PV}
-    Z_{\mathrm{PV}}(\infty) = \frac{\pi \eta_0 \left( \frac{b}{a} \right) \left( \frac{d}{b} \right) \left( \frac{a}{\lambda_c} \right)}{
-        \left\{ 
-            \begin{aligned}
-                & \left( \frac{d}{b} \right) \left( \frac{b}{a} \right) \left( \frac{2 \delta_r a}{\lambda_c} \right) \ln \csc \left( \frac{\pi d}{2b} \right) \cos^2 \theta_2 \\
-                & + \frac{\theta_2}{2} + \frac{\sin 2\theta_2}{4} \\
-                & + \left( \frac{d}{b} \right) \left( \frac{\cos \theta_2}{\sin \theta_1} \right)^2 \left[ \frac{\theta_1}{2} - \frac{\sin 2\theta_1}{4} \right]
-            \end{aligned}
-        \right\}
-    }
-\end{equation}
-式子中的$\delta_{r}$与之前\ref{eq:BY01}中的定义相同，在单脊波导中取2，在双脊波导中取1。其余参数也与\ref{eq:TRM_DW_parameters}中的定义相同。
-\subsection{双脊波导的匹配设计}
-脊波导由于其主模带宽非常宽，其经常由于优秀的几何结构特性便于被设计为过渡波导。并且由于其在真空填充时特性阻抗位于常用的标准矩形波导(377$\Omega$ )与同轴线(50$\Omega$)之间便于被设计为矩形波导与同轴线之间的过渡波导，故其是在许多宽带微波器件中常用的微波传输线之一\citing{helszajn_ridge_2000}。并且由于同频率之下的脊波导的长边长度要短于矩形波导，更加有利于器件的小型化。为了便于后续窗片的测量，有必要确定脊波导到标准矩形波导之间的过渡段的设计方案。常见的脊波导到矩形波导的过渡
 
 \section{电子倍增现象相关理论}\label{sec:电子倍增现象理论}
 在太空中，由于真空器件在运行过程中腔体处于真空状态，除了因为腔体中到达上述最大电场场强阈值进而发生击穿现象的情况之外，由于电子倍增现象进而引发击穿的情况也并不少见。电子倍增现象是指，当电子由于电场的驱使，打到金属或者介质的表面时，金属或者介质表面被激发出来的电子数目大于入射电子数目的现象。电子倍增现象一旦被引发，当有电子轰击在波导或者介质的表面上时，很容易雪崩式的在这些表面聚集大量的电子。当这些电子的密度到达一定程度的时候，它们会引发微放电，进而引起器件的击穿或者损坏。
@@ -313,13 +314,13 @@ $$
 \chapter{6-11GHz 宽频带脊波导窗的设计}
 \section{传统结构盒型窗的局限性}
 [使用适当的理论计算，计算出t-l之间的关系进行配图]
-在前面\ref{subsec:PillBoxTheory}中提到的传统结构的微波窗在许多方面上存在局限性。首先从加工层面来说，因为圆形窗片的半径与圆柱形波导的直径相同，如果想要固定介质窗片，那么就必须从侧面对窗片进行焊接。侧面焊接的气密性与窗片的厚度有关，如果窗片太薄，那么在焊接的过程中就会出现不稳定性，并且窗片的机械强度也会受到影响，过薄的窗片很容易出现打火击穿或者内外压差进而碎裂的情况。观察不等式\ref{eq:Delta}并且结合等式\ref{eq:B_d}可以发现，想要特征方程\ref{eq:B-C-simplify2}有解，那么对于窗片的厚度$t$的取值范围有：
+在前面\ref{sec:PillBoxTheory}中提到的传统结构的微波窗在许多方面上存在局限性。首先从加工层面来说，因为圆形窗片的半径与圆柱形波导的直径相同，如果想要固定介质窗片，那么就必须从侧面对窗片进行焊接。侧面焊接的气密性与窗片的厚度有关，如果窗片太薄，那么在焊接的过程中就会出现不稳定性，并且窗片的机械强度也会受到影响，过薄的窗片很容易出现打火击穿或者内外压差进而碎裂的情况。观察不等式\ref{eq:Delta}并且结合等式\ref{eq:B_d}可以发现，想要特征方程\ref{eq:B-C-simplify2}有解，那么对于窗片的厚度$t$的取值范围有：
 \begin{equation}\label{eq:t_constraints}
     0 < t < \frac{\sqrt{\frac{1}{k^2}+4k^2(1+B_{T}^2)^2-2(1-2B_{T}^2)}}{(\varepsilon_{d}-1)(\omega / c)(\lambda_{gc} / \lambda)}
 \end{equation}
 传统盒型窗的特征方程说明了，为了确保盒型窗能够正常建造，窗片的厚度$t$必须小于一个阈值，过厚的窗片不能使用实现传统盒型窗的匹配方法进行匹配。
 
-其次，根据之前\ref{subsec:PillBoxTheory}中提到的，传统模式的盒型窗的单侧匹配电长度不能低于0.1倍电长度，因为盒型窗需要两端匹配段，那么可以得到盒型窗匹配段连带窗片部分的电长度不会低于0.2倍电长度。这一点难以保证盒型窗在实际进行匹配时候的结构紧凑性。
+其次，根据之前\ref{sec:PillBoxTheory}中提到的，传统模式的盒型窗的单侧匹配电长度不能低于0.1倍电长度，因为盒型窗需要两端匹配段，那么可以得到盒型窗匹配段连带窗片部分的电长度不会低于0.2倍电长度。这一点难以保证盒型窗在实际进行匹配时候的结构紧凑性。
 
 最后，根据文献\cite{huxiongli_bandwidth_pill}，传统意义上的盒型窗的相对带宽一般会在15\% 到20\% 之间。如果想要进一步的提升盒型窗的带宽，只能对其结构进行相应的改进，例如将窗片的厚度进行进一步的削减，这一步骤势必会进一步的影响窗片的机械结构强度与气密性。
 \section{宽带宽波导窗概述}
@@ -639,13 +640,7 @@ ANSYS中可以直接查看到窗片的应力大小，关于多大的热应力会
     \caption{脊波导窗整体测试结构S参数}
     \label{fig:脊波导窗整体测试结构S参数}
 \end{figure}
-\section{输出窗的相关研究}
-\subsection{计算脊波导窗功率容量}
-\subsubsection{使用最大场强法计算脊波导窗的功率容量}
-\subsubsection{使用电子倍增计算脊波导窗的功率容量}
-\subsection{关于窗的多物理场分析}
-\subsubsection{窗片的温度场分析}
-\subsubsection{窗片的应力分析}
+
 \section{小结}
 \chapter{L 波段宽频带脊波导窗的设计}
 此时仿照之前的6-11GHz 脊波导输入窗进行L 波段宽频带脊波导窗的设计，此时由于需要与前面的L 波段脊波导器件进行直接连接，故L 波段脊波导参数已经被确定，无需对L 波段脊波导进行相应的几何参数设计。关于L 波段脊波导参数，可以见图\ref{fig:L波段脊波导结构} (a)中；图片\ref{fig:L波段脊波导结构} (b)展示了脊波导标红的四条边，这四条边便是脊波导倒圆角的四条边：
@@ -830,7 +825,38 @@ ANSYS中可以直接查看到窗片的应力大小，关于多大的热应力会
 \section{关于L波段脊波导窗片的多物理场分析}
 类似于之前的小节，本小节针对L波段脊波导窗进行了多物理场的分析，此时针对BeO材料的特性主要参考为文献\cite{thumm_stateart_2020, slack_thermal_1971,kozlovskii_thermal_2014,hanyong_diff_2011}中所记述的实验数据。综合上述论文中的实验数据，将BeO的关键参数设置如下密度\(\rho_{BeO} = 2850kg/m^3\)，热膨胀系数为\(\alpha = 7.2 \times 10^{-6} K^{-1}\)，杨氏模量为\(E_{BeO} = 385GPa\)，泊松系数为\(\nu_{BeO} = 0.3\)，导热系数为\(k_{BeO} = 260 W/(m \cdot K)\)。此时BeO的抗弯系数为$\sigma_f = 200MPa$，故此时根据公式\ref{eq:临界温差}可以计算其最大最小温度极限差值为45℃，如果窗片的温差超过45℃那么便有因为温差过大进而导致热应力过大，进而引起窗片碎裂的风险。
 
-此时窗片多物理场中馈入频点为中心频点
+此时窗片HFSS中馈入频点为中心频点1.3GHz，馈入的功率为1kW，接近于PIC求解器所求的窗片的功率容量上限。此时为了方便窗片的应力仿真，将窗片的外壳两端的端面设置为固定的端面。此时仿真得到的窗片的温度场如图\ref{fig:L频段窗温度分布}所示，此时窗片的温度集中于窗片的中心部分，此时中心部分的场强也更强损耗也更大，满足仿真结果预期。此时窗片上最大温度为20.61℃，最小值为20.53℃，温差为0.08℃，此时温差小于之前所计算的温差极限值，此时窗片通过了温差检验。
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=0.5\linewidth]{pic/chapter4/L频段窗温度分布.png}
+    \caption{L频段窗温度分布}
+    \label{fig:L频段窗温度分布}
+\end{figure}
+
+此时导出窗片应力分布，可以得到窗片的应力分布如图\ref{fig:L频段窗应力分布}所示，此时窗片的最大应力为3.76MPa。出现最大应力部分主要为窗片与脊波导之间的过渡段，即窗片与铜制外壳直接接触的面。
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=0.5\linewidth]{pic/chapter4/L频段窗应力.png}
+    \caption{L频段窗应力分布}
+    \label{fig:L频段窗应力分布}
+\end{figure}
+
+此时导出窗片与整体的形变分布，可以得到如图\ref{fig:L频段窗与整体形变分布}所示的窗片与整体的形变分布，此时根据图\ref{fig:L频段窗与整体形变分布} (a)中的数据，窗片的形变量最大为\(5 \times 10 ^{-4}mm\)。窗片整体的形变量分布如图\ref{fig:L频段窗与整体形变分布} (b)所示，此时窗片整体的形变量最大为\(1 \times 10 ^{-3}mm\)，结合之前的参数敏感度分析，此时窗片的形变量不应该对窗片的性能造成较大的影响。综上所述，此时窗片能够在1.3GHz频点处满足1kW功率的要求。
+\begin{figure}[!htb]
+    \small
+    \centering
+    \begin{tabular}{@{\ }c@{\ }c}
+        \includegraphics[width=0.49\textwidth]{pic/chapter4/L频段窗形变.png} & 
+        \hspace{5pt}
+        \includegraphics[width=0.49\textwidth]{pic/chapter4/L频段整体形变.png}     \\
+        \mbox{\small (a)L频段窗形变}                                                                               & 
+        \mbox{\small (b)L频段窗与波导形变}                                                                                  \\
+    \end{tabular}
+    \caption{L频段窗与波导整体形变分布}
+    \label{fig:L频段窗与整体形变分布}
+\end{figure}
+
+
 \section{小结}
 \chapter{窗片测试过程中的误差分析}
 \section{6-11GHz脊波导窗片旋转误差分析}\label{sec:6-11GHz脊波导窗片旋转误差分析}
