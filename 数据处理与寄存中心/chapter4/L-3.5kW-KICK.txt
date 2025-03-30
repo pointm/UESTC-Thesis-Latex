@@ -1,4 +1,4 @@
-#
+#Parameters = {totaltime=320; L=18.9; PIN=3500; a=63; b=32; blendraduis=7.13; d=5; s=29; smallblend=0.5; ta=87.96; tb=20.47; trh=3.91; wa=74.97; wb=11.96; wblend=3.01; wr=42.5699947662; wt=10.05}
 #"Time / ns"	"Particle vs. Time [Real Part]"
 #-------------------------------------------
 0.0000000000000	0.0000000000000
