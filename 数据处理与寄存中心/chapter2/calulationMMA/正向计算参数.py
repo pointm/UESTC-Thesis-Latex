@@ -1,6 +1,7 @@
 import math
 import numpy as np
 import matplotlib.pyplot as plt
+from matplotlib import rcParams
 
 # 新增中文字体配置 ================
 plt.rcParams["font.sans-serif"] = ["SimHei"]  # Windows系统字体
@@ -122,7 +123,7 @@ plt.ylabel("tan(Γl)")
 plt.title("实数解分布（蓝色为有效正根）")
 plt.legend()
 plt.grid(True)
-plt.show()
+# plt.show()
 
 # 新处理逻辑 ==============================================
 gamma = 2 * math.pi / lambda_g_circ
@@ -143,8 +144,21 @@ for bd, tan_gl in positive_solutions:
     # 将两个值封装为元组存入列表
     pair_list.append((t * 1000, l * 1000))  # 同时转换毫米单位
 
+
+# 首先配置字体信息
+pt_label = 20  # 横纵轴标注字体大小
+pt_legend = 20  # 坐标轴字体大小
+
+config = {
+    "font.family": "serif",
+    "font.size": 12,
+    "mathtext.fontset": "stix",
+    "font.serif": ["SimSun"],
+}
+rcParams.update(config)
+
 # 新可视化窗口 ============================================
-plt.figure(figsize=(12, 6))
+plt.figure(figsize=(10, 6))
 ax1 = plt.gca()  # 获取当前坐标轴
 
 # 绘制物理长度（左轴）
@@ -156,8 +170,10 @@ sc = ax1.scatter(
     alpha=0.6,
     label="物理长度",
 )
-ax1.set_xlabel("窗片厚度 t (mm)")
-ax1.set_ylabel("传播长度 l (mm)", color="blue")
+ax1.tick_params(axis="both", labelsize=pt_legend)  # 修改这里：使用 tick_params 方法
+
+ax1.set_xlabel("窗片厚度 $\mathrm{wt (mm)}$", fontsize=pt_label)
+ax1.set_ylabel("传播长度 $\mathrm{trh (mm)}$", color="blue", fontsize=pt_label)
 
 # 创建右轴显示电长度
 ax2 = ax1.twinx()
@@ -165,24 +181,29 @@ ax2 = ax1.twinx()
 electrical_lengths = [
     (l / 1000) / (lambda_g_circ) for _, l in pair_list
 ]  # 单位转换为米后计算
-ax2.scatter(
-    [x[0] for x in pair_list],
-    electrical_lengths,
-    c="red",
-    s=30,
-    alpha=0.6,
-    marker="x",
-    label="电长度",
-)
-ax2.set_ylabel("电长度 l/λ_g", color="red")
+# ax2.scatter(
+#     [x[0] for x in pair_list],
+#     electrical_lengths,
+#     c="red",
+#     s=30,
+#     alpha=0.6,
+#     marker="x",
+#     label="电长度",
+# )
+ax2.set_ylabel("传播段电长度 $\mathrm{l/λ_g}$", color="red", fontsize=pt_label)
 
-plt.title("窗片厚度与传播长度关系（红×为电长度）")
+# plt.title("窗片厚度与传播长度关系")
 plt.grid(True)
 plt.tight_layout()
 
+# 添加坐标轴设置
+ax2.tick_params(axis="y", labelsize=pt_legend)  # 设置右轴刻度字体
+plt.tight_layout()  # 这个要放在最后
+
 # 合并图例
 lines, labels = ax1.get_legend_handles_labels()
-lines2, labels2 = ax2.get_legend_handles_labels()
-ax1.legend(lines + lines2, labels + labels2, loc="best")
+# lines2, labels2 = ax2.get_legend_handles_labels()
+# ax1.legend(lines + lines2, labels + labels2, loc="best")
+ax1.legend(lines, labels, loc="best")
 
 plt.show()

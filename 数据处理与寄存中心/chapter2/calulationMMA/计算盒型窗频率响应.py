@@ -10,7 +10,7 @@ plt.rcParams["axes.unicode_minus"] = False  # 解决负号显示问题
 # 参数定义 (单位转换: 1e-3 转换为米)
 a = 28.499e-3  # 矩形波导长边
 b = 12.624e-3  # 矩形波导短边
-frequency_range = np.linspace(6.57e9, 9.99e9, 1001)
+frequency_range = np.linspace(7e9, 9e9, 1001)
 f = 8.28e9  # 匹配频率
 omega = 2 * math.pi * f
 c = 3e8  # 光速
@@ -150,59 +150,104 @@ for f in frequency_range:
         return_loss.append(float("inf"))
 
 # 修改可视化部分 ============================================
-plt.figure(figsize=(14, 6))  # 调整图形高度
+# 字体配置
+plt.rcParams.update(
+    {
+        "font.family": "SimSun",
+        "font.size": 15,
+        "axes.unicode_minus": False,
+        "mathtext.fontset": "cm",
+    }
+)
 
-# 合并S参数曲线到单个图表
-plt.plot(frequency_range / 1e9, s21_results, "b-", label="S21")
-plt.plot(frequency_range / 1e9, s11_results, "r--", label="S11")
+# 图表初始化
+fig = plt.figure(figsize=(10, 6))
+ax = fig.add_subplot(111)
 
-# 新增带宽计算逻辑 ------------------------------------------
+# 绘制主曲线
+ax.plot(
+    frequency_range / 1e9,
+    s21_results,
+    color="#1f77b4",
+    lw=2,
+    label=r"$\mathrm{|S_{21}|}$",
+)
+ax.plot(
+    frequency_range / 1e9,
+    s11_results,
+    color="#d62728",
+    ls="--",
+    lw=2,
+    label=r"$\mathrm{|S_{11}|}$",
+)
+
+# 新增缺失变量定义 ========================
 freq_ghz = frequency_range / 1e9
 s11_array = np.array(s11_results)
-
-# 找到S11 <= -20dB的频点
 mask = s11_array <= -20
+# =====================================
+
+# 带宽标注区域
 if np.any(mask):
-    # 获取带宽起始和结束频率
     indices = np.where(mask)[0]
     start_freq = freq_ghz[indices[0]]
     end_freq = freq_ghz[indices[-1]]
     bandwidth = end_freq - start_freq
 
-    # 标注带宽区域
-    plt.fill_between(
+    # 修正fill_between参数
+    ax.fill_between(
         freq_ghz,
         -40,
         s11_array,
         where=mask,
         facecolor="gray",
         alpha=0.3,
-        label=f"回波损耗<-20dB带宽\n({bandwidth:.2f} GHz)",
+        label=f"回波损耗-20dB带宽\n({bandwidth:.2f} GHz)",
     )
 
-    # 添加带宽数值标注
-    plt.annotate(
-        f"{bandwidth:.2f} GHz",
+    # 修正annotate参数
+    ax.annotate(
+        f"{bandwidth:.2f} GHz 带宽",
         xy=((start_freq + end_freq) / 2, -22),
-        xytext=(0, 10),
-        textcoords="offset points",
+        xytext=((start_freq + end_freq) / 2, -18),
         ha="center",
-        arrowprops=dict(arrowstyle="->"),
+        va="bottom",
+        arrowprops=dict(facecolor="black", arrowstyle="->"),
+        bbox=dict(boxstyle="round,pad=0.3", fc="white", ec="black", lw=0.5),
     )
-    print(f"\n带宽计算结果:")
-    print(f"起始频率: {start_freq:.2f} GHz")
-    print(f"结束频率: {end_freq:.2f} GHz")
-    print(f"带宽: {bandwidth:.2f} GHz")
-else:
-    print("警告：未找到S11<-20dB的频段")
 
-# 保持原有设置 ----------------------------------------------
-plt.xlabel("频率 (GHz)")
-plt.ylabel("幅度 (dB)")
-plt.title("S参数响应曲线")
-plt.legend()
-plt.grid(True)
-plt.ylim(-40, 0)  # 固定Y轴范围便于观察
+# 样式配置
+ax.set(
+    xlabel="频率 $\mathrm{(GHz)}$",
+    ylabel="幅值 $\mathrm{(dB)}$",
+    xlim=(frequency_range[0] / 1e9, frequency_range[-1] / 1e9),
+    ylim=(-40, 0),
+)
 
-plt.tight_layout()
+# 新增参数文本框内容 ========================
+param_text = (
+    f"设计参数:\n"
+    f"a = {a*1e3:.3f} mm\n"
+    f"b = {b*1e3:.3f} mm\n"
+    f"ε_r = {epsilon_r}\n"
+    f"t = {thickness*1e3:.3f} mm"
+)
+# =======================================
+
+# 添加参数框
+ax.text(
+    0.97,
+    0.28,
+    param_text,
+    transform=ax.transAxes,
+    ha="right",
+    va="top",
+    bbox=dict(boxstyle="round", facecolor="white", alpha=0.8),
+    fontsize=15,
+)
+
+# 输出设置
+plt.tight_layout(pad=1.0)
+plt.subplots_adjust(left=0.1, right=0.9, top=0.9, bottom=0.15)
+plt.grid(True, which="both", linestyle="--", linewidth=0.5)
 plt.show()
