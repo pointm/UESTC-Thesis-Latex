@@ -207,7 +207,7 @@
 \begin{equation}\label{eq:多节阻抗变换器的反射系数}
     \Gamma_i = \frac{Z_{C_{i+1}}-Z_{C_{i}}}{Z_{C_{i+1}}+Z_{C_{i}}}
 \end{equation}
-关于端接处的两个反射系数\(\Gamma_0\)与\(\Gamma_L\)可以分别被表示为以下等式\label{eq:端接处的反射系数}。
+关于端接处的两个反射系数\(\Gamma_0\)与\(\Gamma_L\)可以分别被表示为以下等式\ref{eq:端接处的反射系数}。
 \begin{subequations}\label{eq:端接处的反射系数}
     \begin{align}
         \Gamma_0 &= \frac{Z_{C_1}-Z_{C_0}}{Z_{C_1}+Z_{C_0}} \\
@@ -312,8 +312,7 @@
     Z_{\mathrm{PV}}(\infty) = \frac{\pi \eta_0 \left( \frac{b}{a} \right) \left( \frac{d}{b} \right) \left( \frac{a}{\lambda_c} \right)}{
         \left\{ 
             \begin{aligned}
-                & \left( \frac{d}{b} \right) \left( \frac{b}{a} \right) \left( \frac{2 \delta_r a}{\lambda_c} \right) \ln \csc \left( \frac{\pi d}{2b} \right) \cos^2 \theta_2 \\
-                & + \frac{\theta_2}{2} + \frac{\sin 2\theta_2}{4} \\
+                & \left( \frac{d}{b} \right) \left( \frac{b}{a} \right) \left( \frac{2 \delta_r a}{\lambda_c} \right) \ln \csc \left( \frac{\pi d}{2b} \right) \cos^2 \theta_2 + \frac{\theta_2}{2} + \frac{\sin 2\theta_2}{4} \\
                 & + \left( \frac{d}{b} \right) \left( \frac{\cos \theta_2}{\sin \theta_1} \right)^2 \left[ \frac{\theta_1}{2} - \frac{\sin 2\theta_1}{4} \right]
             \end{aligned}
         \right\}
@@ -973,7 +972,7 @@ ANSYS中可以直接查看到窗片的应力大小，关于多大的热应力会
 根据之前\ref{sec:频带搬移时候出现的问题分析}节中的分析，此时将从X波段进行频段搬移的窗片结构进行改造。将原先的圆形窗片在电场强度较弱的地方直接进行削除的操作，操作的示意图如图\ref{fig:L频段改造}。示意图中展示了窗片的截面，此时将圆形窗片上下两端以直线进行削除，削除的类似于飞机跑道的结果从外形上看起来更像是倒圆角的矩形。为了方便进一步的加工，此时将不按照被消除上下端的圆窗进行进一步设计，而按照\ref{fig:L频段改造}里面最后的倒圆角的矩形窗片示意图进行进一步地设计。
 \begin{figure}[!htb]
     \centering
-    \includegraphics[width=0.5\linewidth]{pic/chapter4/L脊波导窗片改造.png}
+    \includegraphics[width=0.35\linewidth]{pic/chapter4/L脊波导窗片改造.png}
     \caption{L频段窗片改造示意图}
     \label{fig:L频段改造}
 \end{figure}
@@ -997,7 +996,7 @@ ANSYS中可以直接查看到窗片的应力大小，关于多大的热应力会
         \includegraphics[width=0.19\textwidth]{pic/chapter4/L波段圆角矩形窗片尺寸.png}     \\
         \mbox{\small (a)L波段脊波导窗纵向长度}                                                                               & 
         \mbox{\small (b)L波段脊波导圆角矩形窗参数}                                                           \\[6bp]
-        \multicolumn{2}{c}{\includegraphics[width=0.35\textwidth]{pic/chapter4/L波段过渡段尺寸.png}} \\  % 使用跨列居中
+        \multicolumn{2}{c}{\includegraphics[width=0.25\textwidth]{pic/chapter4/L波段过渡段尺寸.png}} \\  % 使用跨列居中
         \multicolumn{2}{c}{\mbox{\small (c)新设计L波段脊波导圆角矩形过渡段参数}}             
     \end{tabular}
     \caption{L波段脊波导窗的详细几何参数}
@@ -1005,7 +1004,7 @@ ANSYS中可以直接查看到窗片的应力大小，关于多大的热应力会
 \end{figure}
 
 
-为了验证新设计的脊波导窗的实际性能，我们对其S参数进行了仿真分析，并得到了如图\ref{fig:L波段脊波导窗的S参数}所示的结果。仿真结果显示，在目标频段内，该设计的反射系数$S_{11}$成功降至-20dB以下，满足了严格的匹配要求。除了保持原有的性能指标外，新款窗口还展示了更小巧的尺寸和更加紧密的结构布局，这无疑为实际应用提供了更多的灵活性。更重要的是，此次设计上的革新简化了制造流程，提升了机械强度，从而保证了产品在各种环境下的稳定表现。
+为了验证新设计的脊波导窗的实际性能，使用CST对其S参数进行了仿真分析，并得到了如图\ref{fig:L波段脊波导窗的S参数}所示的结果。仿真结果显示，在目标频段内，该设计的反射系数$S_{11}$成功降至-20dB以下，满足了匹配要求。并且除了保持原有的性能指标外，新设计的微波窗还展示了和更加紧凑的结构布局，这为后续加工以及实际应用提供了更多的灵活性。更重要的是，此次设计上简化了制造流程，相比于原先的圆形窗提升了机械强度，从而保证了产品在各种环境下的稳定表现。
 
 \begin{figure}[!htb]
     \centering
@@ -1325,8 +1324,17 @@ ANSYS中可以直接查看到窗片的应力大小，关于多大的热应力会
 
 
 \thesisacknowledgement
+文已至此，我的论文已经接近尾声。在此文章完成之际，我衷心的感谢我的导师王建勋教授。感谢您在我整个硕士生涯中的谆谆教诲与悉心指导。在得知我面临家庭生活中的压力与困难时，您及时给予了宝贵的建议与帮助。这些建议与帮助，和您渊博的学识与严谨的科研态度，支持我走过了三年的科研生涯。这段经历在我的人生中留下了浓重的一笔，让我难以忘怀。它将伴随我的未来职业生涯，成为指引我继续前进的灯塔。
 
-事已至此，先搞一下格式审查吧 % 直接填写致谢内容，写法与正文一致
+感谢教研室中的博士后万易鑫师兄；博士师兄代子豪，李鑫杰；博士李昊，魏辰睿，刘坤，张致远；硕士郑敬稚，宋瑞龙，刘震威，张千龙，张洪瑞，潘若洋，陈旭，武浔远，李鑫等人这三年以来的陪伴。在这个充满爱的家庭氛围中，我获得了许多朋友的支持与情谊。我们一起学习新知、互相打气、共同前行的经历让我深感荣幸。我对那些在我遇到困难时毫不犹豫地伸出援手、照顾我的同学表示衷心的感谢，你们给予的友情和支持是我在人生旅途中的重要财富。
+
+我对我的家人表示深深的感激，特别是我的外婆。在我的学习旅程中，没有您的扶持和引导，我不可能取得如今的成绩。您的支持永远是我的安全港湾，我将永远珍惜与感激您带给我的爱与理解。
+我对朋友们表达深深的谢意，你们在我的日常生活中扮演着重要的支撑角色，并且是我在学术道路上不可或缺的同伴。谢谢你们在我最需要帮助时提供的激励与支持。
+
+
+最后，衷心感谢那些在百忙之中抽空阅读并评审这篇论文的专家教授们，谢谢你们提供的宝贵见解。
+
+
 
 \thesisbibliography[large]{reference.bib} % 参考文献
 
