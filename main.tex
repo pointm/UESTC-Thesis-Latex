@@ -543,20 +543,21 @@ $$
 
 \chapter{6-11GHz 宽频带脊波导窗的设计}
 \section{引言}
-正如前文所说，在真空管中，窗片是其中非常重要的组成部件。窗片需要在指定的频带内进行匹配，并确保适当的机械强度。这保证了频段内信号能够在真空管与外界之间在指定频段之内正常导通。同时，这也维持了真空管内的真空度。但是现阶段阶段，窗片的宽带宽实现方案结构不够紧凑，这影响了真空器件的小型化进程。此外，这些方案也面临加工焊接的难题，这一点直接影响了器件的加工与制作。
+正如前文所说，在真空管中，窗片是其中非常重要的组成部件。窗片需要在指定的频带内进行匹配，并确保适当的机械强度。这保证了频段内信号能够在真空管与外界之间在指定频段之内正常导通。同时，这也维持了真空管内的真空度。
 
-需要一种微波窗的设计方案，它应使微波窗具有宽匹配频带和紧凑结构。此外，该方案还需便于进行窗片的进一步加工处理。本章节将利用脊波导的主模带宽宽的特性，设计一种宽频带脊波导窗。
-
-\section{传统结构盒型窗的局限性}
-在前面\ref{sec:PillBoxTheory}中提到的传统结构的微波窗在许多方面上存在局限性。首先从加工层面来说，因为圆形窗片的半径与圆柱形波导的直径相同，如果想要固定介质窗片，那么就必须从侧面对窗片进行焊接。侧面焊接的气密性与窗片的厚度有关，如果窗片太薄，那么在焊接的过程中就会出现不稳定性，并且窗片的机械强度也会受到影响，过薄的窗片很容易出现打火击穿或者内外压差进而碎裂的情况。观察不等式\ref{eq:Delta}并且结合等式\ref{eq:B_d}可以发现，想要特征方程\ref{eq:B-C-simplify2}有解，那么对于窗片的厚度$t$的取值范围有：
+在前面\ref{sec:PillBoxTheory}中提到的传统结构的盒型窗在许多方面上存在局限性。首先从加工层面来说，因为圆形窗片的半径与圆柱形波导的直径相同，如果想要固定介质窗片，那么就必须从侧面对窗片进行焊接。侧面焊接的气密性与窗片的厚度有关，如果窗片太薄，那么在焊接的过程中就会出现不稳定性，并且窗片的机械强度也会受到影响，过薄的窗片很容易出现打火击穿或者内外压差进而碎裂的情况。观察不等式\ref{eq:Delta}并且结合等式\ref{eq:B_d}可以发现，想要特征方程\ref{eq:B-C-simplify2}有解，那么对于窗片的厚度$t$的取值范围有：
 \begin{equation}\label{eq:t_constraints}
     0 < t < \frac{\sqrt{\frac{1}{k^2}+4k^2(1+B_{T}^2)^2-2(1-2B_{T}^2)}}{(\varepsilon_{d}-1)(\omega / c)(\lambda_{gc} / \lambda)}
 \end{equation}
-传统盒型窗的特征方程说明了，为了确保盒型窗能够正常建造，窗片的厚度$t$必须小于一个阈值，过厚的窗片不能使用实现传统盒型窗的匹配方法进行匹配。
+传统盒型窗的特征方程说明了，为了确保传统薄窗片盒型窗的正常匹配，窗片的厚度$t$必须小于一个阈值，过厚的窗片便不能应用原先的等式\ref{eq:B_d}进行等效电路进而进行计算。
 
 其次，根据之前\ref{sec:PillBoxTheory}中提到的，传统模式的盒型窗的单侧匹配电长度不能低于0.1倍电长度，因为盒型窗需要两端匹配段，那么可以得到盒型窗匹配段连带窗片部分的电长度不会低于0.2倍电长度。这一点难以保证盒型窗在实际进行匹配时候的结构紧凑性。
 
-最后，根据文献\cite{huxiongli_bandwidth_pill}，传统意义上的盒型窗的相对带宽一般会在15\% 到20\% 之间。如果想要进一步的提升盒型窗的带宽，只能对其结构进行相应的改进，例如将窗片的厚度进行进一步的削减，这一步骤势必会进一步的影响窗片的机械结构强度与气密性。
+最后，根据文献\cite{huxiongli_bandwidth_pill}，传统意义上的盒型窗的相对带宽最宽可以做到15\% 到20\% 。如果想要进一步的提升盒型窗的带宽，只能对其结构进行相应的改进，例如将窗片的厚度进行进一步的削减，这一步骤可能会影响窗片的机械结构强度与窗片整体结构的气密性。
+
+并且在现阶段，除了传统薄窗片盒型窗之外，窗片的宽带宽实现方案结构不够紧凑，这影响了真空器件的小型化进程。此外，这些方案也面临加工焊接的难题，这一点直接影响了器件的加工与制作。
+
+所以需要一种微波窗的设计方案，它应使微波窗具有宽匹配频带和紧凑结构。此外，该方案还需便于进行窗片的进一步加工处理。本章节将利用脊波导的主模带宽宽的特性，设计一种宽频带脊波导窗。
 
 \section{新型脊波导窗的结构设计}
 为了解决盒型窗带宽与匹配结构复杂度之间的矛盾，以及常见的宽带宽窗片解决方案造成的较难以焊接加工或者设计的相关问题。现在对原先的盒型窗片的结构进行进一步的改良，获得一种新型的以脊波导为传输波导，并且以圆形窗片为输入窗片，以圆角矩形为脊波导到窗片之间的过渡段的新型的宽带宽窗。
@@ -778,10 +779,10 @@ $$
 
 具体的仿真流程中，经常使用在器件中放置一定数目的电子作为初始的种子粒子，然后再使用电场来驱动这些粒子对器件的表面进行轰击，进而通过观察此时的初始粒子数目随着时间的的变化情况来判断器件是否被击穿。具体的放置种子粒子的密度以及判断器件的击穿标准在不同的文章中也不尽相同，但是可以选取几篇文章作为相应的参考。根据文章\cite{li_2021_novel_multipactor}中的描述，如果器件中的电子数目在信号驱动的情况下呈现出指数函数式的增长，那么就被视为期间会因为二次电子发射而击穿，如果器件中电子的数目随着信号的激励呈现出持续下降的趋势就被视为没有击穿。关于具体的种子粒子的放置，文献\cite{gonzalez_2015_experimental}在仿真同轴波导的时候，初始的种子粒子数目为500，判断其被击穿的条件为仿真过程中电子总数大于$10^4$；文献\cite{gonzalez_2016_multipactor}在仿真同轴波导时，初始的电子数目为$10^{12}$个，等效的电子密度为$4.83 \times 10^{17} m^{-3}$，由于激励信号并非使用正弦函数，故击穿的条件被设定为“20间隙击穿”法则；文献\cite{you_2015_highly}中在脊波导器件的最窄处填充了8000个电子，并且也是因为电子数目在正弦信号驱动情况下呈现指数增长才被视为击穿，如果是持续下降的电子趋势就被视为没有击穿。
 
-综合上述文献的描述与仿真速度精度的要求，本文决定在填充初始电子时候选择电场强度最强的部分进行立方体形状的麦克斯韦能量分布的粒子源填充，而不是所有空白区域全部都进行初始能量相同的电子填充，并且填充的电子的密度不低于$10^9 m^{-1}$。如果器件中电子的数目随着信号的激励呈现出持续下降的趋势就被视为没有击穿；如果总粒子数目呈现出指数函数式的增长，那么在总粒子数目达到$5 \times 10^5$个之后便被视为击穿。结合之前在Spark3D中的预仿真，还有一种电子数量没有明显增长但是也没有明显减小的情况，此时其二次电子产生和电子的被吸收速率相近，在电子数目中达到了动态平衡，这种情况依然对器件有击穿的风险，故也被视为击穿。根据Spark3D和之前图\ref{fig:脊波导窗低频点场强仿真}中的预先仿真，可以得知此时的电场场强最强的部分是脊波导的脊，以及脊波导和窗中间的过渡部分的圆角矩形部分，具体的填充区域示意图可见\ref{fig:X粒子填充区域}中所示。
+综合上述文献的描述与仿真速度精度的要求，本文决定在填充初始电子时候选择电场强度最强的部分进行立方体形状的麦克斯韦能量分布的粒子源填充，而不是所有空白区域全部都进行初始能量相同的电子填充，并且填充的电子的密度不低于$10^9 m^{-1}$。如果器件中电子的数目随着信号的激励呈现出持续下降的趋势就被视为没有击穿；如果总粒子数目呈现出指数函数式的增长，那么在总粒子数目达到$5 \times 10^5$个之后便被视为击穿。结合之前在Spark3D中的预仿真，还有一种电子数量没有明显增长但是也没有明显减小的情况，此时其二次电子产生和电子的被吸收速率相近，在电子数目中达到了动态平衡，这种情况依然对器件有击穿的风险，故也被视为击穿。根据Spark3D和之前图\ref{fig:X频段脊波导窗低频点场强仿真}中的预先仿真，可以得知此时的电场场强最强的部分是脊波导的脊，以及脊波导和窗中间的过渡部分的圆角矩形部分，具体的填充区域示意图可见\ref{fig:X粒子填充区域}中所示。
 \begin{figure}[!htb]
     \centering
-    \includegraphics[width=0.5\linewidth]{pic/chapter3/粒子填充区域斜视图.png}
+    \includegraphics[width=0.25\linewidth]{pic/chapter3/粒子填充区域斜视图.png}
     \caption{X波段脊波导窗粒子填充区域}
     \label{fig:X粒子填充区域}
 \end{figure}
@@ -807,7 +808,7 @@ $$
 
 ANSYS中可以直接查看到窗片的应力大小，关于多大的热应力会使得窗片损毁是一个比较经典的材料力学相关问题。当窗片表面的最大最小温度相差过大时，窗片可能会因为温差导致的热应力进而出现损毁，故使用窗片温差来进行窗片损毁判据比较符合直觉。
 
-本次电磁热力联合仿真的频点为9GHz，为工作频段的中心频点附近。此时的仿真馈入功率为14kW，为二次电子发射所计算的最大功率容量。此时关于材料的热与膨胀系数的设置可以参考文章\cite{thumm_stateart_2020}，此时设置蓝宝石的密度为\( \rho_{Sapphire}= 4 \times 10^3 kg/ m^3\)，各向同性热膨胀系数为\(\alpha{Sapphire} = 5.5 \times 10 ^{-6}K^{-1}\)，此时杨氏模量为\( E_{Sapphire}= 385 GPa \)，泊松系数为\( \nu_{Sapphire}= 0.22 \)，各向同性导热率为\(k_{Sapphire} =900 W/(m \cdot K)\)。此时蓝宝石材料的抗弯强度可以通过文章\cite{hanyong_diff_2011}中找出，此时抗弯系数为\(\sigma_{f} = 320MPa\)。将这些系数输入之后便可以进行稳态热与稳态机械结构的仿真，并且使用公式\ref{eq:临界温差}可以得出此时蓝宝石的温差的极限值为\(\Delta T_{Sapphire} = 117 ^\circ C\)，与文章中\cite{han_sapphire_2011}的计算结果一致。
+本次电磁热力联合仿真的频点为9GHz，为工作频段的中心频点附近。此时的仿真馈入功率为14kW，为二次电子发射所计算的最大功率容量。此时关于材料的热与膨胀系数的设置可以参考文章\cite{thumm_stateart_2020}，此时设置蓝宝石的密度为\( \rho_{Sapphire}= 4 \times 10^3 kg/ m^3\)，各向同性热膨胀系数为\(\alpha_{Sapphire} = 5.5 \times 10 ^{-6}K^{-1}\)，此时杨氏模量为\( E_{Sapphire}= 385 GPa \)，泊松系数为\( \nu_{Sapphire}= 0.22 \)，各向同性导热率为\(k_{Sapphire} =900 W/(m \cdot K)\)。此时蓝宝石材料的抗弯强度可以通过文章\cite{hanyong_diff_2011}中找出，此时抗弯系数为\(\sigma_{f} = 320MPa\)。将这些系数输入之后便可以进行稳态热与稳态机械结构的仿真，并且使用公式\ref{eq:临界温差}可以得出此时蓝宝石的温差的极限值为\(\Delta T_{Sapphire} = 117 ^\circ C\)，与文章中\cite{han_sapphire_2011}的计算结果一致。
 
 此时假设窗片外侧的铜制外壳在与空气进行强制对流散热，此时设置铜制外壳的空气对流的热交换系数为\(300 W/ (m \cdot K)\)，但是窗片表面由于焊接在器件内部，此时假设其纵向无热对流，并且假设外壳对流的室温为20℃。在设置好期间内部的热交换系数之后，设置波导纵向的两侧端口为固定端面，方便进一步的应力分析。
 
@@ -815,7 +816,7 @@ ANSYS中可以直接查看到窗片的应力大小，关于多大的热应力会
 首先对窗片进行温度场分析，根据图\ref{fig:X输入温度场}显示，此时窗片的温度主要集中于窗片的中心部分，与窗片所传输的电场场强分布相符。并且此时窗片上最大与最小温度差为2℃，小于之前所计算出来的温差的极限值，故窗片已经通过了温度差检验，不会因为温差而导致的热应力所损坏。
 \begin{figure}[!htb]
     \centering
-    \includegraphics[width=0.5\linewidth]{pic/chapter3/X频段温度分布.png}
+    \includegraphics[width=0.35\linewidth]{pic/chapter3/X频段温度分布.png}
     \caption{6-11GHz输入窗温度分布}
     \label{fig:X输入温度场}
 \end{figure}
@@ -824,7 +825,7 @@ ANSYS中可以直接查看到窗片的应力大小，关于多大的热应力会
 由于蓝宝石在受热膨胀之后会与外侧的铜制外壳发生挤压，如果挤压的应力过大便会造成窗片损毁，此时使用后续稳态机械求解器所计算的与外侧铜壳之间发生的挤压进而带来的机械应力如图\ref{fig:X输入应力分布}所示。此时最大应力出现在圆形窗与圆角矩形过渡段的接缝处，此时最大应力大小为237MPa。此时窗片的热应力小于材料的抗弯强度\(\sigma_f = 320\)MPa，其不会因为热应力而导致损毁。
 \begin{figure}[!htb]
     \centering
-    \includegraphics[width=0.5\linewidth]{pic/chapter3/X频段应力分布.png}
+    \includegraphics[width=0.35\linewidth]{pic/chapter3/X频段应力分布.png}
     \caption{6-11GHz输入窗应力分布}
     \label{fig:X输入应力分布}
 \end{figure}
@@ -835,13 +836,13 @@ ANSYS中可以直接查看到窗片的应力大小，关于多大的热应力会
     \small
     \centering
     \begin{tabular}{@{\ }c@{\ }c}
-        \includegraphics[width=0.4\textwidth]{pic/chapter3/X输入窗总形变.png} & 
+        \includegraphics[width=0.3\textwidth]{pic/chapter3/X输入窗总形变.png} & 
         \hspace{5pt}
-        \includegraphics[width=0.4\textwidth]{pic/chapter3/X输入窗与波导.png}     \\
+        \includegraphics[width=0.3\textwidth]{pic/chapter3/X输入窗与波导.png}     \\
         \mbox{\small (a)6-11GHz输入窗形变}                                                                               & 
         \mbox{\small (b)6-11GHz输入窗与波导形变}                                                                                  \\
     \end{tabular}
-    \caption{6-11GHz输入窗与波导形变}
+    \caption{6-11GHz脊波导圆窗与波导形变}
     \label{fig:X输入窗与波导形变}
 \end{figure}
         
@@ -849,20 +850,23 @@ ANSYS中可以直接查看到窗片的应力大小，关于多大的热应力会
 \subsection{模式变换结构类型选择}
 根据之前\ref{fig:6-11GHzDRW}的脊波导几何参数可以看出，此时的脊波导并非公用的标准脊波导，没有标准的同轴转脊波导的模式转换器。如果想要进行进一步的脊波导窗的测试，有必要设计脊波导转同轴的模式转换器。此时结合实际的测试情况，由于之前已经有标准矩形波导转同轴的模式转换器，并且在需要带宽内满足反射系数$S_{11}$<-25dB的反射系数要求。故设计脊波导到标准矩形波导的模式转换器。根据查表显示，标准矩形波导WR112的参数为28.499*12.624mm，本波导的截止频率为5.25GHz，低于所需要频段的最低频点。并且为了标准矩形波导到脊波导之间测试件的纵向长度足够短足够紧凑，本文选取的模式变换主要结构为阶梯过渡，而不是渐变过渡。
 
-经过上述分析，再加上CST方面的优化，得到了如图\ref{fig:脊波导模式变换}所示的模式变换结构：
+经过上述分析，再加上CST方面的优化，得到了如图\ref{fig:脊波导模式变换} (a)所示的模式变换结构：
+
 \begin{figure}[!htb]
+    \small
     \centering
-    \includegraphics[width=0.5\linewidth]{pic/chapter3/脊波导模式变换.png}
+    \begin{tabular}{@{\ }c@{\ }c}
+        \includegraphics[width=0.45\textwidth]{pic/chapter3/脊波导模式变换.png} & 
+        \hspace{5pt}
+        \includegraphics[width=0.35\textwidth]{pic/chapter3/模式变换纵向长度.png}     \\
+        \mbox{\small (a) 脊波导模式变换总体视图}                                                                               & 
+        \mbox{\small (b) 模式变换纵向视图}                                                                                  \\
+    \end{tabular}
     \caption{脊波导模式变换}
     \label{fig:脊波导模式变换}
 \end{figure}
-靠近z轴正轴的脊波导为之前\ref{fig:6-11GHzDRW}中所示的双脊波导，而原理z轴正轴的矩形波导即为之前所提到的WR112标准矩形波导。关于阶梯过度过渡段的各个段落的纵向长度如图片\ref{fig:脊波导模式变换纵向长度} 所示，图中所示的两端过渡段长度均相等，过渡段的总体长度为21.22mm。
-\begin{figure}[!htb]
-    \centering
-    \includegraphics[width=0.5\linewidth]{pic/chapter3/模式变换纵向长度.png}
-    \caption{脊波导模式变换纵向长度}
-    \label{fig:脊波导模式变换纵向长度}
-\end{figure}
+
+靠近z轴正轴的脊波导为之前\ref{fig:6-11GHzDRW}中所示的双脊波导，而原理z轴正轴的矩形波导即为之前所提到的WR112标准矩形波导。关于阶梯过度过渡段的各个段落的纵向长度如图片\ref{fig:脊波导模式变换} (b)所示，图中所示的两端阶梯过渡段长度均相等，过渡段的总体长度为21.22mm。
 
 此时过渡段中间两个脊波导的脊的宽度与之前所设计的脊波导的脊宽相同，但是脊的高度和脊波导外侧的尺寸不同，进而能够形成阶梯状过渡。过渡段脊波导的详细几何参数如图\ref{fig:过渡段几何参数}所示，其中\ref{fig:过渡段几何参数} (a)展示了过渡段中靠近窗片的脊波导几何参数，\ref{fig:过渡段几何参数} (b)展示了过渡段中靠近标准矩形波导的脊波导几何参数。
 
@@ -897,21 +901,24 @@ ANSYS中可以直接查看到窗片的应力大小，关于多大的热应力会
     \label{fig:过渡段不同端馈入的S参数}
 \end{figure}
 
-此时将过渡段的对应端口连接到脊波导窗两端，整体的结构如图\ref{fig:脊波导窗的整体测试结构}所示，此时窗片两端均使用阶梯过渡过渡到标准矩形波导WR112。
+此时将过渡段的对应端口连接到脊波导窗两端，整体的结构如图\ref{fig:脊波导窗的整体测试结构与S参数} (a)所示，此时窗片两端均使用阶梯过渡过渡到标准矩形波导WR112。
+
 \begin{figure}[!htb]
+    \small
     \centering
-    \includegraphics[width=0.25\linewidth]{pic/chapter3/脊波导窗整体测试结构.png}
-    \caption{脊波导窗的整体测试结构}
-    \label{fig:脊波导窗的整体测试结构}
+    \begin{tabular}{@{\ }c@{\ }c}
+        \includegraphics[width=0.35\textwidth]{pic/chapter3/脊波导窗整体测试结构.png} & 
+        \hspace{5pt}
+        \includegraphics[width=0.35\textwidth]{pic/chapter3/脊波导窗整体S参数.png}     \\
+        \mbox{\small (a)脊波导窗的整体测试结构}                                                                               & 
+        \mbox{\small (b)脊波导窗整体测试结构S参数}                                                                                  \\
+    \end{tabular}
+    \caption{脊波导窗的整体测试结构与S参数}
+    \label{fig:脊波导窗的整体测试结构与S参数}
 \end{figure}
 
-此时针对整体接上过渡段之后的窗片进行S参数仿真，得到的结果如图\ref{fig:脊波导窗整体测试结构S参数}所示，此时在频带范围之内（6-11GHz），整体的反射系数也均小于-20dB，满足测试的需求。
-\begin{figure}[!htb]
-    \centering
-    \includegraphics[width=0.35\linewidth]{pic/chapter3/脊波导窗整体S参数.png}
-    \caption{脊波导窗整体测试结构S参数}
-    \label{fig:脊波导窗整体测试结构S参数}
-\end{figure}
+此时针对整体接上过渡段之后的窗片进行S参数仿真，得到的结果如图\ref{fig:脊波导窗的整体测试结构与S参数} (b)所示，此时在频带范围之内（6-11GHz），整体的反射系数也均小于-20dB，满足测试的需求。
+
 
 \section{本章小结}
 本小节首先针对需求设计了一款能够用于6-11GHz的脊波导圆窗，窗片材质选取为蓝宝石，设计完成后满足在频段6-11GHz内反射系数\(S_{11}\)<-20dB的需求。并且之后针对脊波导窗进行了关于参数敏感度相关的分析，分析结果表示，此时过渡段的厚度trh的影响较大，最大可扰动范围为0.47mm。在此之后，针对脊波导窗片的功率容量进行了相应的计算，在计算的途中，分别使用了最大场强法、基于二次电子倍增的分析方法。其中最大场强法分析时，如果此时击穿场强为30kV/cm，那么其功率容量为3.1kW；使用二次电子倍增法所计算的窗的功率容量为14.8kW。之后，本文对窗的多物理场方面进行了相应的分析，结果显示此时输入功率为14.8kW，窗片在外壳铜使用空气强对流降温的情况下，其温差为2℃，远小于窗片材料的温差极限值117℃。并且此时窗片的热应力小于蓝宝石材料的抗弯强度\(\sigma_f = 320\)MPa，其不会因为热应力而导致损毁。并且因为热导致的形变大小较小，结合参数的敏感度分析发现热形变不会导致窗片的工作参数产生较大的变化。之后为了方便窗片进行进一步的加工测试，设计了窗片与标准波导WR112之间的阶梯过渡段并进行了仿真。仿真结果显示整体结构在6-11GHz内反射系数低于-20dB，满足测试需求。
@@ -924,9 +931,9 @@ ANSYS中可以直接查看到窗片的应力大小，关于多大的热应力会
     \small
     \centering
     \begin{tabular}{@{\ }c@{\ }c}
-        \includegraphics[width=0.45\textwidth]{pic/chapter4/L波段脊波导几何参数.png} & 
+        \includegraphics[width=0.4\textwidth]{pic/chapter4/L波段脊波导几何参数.png} & 
         \hspace{5pt}
-        \includegraphics[width=0.45\textwidth]{pic/chapter4/脊波导倒圆角边.png}     \\
+        \includegraphics[width=0.4\textwidth]{pic/chapter4/脊波导倒圆角边.png}     \\
         \mbox{\small (a)L波段脊波导几何参数}                                                                               & 
         \mbox{\small (b)脊波导倒圆角的边}                                                                                  \\
     \end{tabular}
@@ -934,18 +941,28 @@ ANSYS中可以直接查看到窗片的应力大小，关于多大的热应力会
     \label{fig:L波段脊波导结构}
 \end{figure}
 
-其中L 波段的脊波导的具体的参数为$a=63mm, b=32mm, s=29mm, d=5mm$此时脊波导为了减少减小最大场强，增大功率容量，防止击穿的考量，在脊波导的两个脊部位进行了倒圆角的设计，倒圆角的尺寸为0.5mm。此时L 波段所需的设计频段为1.14-1.6GHz，此时将脊波导几何参数带入判别式\ref{eq:DRW_constraints}的中进行检验，可以发现此时的$s / a$ =0.46>0.45不满足应用公式的约束条件。但是将\ref{eq:DRW_closed}的算式带入，对L 波段脊波导的截止频率进行计算，可以得到$f_c=1.073GHz$与CST中仿真的结果$1.072GHz$相接近。此时仿真脊波导在需要频带(1.13-1.4GHz )内的反射系数可以得到如图\ref{fig:L波段脊波导S参数}的结果，此时可以看到，在1.13-1.4GHz 的所需频段之内，此时的反射系数$S_{11}<-25dB$，满足匹配要求，可以作为设计窗片所需的脊波导。
+其中L 波段的脊波导的具体的参数为$a=63mm, b=32mm, s=29mm, d=5mm$此时脊波导为了减少减小最大场强，增大功率容量，防止击穿的考量，在脊波导的两个脊部位进行了倒圆角的设计，倒圆角的尺寸为0.5mm。此时L 波段所需的设计频段为1.14-1.6GHz，此时将脊波导几何参数带入判别式\ref{eq:DRW_constraints}的中进行检验，可以发现此时的$s / a$ =0.46>0.45不满足应用公式的约束条件。但是将\ref{eq:DRW_closed}的算式带入，对L 波段脊波导的截止频率进行计算，可以得到$f_c$=1.073GHz，计算结果与如图\ref{fig:L波段脊波导初步仿真} (a)中的CST中仿真的截止频率1.072GHz相接近。此时仿真脊波导在需要频带(1.13-1.4GHz )内的反射系数可以得到如图\ref{fig:L波段脊波导初步仿真} (b)的结果，此时可以看到，在1.13-1.4GHz 的所需频段之内，此时的反射系数$S_{11}<-25dB$，满足匹配要求，可以作为设计窗片所需的脊波导。
+
 \begin{figure}[!htb]
+    \small
     \centering
-    \includegraphics[width=0.5\linewidth]{pic/chapter4/L波段脊波导S参数.png}
-    \caption{L波段脊波导S参数}
-    \label{fig:L波段脊波导S参数}
-\end{figure}。
+    \begin{tabular}{@{\ }c@{\ }c}
+        \includegraphics[width=0.45\textwidth]{pic/chapter4/脊波导截止频率仿真.png} & 
+        \hspace{5pt}
+        \includegraphics[width=0.45\textwidth]{pic/chapter4/L波段脊波导S参数.png}     \\
+        \mbox{\small (a)L频段截止频率仿真}                                                                               & 
+        \mbox{\small (b)L频段脊波导S参数}                                                                                  \\
+    \end{tabular}
+    \caption{L波段脊波导初步仿真}
+    \label{fig:L波段脊波导初步仿真}
+\end{figure}
+
+
 
 此时仿照之前的6-11GHz 频段所设计的脊波导配圆形窗，并且使用圆角矩形结构作为脊波导和圆窗之间的过渡段进行设计。初步进行频段搬移并且进行优化之后，得到的窗片结构如图\ref{fig:L波段脊波导圆窗的整体结构}所示：
 \begin{figure}[!htb]
     \centering
-    \includegraphics[width=0.35\linewidth]{pic/chapter4/L波段脊波导圆窗的整体结构.png}
+    \includegraphics[width=0.25\linewidth]{pic/chapter4/L波段脊波导圆窗的整体结构.png}
     \caption{L波段脊波导圆窗的整体结构}
     \label{fig:L波段脊波导圆窗的整体结构}
 \end{figure}
@@ -981,7 +998,7 @@ ANSYS中可以直接查看到窗片的应力大小，关于多大的热应力会
 仔细观察之前图\ref{fig:L波段脊波导圆窗的整体结构}中的窗片结构发现，此时主要的矛盾集中在窗片过大之上。如果要对窗片的结构进行进一步优化，需要结合窗片中的场分布进行分析。此时将L波段脊波导圆窗在中轴对称面取横截面，观察截掉之后的电场强度分布如图\ref{fig:L波段脊波导圆窗的电场强度分布}所示。经过观察可以发现，此时窗片在此横截面上面的电场分布更加靠近于脊波导中心处，而圆形窗片的上下两端的电场强度分布并不是特别强。此时可以考虑将圆形窗片的上下两端进行削去，减小窗片在上下的长度，进而减小窗片的体积，使得其结构更加紧凑并且能够加强窗片的机械强度。
 \begin{figure}[!htb]
     \centering
-    \includegraphics[width=0.35\linewidth]{pic/chapter4/L波段脊波导圆窗的电场强度分布.png}
+    \includegraphics[width=0.3\linewidth]{pic/chapter4/L波段脊波导圆窗的电场强度分布.png}
     \caption{L波段脊波导圆窗的电场强度分布}
     \label{fig:L波段脊波导圆窗的电场强度分布}
 \end{figure}
@@ -1044,9 +1061,9 @@ ANSYS中可以直接查看到窗片的应力大小，关于多大的热应力会
     \small
     \centering
     \begin{tabular}{@{\ }c@{\ }c}
-        \includegraphics[width=0.45\textwidth]{pic/chapter4/L频段最大场强到达阈值.png} & 
+        \includegraphics[width=0.4\textwidth]{pic/chapter4/L频段最大场强到达阈值.png} & 
         \hspace{5pt}
-        \includegraphics[width=0.45\textwidth]{pic/chapter4/L频段最大场强所在位置.png}     \\
+        \includegraphics[width=0.4\textwidth]{pic/chapter4/L频段最大场强所在位置.png}     \\
         \mbox{\small (a)最大场强到达击穿阈值}                                                                               & 
         \mbox{\small (b)L频段脊波导窗最大电场出现位置}                                                                                  \\
     \end{tabular}
@@ -1073,7 +1090,7 @@ ANSYS中可以直接查看到窗片的应力大小，关于多大的热应力会
 
 \begin{figure}[!htb]
     \centering
-    \includegraphics[width=0.2\linewidth]{pic/chapter4/L波段加上铜制外壳.png}
+    \includegraphics[width=0.3\linewidth]{pic/chapter4/L波段加上铜制外壳.png}
     \caption{L波段脊波导窗加上铜制外壳的整体结构}
     \label{fig:L波段加上铜制外壳}
 \end{figure}
@@ -1093,9 +1110,9 @@ ANSYS中可以直接查看到窗片的应力大小，关于多大的热应力会
     \small
     \centering
     \begin{tabular}{@{\ }c@{\ }c}
-        \includegraphics[width=0.49\textwidth]{pic/chapter4/L波段Spark3D电场.png} & 
+        \includegraphics[width=0.4\textwidth]{pic/chapter4/L波段Spark3D电场.png} & 
         \hspace{5pt}
-        \includegraphics[width=0.49\textwidth]{pic/chapter4/Spark3D中的电子随时间的变化.png}     \\
+        \includegraphics[width=0.4\textwidth]{pic/chapter4/Spark3D中的电子随时间的变化.png}     \\
         \mbox{\small (a)Spark3D中的电场强度}                                                                               & 
         \mbox{\small (b)Spark3D中的电子随时间的变化}                                                                                  \\
     \end{tabular}
@@ -1115,19 +1132,19 @@ ANSYS中可以直接查看到窗片的应力大小，关于多大的热应力会
 在完成了PIC求解器中的电子填充之后，此时便可以设置激励信号进行仿真。由于期间比较容易在低频点击穿，故此时设置的连续波的频率为1.14GHz。并且在进行一些初步仿真之后发现初始电子的消失时间大概为150ns，为了确保查看电子数目随着时间的变化的趋势足够充分，故总仿真时长不应低于初始电子消失时间的两倍，本次仿真的总时长被设定为320ns。经过不同功率1.14GHz连续波的激励之后，查看器件中电子数目随着时间的变化趋势如图\ref{fig:L波段PIC基于二次电子仿真计算功率容量结果}所示。综上上述分析，此时的器件的功率容量大致上为1175W。
 \begin{figure}[!htb]
     \centering
-    \includegraphics[width=0.65\linewidth]{pic/chapter4/particle_time_chapter4.pdf}
+    \includegraphics[width=0.5\linewidth]{pic/chapter4/particle_time_chapter4.pdf}
     \caption{L波段PIC基于二次电子仿真计算功率容量结果}
     \label{fig:L波段PIC基于二次电子仿真计算功率容量结果}
 \end{figure}
 
 \section{关于L波段脊波导窗片的多物理场分析}
-类似于之前的小节，本小节针对L波段脊波导窗进行了多物理场的分析，此时针对BeO材料的特性主要参考为文献\cite{thumm_stateart_2020, slack_thermal_1971,kozlovskii_thermal_2014,hanyong_diff_2011}中所记述的实验数据。综合上述论文中的实验数据，将BeO的关键参数设置如下密度\(\rho_{BeO} = 2850kg/m^3\)，热膨胀系数为\(\alpha = 7.2 \times 10^{-6} K^{-1}\)，杨氏模量为\(E_{BeO} = 385GPa\)，泊松系数为\(\nu_{BeO} = 0.3\)，导热系数为\(k_{BeO} = 260 W/(m \cdot K)\)。此时BeO的抗弯系数为$\sigma_f = 200MPa$，故此时根据公式\ref{eq:临界温差}可以计算其最大最小温度极限差值为45℃，如果窗片的温差超过45℃那么便有因为温差过大进而导致热应力过大，进而引起窗片碎裂的风险。
+类似于之前的小节，本小节针对L波段脊波导窗进行了多物理场的分析，此时针对BeO材料的特性主要参考为文献\cite{thumm_stateart_2020, slack_thermal_1971,kozlovskii_thermal_2014}中所记述的实验数据。综合上述论文中的实验数据，将BeO的关键参数设置如下密度\(\rho_{BeO} = 2850kg/m^3\)，热膨胀系数为\(\alpha = 7.2 \times 10^{-6} K^{-1}\)，杨氏模量为\(E_{BeO} = 385GPa\)，泊松系数为\(\nu_{BeO} = 0.3\)，导热系数为\(k_{BeO} = 260 W/(m \cdot K)\)。此时BeO的抗弯系数为$\sigma_f = 200MPa$，故此时根据公式\ref{eq:临界温差}可以计算其最大最小温度极限差值为45℃，如果窗片的温差超过45℃那么便有因为温差过大进而导致热应力过大，进而引起窗片碎裂的风险。
 
 \subsection{L频段脊波导窗的温度分布}
 此时窗片HFSS中馈入频点为中心频点1.3GHz，馈入的功率为1kW，接近于PIC求解器所求的窗片的功率容量上限。此时为了方便窗片的应力仿真，将窗片的外壳两端的端面设置为固定的端面。此时仿真得到的窗片的温度场如图\ref{fig:L频段窗温度分布}所示，此时窗片的温度集中于窗片的中心部分，此时中心部分的场强也更强损耗也更大，满足仿真结果预期。此时窗片上最大温度为20.61℃，最小值为20.53℃，温差为0.08℃，此时温差小于之前所计算的温差极限值，此时窗片通过了温差检验。
 \begin{figure}[!htb]
     \centering
-    \includegraphics[width=0.5\linewidth]{pic/chapter4/L频段窗温度分布.png}
+    \includegraphics[width=0.35\linewidth]{pic/chapter4/L频段窗温度分布.png}
     \caption{L频段窗温度分布}
     \label{fig:L频段窗温度分布}
 \end{figure}
@@ -1136,7 +1153,7 @@ ANSYS中可以直接查看到窗片的应力大小，关于多大的热应力会
 此时导出窗片应力分布，可以得到窗片的应力分布如图\ref{fig:L频段窗应力分布}所示，此时窗片的最大应力为3.76MPa，远小于BeO陶瓷的抗弯系数\(sigma_f\)=200MPa，故此时窗片不会因为热应力过大而碎裂。出现最大应力部分主要为窗片与脊波导之间的过渡段，即窗片与铜制外壳直接接触的面。
 \begin{figure}[!htb]
     \centering
-    \includegraphics[width=0.5\linewidth]{pic/chapter4/L频段窗应力.png}
+    \includegraphics[width=0.35\linewidth]{pic/chapter4/L频段窗应力.png}
     \caption{L频段窗应力分布}
     \label{fig:L频段窗应力分布}
 \end{figure}
@@ -1147,9 +1164,9 @@ ANSYS中可以直接查看到窗片的应力大小，关于多大的热应力会
     \small
     \centering
     \begin{tabular}{@{\ }c@{\ }c}
-        \includegraphics[width=0.49\textwidth]{pic/chapter4/L频段窗形变.png} & 
+        \includegraphics[width=0.4\textwidth]{pic/chapter4/L频段窗形变.png} & 
         \hspace{5pt}
-        \includegraphics[width=0.49\textwidth]{pic/chapter4/L频段整体形变.png}     \\
+        \includegraphics[width=0.4\textwidth]{pic/chapter4/L频段整体形变.png}     \\
         \mbox{\small (a)L频段窗形变}                                                                               & 
         \mbox{\small (b)L频段窗与波导形变}                                                                                  \\
     \end{tabular}
@@ -1217,7 +1234,7 @@ ANSYS中可以直接查看到窗片的应力大小，关于多大的热应力会
 
 并且在实际测试时，如果将信号传输方向定义为z轴方向，发现窗片和过渡段在绕着z轴旋转时候时反射系数会周期性的发生变化。如果将反射系数$S_{11}$数据最好的旋转角度定义为0°的话，当旋转角度达到90°时，$S_{11}$的反射情况会到达最差，最差时候在95GHz频点处的反射系数值系数值只有15dB。并且旋转到45°和135°时候的反射系数值是一致的，在到达67.5°和112.5°时候反射系数也是一致的，简要来说的话测试时候得到的反射系数的值的旋转角度关于90°对称。
 
-具体测试环境下的图片如图\ref{fig:W频段反射与旋转角度关系}所示，为了使得仿真过程中的旋转角度能够更方便的被看到，在旋转到反射系数旋转到达最佳值的时候在窗片某一个的孔位上面放了一颗螺丝钉作为标记。此时测试过程中旋转的角度已经使用文字在图中进行了相应的标注。
+具体测试环境下的图片如图\ref{fig:W频段反射系数与旋转角度关系}所示，为了使得仿真过程中的旋转角度能够更方便的被看到，在旋转到反射系数旋转到达最佳值的时候在窗片某一个的孔位上面放了一颗螺丝钉作为标记。此时测试过程中旋转的角度已经使用文字在图中进行了相应的标注。
 \begin{figure}[!htb]
     \centering
     \includegraphics[width=0.55\linewidth]{pic/chapter5/W频段反射系数与旋转角度关系.png}
@@ -1267,7 +1284,7 @@ ANSYS中可以直接查看到窗片的应力大小，关于多大的热应力会
 此时设定测量的反射系数结果最好的那个方向为x轴，窗片顶面圆心为原点O，窗片顶面所在平面为xOy平面。窗片底面圆心到顶面的圆心所连向量，为z轴法向量方向。此时假设圆窗片的上面沿着直线l发生弧度为\(\theta\)的旋转，此时直线l到圆心的最短距离是d，直线l与x轴的夹角为\(\psi\)。此时偏离圆心的旋转的情况可以见于示意图\ref{fig:旋转轴偏离圆心的旋转情况}。
 \begin{figure}[!htb]
     \centering
-    \includegraphics[width=0.5\linewidth]{pic/chapter5/不过圆心旋转示意图.png}
+    \includegraphics[width=0.35\linewidth]{pic/chapter5/不过圆心旋转示意图.png}
     \caption{旋转轴偏离圆心的旋转情况}
     \label{fig:旋转轴偏离圆心的旋转情况}
 \end{figure}
