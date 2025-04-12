@@ -21,12 +21,13 @@ plt.figure(figsize=(6, 5.5))  # 设置图片大小
 # 加载TOUCHSTONE数据
 chaptername = "chapter3"
 xbandwindow = rf.Network(os.path.join(script_dir, chaptername, "6-11GHz窗S曲线.s2p"))
+denserperiod = "6-11ghz"  # 加粗的频域范围
 
 # 绘制 S11 参数
-xbandwindow.s11.plot_s_db(label=r"$\mathrm{S_{11}}$")
+xbandwindow.s11.plot_s_db(label=r"$\mathrm{S_{11}}$", lw=2)
 
-xbandwindow.s21.plot_s_db(label=r"$\mathrm{S_{21}}$")
-xbandwindow.s11["6-11ghz"].plot_s_db(
+xbandwindow.s21.plot_s_db(label=r"$\mathrm{S_{21}}$", lw=2)
+xbandwindow.s11[denserperiod].plot_s_db(
     lw=3, label="目标频段反射", color="red"
 )  # 标出感兴趣的频段，表粗的线的宽度为3
 
@@ -44,9 +45,7 @@ plt.tick_params(
 
 # 设置坐标轴刻度标签大小
 plt.tick_params(axis="both", which="major", labelsize=axis_size)
-plt.tick_params(
-    axis="both", which="minor", labelsize=axis_size - 2
-)  # 次要刻度标签稍小一些
+plt.tick_params(axis="both", which="minor")
 
 # 设置图例
 plt.legend(frameon=False, fontsize=legend_size)
