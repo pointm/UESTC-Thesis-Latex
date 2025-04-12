@@ -1,6 +1,9 @@
 import skrf as rf
 import matplotlib.pyplot as plt
 import matplotlib.ticker as ticker
+import os
+
+script_dir = os.path.dirname(os.path.abspath(__file__))
 
 # 图片预处理部分
 plt.style.use("fast")  # 调用配色方案
@@ -16,14 +19,15 @@ axis_size = 16  # 坐标轴刻度标签的大小
 plt.figure(figsize=(6, 5.5))  # 设置图片大小
 
 # 加载TOUCHSTONE数据
-xbandwindow = rf.Network("data/XBANDWIN.s2p")
+chaptername = "chapter3"
+xbandwindow = rf.Network(os.path.join(script_dir, chaptername, "6-11GHz窗S曲线.s2p"))
 
 # 绘制 S11 参数
 xbandwindow.s11.plot_s_db(label=r"$\mathrm{S_{11}}$")
 
 xbandwindow.s21.plot_s_db(label=r"$\mathrm{S_{21}}$")
 xbandwindow.s11["6-11ghz"].plot_s_db(
-    lw=3, label="所需的频段", color="red"
+    lw=3, label="目标频段反射", color="red"
 )  # 标出感兴趣的频段，表粗的线的宽度为3
 
 # 设置坐标轴标签和标题
