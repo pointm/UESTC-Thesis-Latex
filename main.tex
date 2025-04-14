@@ -815,12 +815,26 @@ HFSS模块计算窗片由于介质损耗而产生的体损耗，同时也分析�
 \subsection{脊波导窗损耗分析}
 此时馈入窗片的功率为14kW，为二次电子发射所计算的最大功率容量，馈入窗片的连续波频点为8GHz。
 \subsection{脊波导窗温度分布分析}
-此时假设窗片外侧的铜制外壳在与空气进行强制对流散热，此时设置铜制外壳的空气对流的热交换系数为\(300 W/ (m \cdot K)\)，但是窗片表面由于焊接在器件内部，此时假设其纵向无热对流，并且假设柱状波导的外壳侧面进行对流散热。此时外界热对流的设置如图\ref{fig:X频段窗片对流散热}所示，室温被设置为20℃。并且此时的热交换系数被设置为300\(W/(m^2 \cdot ^\circ C)\)。
+此时假设窗片外侧的铜制外壳在与空气进行强制对流散热，设置铜制外壳的空气对流的对流系数为\(300 W/ (m \cdot K)\)，此时外界热对流的设置如图\ref{fig:X频段窗片对流散热}所示，室温被设置为20℃。关于对流散热面的设置窗片表面由于焊接在器件内部，此时假设其在纵向波导内部无热对流，只假设其暴露在真空的单元存在辐射散热，并且取辐射因子为0.22。
 \begin{figure}[!htb]
     \centering
-    \includegraphics[width=0.5\linewidth]{pic/chapter3/窗片对流系数.png}
+    \includegraphics[width=0.35\linewidth]{pic/chapter3/}
     \caption{6-11GHz窗片对流系数设置}
-    \label{fig:X频段窗片对流散热}
+    \label{}
+\end{figure}
+
+\begin{figure}[!htb]
+    \small
+    \centering
+    \begin{tabular}{@{\ }c@{\ }c}
+        \includegraphics[width=0.3\textwidth]{pic/chapter3/窗片对流系数.png} & 
+        \hspace{5pt}
+        \includegraphics[width=0.3\textwidth]{pic/chapter3/辐射单元选择.png}     \\
+        \mbox{\small (a)对流散热设置}                                                                               & 
+        \mbox{\small (b)辐射散热设置}                                                                                  \\
+    \end{tabular}
+    \caption{6-11GHz频段窗片对流辐射散热}
+    \label{fig:X频段窗片对流辐射散热}
 \end{figure}
 
 
