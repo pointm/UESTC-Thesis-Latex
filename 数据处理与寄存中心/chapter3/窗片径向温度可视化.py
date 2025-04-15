@@ -26,16 +26,12 @@ filepath = os.path.join(filepath, filename)
 temp = np.loadtxt(filepath, skiprows=0, unpack=True)
 print(temp)
 
-plt.plot(temp[1], temp[2])
-plt.xlabel("半径/mm")
-plt.ylabel("温度/℃")
-
+plt.plot(temp[1], temp[2], color="red", linewidth=3)
 
 # 设置坐标轴标签和标题
-plt.xlabel("半径/mm", fontsize=label_size)
+plt.xlabel("距离中心/mm", fontsize=label_size)
 plt.ylabel("温度/℃", fontsize=label_size)
 
-# 启用次要刻度
 plt.minorticks_on()
 
 # 自定义次要刻度位置
