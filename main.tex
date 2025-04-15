@@ -877,32 +877,29 @@ ANSYS中可以直接查看到窗片的应力大小，为了方便分析窗片被
 \begin{figure}[!htb]
     \small
     \centering
-    \begin{tabular}{@{\ }c@{\ }c@{\ }c}
-        \includegraphics[width=0.3\textwidth]{pic/ERROR.jpg} & 
+    \begin{tabular}{@{\ }c@{\ }c}
+        \includegraphics[width=0.3\textwidth]{pic/chapter3/金属外壳2与窗片间的接触条件.png} & 
         \hspace{5pt}
-        \includegraphics[width=0.3\textwidth]{pic/ERROR.jpg}&
-        \hspace{5pt}
-        \includegraphics[width=0.3\textwidth]{pic/ERROR.jpg}      \\
-        \mbox{\small (a) \(\psi=\)0°与180°}                                                                               & 
-        \mbox{\small (b)\(\psi=\)45°与135°} & 
-        \mbox{\small (c)\(\psi=\)90°与未发生旋转}                                                                                  \\
+        \includegraphics[width=0.3\textwidth]{pic/chapter3/金属外壳3与2之间的接触条件.png}     \\
+        \mbox{\small (a) Rough 接触条件}                                                                               & 
+        \mbox{\small (b) 金属外壳间的Bounded接触条件}                                                                                  \\
     \end{tabular}
     \caption{6-11GHz频段窗片接触面边界条件}
     \label{fig:X频段接触面边界条件}
 \end{figure}
-由于蓝宝石在受热膨胀之后会与外侧的铜制外壳发生挤压，如果挤压的应力过大便会造成窗片损毁，此时使用后续稳态机械求解器所计算的与外侧铜壳之间发生的挤压进而带来的机械应力如图\ref{fig:X输入应力分布}所示。
 
+由于蓝宝石在受热膨胀之后会与外侧的铜制外壳发生挤压，如果挤压的应力过大便会造成窗片损毁，此时使用后续稳态机械求解器所计算的与外侧铜壳之间发生的挤压进而带来的机械应力如图\ref{fig:X输入应力分布}所示。正面的意思是此时窗片是面向馈入信号的那一面，此时正面的应力分布如图\ref{fig:X输入应力分布} (a)所示；反面是信号进入窗片后射出到达波导的那一面，此时反面的应力分布如图\ref{fig:X输入应力分布} (b)。综合来看，窗片正面的应力稍大于反面，在实际应用过程中，应该注意窗片入射信号那一面的保护，以免应力过大导致窗片碎裂。
 \begin{figure}[!htb]
     \small
     \centering
     \begin{tabular}{@{\ }c@{\ }c}
-        \includegraphics[width=0.3\textwidth]{pic/ERROR.jpg} & 
+        \includegraphics[width=0.4\textwidth]{pic/chapter3/窗片正面应力分布.png} & 
         \hspace{5pt}
-        \includegraphics[width=0.3\textwidth]{pic/ERROR.jpg}     \\
-        \mbox{\small (a) 温度分布云图}                                                                               & 
-        \mbox{\small (b) 沿半径的温度分布}                                                                                  \\
+        \includegraphics[width=0.4\textwidth]{pic/chapter3/窗片反面应力分布.png}     \\
+        \mbox{\small (a) 窗片正面应力分布}                                                                               & 
+        \mbox{\small (b) 窗片反面应力分布}                                                                                  \\
     \end{tabular}
-    \caption{6-11GHz输入窗应力分布}
+    \caption{6-11GHz输入窗应力分布云图}
     \label{fig:X输入应力分布}
 \end{figure}
 
@@ -914,23 +911,26 @@ ANSYS中可以直接查看到窗片的应力大小，为了方便分析窗片被
 首先是整体结构的形变分析，整体结构的形变详见于图\ref{fig:X整体结构形变}中。此时整体结构形变主要发生在金属外壳之间的交界处和脊波导与过渡圆角矩形波导的结合处，最大形变量为0.008mm。脊波导处的形变量最大值为0.006mm，出现在脊波导突出的脊处。结合之前小节中的\ref{subsec:脊波导窗的参数敏感度分析}中的参数敏感度分析，此形变量较为微小，无法对结构造成能够改变S传输特性的明显变化。
 \begin{figure}[!htb]
     \centering
-    \includegraphics[width=0.5\linewidth]{pic/ERROR.jpg}
-    \caption{6-11GHz脊波导圆窗整体结构形变}
+    \includegraphics[width=0.4\linewidth]{pic/chapter3/X输入窗与波导.png}
+    \caption{6-11GHz脊波导圆窗整体结构形变云图}
     \label{fig:X整体结构形变}
 \end{figure}
 
-由于之前参数敏感度分析部分得出结论，窗片的半径和厚度对窗片整体的S参数有较为明显的影响，有必要对窗片的形变进行详细的分析。窗片的整体形变量详见于\ref{fig:X输入窗形变} (a)中，发现窗片最大形变量为0.0042mm。此时窗片发生主要整体形变的位置为外侧边沿与铜制外壳的接触点处，并且主要是x轴侧与铜制外壳的接触点。此时窗片径向形变详见于\ref{fig:X输入窗形变} (b)中，其表示了窗片在受热膨胀时其沿着半径发生膨胀或者收缩的量。此时窗片的径向形变量的最大值为0.0029mm，主要发生位置和总形变量类似，位于x轴边沿处和铜制外壳相接处的地方形变量最大。沿着z轴的形变如图\ref{fig:X输入窗形变} (c)所示，此时窗片的形变表明了其在经过热膨胀后厚度变化的量。此时窗片沿着z轴形变量的最大值为REFERROR，主要发生形变的位置为REFERROR。综上所述，此时窗片的半径形变和厚度形变的程度都不足以影响窗片的整体S参数。通过对此时6-11GHz输入窗的多物理场仿真，可以得知此时的窗片设计符合要求。
+由于之前参数敏感度分析部分得出结论，窗片的半径和厚度对窗片整体的S参数有较为明显的影响，有必要对窗片的形变进行详细的分析。窗片的整体形变量详见于\ref{fig:X输入窗形变} (a)中，发现窗片最大形变量为0.0042mm。此时窗片发生主要整体形变的位置为外侧边沿与铜制外壳的接触点处，并且主要是x轴侧与铜制外壳的接触点。此时窗片径向形变详见于\ref{fig:X输入窗形变} (b)中，其表示了窗片在受热膨胀时其沿着半径发生膨胀或者收缩的量。此时窗片的径向形变量的最大值为0.0029mm，主要发生位置和总形变量类似，位于x轴边沿处和铜制外壳相接处的地方形变量最大。沿着z轴的形变如图\ref{fig:X输入窗形变} (c)所示，此时窗片的形变表明了其在经过热膨胀后厚度变化的量。此时窗片沿着z轴形变量的最大值为0.0037mm，主要发生形变的位置为窗片的中心与圆角矩形过渡段的接触处。综上所述，此时窗片的半径形变和厚度形变的程度都不足以影响窗片的整体S参数。通过对此时6-11GHz输入窗的多物理场仿真，可以得知此时的窗片设计符合要求。
+
 \begin{figure}[!htb]
     \small
     \centering
     \begin{tabular}{@{\ }c@{\ }c}
-        \includegraphics[width=0.3\textwidth]{pic/chapter3/X输入窗总形变.png} & 
+        \includegraphics[width=0.19\textwidth]{pic/chapter3/X输入窗总形变.png} & 
         \hspace{5pt}
-        \includegraphics[width=0.3\textwidth]{pic/chapter3/X输入窗与波导.png}     \\
-        \mbox{\small (a)6-11GHz输入窗形变}                                                                               & 
-        \mbox{\small (b)6-11GHz输入窗与波导形变}                                                                                  \\
+        \includegraphics[width=0.19\textwidth]{pic/chapter3/X输入窗径向形变.png}     \\
+        \mbox{\small (a) 总体形变}                                                                               & 
+        \mbox{\small (b) 径向形变}                                                           \\[6bp]
+        \multicolumn{2}{c}{\includegraphics[width=0.35\textwidth]{pic/chapter3/X输入窗厚度形变.png}} \\  % 使用跨列居中
+        \multicolumn{2}{c}{\mbox{\small (c) 厚度形变}}             
     \end{tabular}
-    \caption{6-11GHz脊波导圆窗形变}
+    \caption{6-11GHz脊波导圆窗形变云图}
     \label{fig:X输入窗形变}
 \end{figure}
         
@@ -1227,14 +1227,20 @@ ANSYS中可以直接查看到窗片的应力大小，为了方便分析窗片被
 \end{figure}
 
 \section{关于L波段脊波导窗片的多物理场分析}
-类似于之前的小节，本小节针对L波段脊波导窗进行了多物理场的分析。为了模拟窗片焊接好之后的分析，本次依然选择将铜制外壳按照脊波导、过渡段与窗片、脊波导三个部分进行纵向分割。分割后的铜制外壳如图\ref{fig:L分割后的铜制外壳}所示。
+类似于之前的小节，本小节针对L波段脊波导窗进行了多物理场的分析。为了模拟窗片加工焊接完成后的分析，本次依然选择将铜制外壳按照脊波导、过渡段与窗片、脊波导三个部分进行纵向分割。分割后的铜制外壳如图\ref{fig:L分割后的铜制外壳} (a)所示。此时使用HFSS进行S参数相关的仿真可以得出结论，铜制外壳的创建与分割无法对原有的窗片S参数产生明显的影响，具体的S参数仿真结果如图\ref{fig:L分割后的铜制外壳} (b)所示。
 \begin{figure}[!htb]
+    \small
     \centering
-    \includegraphics[width=0.5\linewidth]{pic/ERROR.jpg}
-    \caption{L频段铜制外壳分割示意图}
+    \begin{tabular}{@{\ }c@{\ }c}
+        \includegraphics[width=0.3\textwidth]{pic/chapter4/L频段分割后的铜制外壳.png} & 
+        \hspace{5pt}
+        \includegraphics[width=0.4\textwidth]{pic/chapter4/L频段分割铜制外壳后的S曲线.png}     \\
+        \mbox{\small (a) 分割后的外壳示意图}                                                                               & 
+        \mbox{\small (b) 分割后的S参数}                                                                                  \\
+    \end{tabular}
+    \caption{L频段窗分割后的铜制外壳与分割后的S参数}
     \label{fig:L分割后的铜制外壳}
 \end{figure}
-
 
 此时针对BeO材料的特性主要参考为文献\cite{thumm_stateart_2020, slack_thermal_1971,kozlovskii_thermal_2014}中所记述的实验数据。综合上述论文中的实验数据，将BeO的关键参数设置如下密度\(\rho_{BeO} = 2850kg/m^3\)，热膨胀系数为\(\alpha = 7.2 \times 10^{-6} K^{-1}\)，杨氏模量为\(E_{BeO} = 385GPa\)，泊松系数为\(\nu_{BeO} = 0.3\)，导热系数为\(k_{BeO} = 260 W/(m \cdot K)\)。此时BeO的抗弯系数为$\sigma_f = 200MPa$，故此时根据公式\ref{eq:临界温差}可以计算其最大最小温度极限差值为45℃，如果窗片的温差超过45℃那么便有因为温差过大进而导致热应力过大，进而引起窗片碎裂的风险。此时窗片HFSS中馈入频点为中心频点1.3GHz，馈入的功率为1kW，接近于PIC求解器所求的窗片的功率容量上限。
 
@@ -1256,7 +1262,7 @@ ANSYS中可以直接查看到窗片的应力大小，为了方便分析窗片被
     \label{fig:L体损耗与面损耗}
 \end{figure}
 
-将损耗结果导入到ANSYS里面进行温度分析，需要对窗片的散热进行设置，此时窗片的主要散热手段为铜制外壳的空气对流散热与窗片的辐射散热，此时窗片铜制外壳与辐射散热的具体设置可以见图\ref{fig:L频段窗片散热示意}。此时将外界散热的室温设置为20℃，窗片的对流系数与之前相同设置为空气强对流所对应的系数300 \(W/(m^2 \cdot K)\)，散热面如图\ref{fig:L频段窗片散热示意} (a)所示，为铜制外壳的外围侧面一圈。此时窗片被封在波导内还会出现辐射散热的现象，由于L频段窗片使用侧面焊接，故辐射散热的面为全部波导内部的介质窗的面，而不再是选择波导窗的部分暴露在真空中的面，并且设置辐射系数为0.2。
+将损耗结果导入到ANSYS里面进行温度分析，需要对窗片的散热进行设置，此时窗片的主要散热手段为铜制外壳的空气对流散热与窗片的辐射散热，此时窗片铜制外壳与辐射散热的具体设置可以见图\ref{fig:L频段窗片散热示意}。此时将外界散热的室温设置为20℃，窗片的对流系数与之前相同设置为空气强对流所对应的系数300 \(W/(m^2 \cdot K)\)，散热面如图\ref{fig:L频段窗片散热示意} (a)所示，为铜制外壳的外围侧面一圈。此时窗片被封在波导内还会出现辐射散热的现象，由于L频段窗片使用侧面焊接，故辐射散热的面为全部波导内部的介质窗的面，而不再是选择波导窗的部分暴露在真空中的面，并且设置辐射因子为0.22。
 \begin{figure}[!htb]
     \small
     \centering
@@ -1271,6 +1277,7 @@ ANSYS中可以直接查看到窗片的应力大小，为了方便分析窗片被
     \label{fig:L频段窗片散热示意}
 \end{figure}
 
+由于此时窗片与铜壳之间的连接方式为焊接，故此时并不嫩直接将二者视为一体，需要将接触面的热阻值设为8000\(W / (m^2 \cdot K)\)。此时由于分层的铜壳之间的接触非常紧密，故可以不设置铜壳间的热阻值来进行分析。
 此时仿真得到的窗片的温度场如图\ref{fig:L频段窗温度分布}所示，此时窗片的温度集中于窗片的中心部分，此时中心部分的场强也更强损耗也更大，满足仿真结果预期。此时窗片上最大温度为20.61℃，最小值为20.53℃，温差为0.08℃，此时温差小于之前所计算的温差极限值，此时窗片通过了温差检验。REFERROR此时需要补充最大温度主要出现在哪些位置，而且需要说明散热有效。
 \begin{figure}[!htb]
     \centering
@@ -1280,10 +1287,10 @@ ANSYS中可以直接查看到窗片的应力大小，为了方便分析窗片被
 \end{figure}
 
 \subsection{L频段脊波导窗的热应力分布}
-由于BeO与铜的热膨胀系数不同，在焊接完成后受到加热时二者的接触面会产生应力，如果应力过大，会导致窗片破裂。
-此时为了方便窗片的应力仿真，将窗片的外壳两端的端面设置为固定的端面。关于几个接触面的设置与之前小节相类似，窗片与金属外壳之间的接触面的边界条件被设置为Rough，而金属外壳分层之间的接触面的接触条件设置为Bounded。
+由于BeO与铜的热膨胀系数不同，在焊接完成后受到加热时二者的接触面会产生应力，如果此时窗片的应力过大，会导致窗片破裂。
+此时为了方便窗片的应力仿真，将窗片的外壳两端的端面设置为固定的端面。关于几个接触面的接触条件的设置与之前小节的设置相类似，窗片与金属外壳之间的接触面的边界条件被设置为Rough，而金属外壳分层之间的接触面的接触条件设置为Bounded。
 
-此时导出窗片应力分布，可以得到窗片的应力分布如图\ref{fig:L频段窗应力分布}所示，此时窗片的最大应力为3.76MPa，远小于BeO陶瓷的抗弯系数\(sigma_f\)=200MPa，故此时窗片不会因为热应力过大而碎裂。出现最大应力部分主要为窗片与脊波导之间的过渡段，即窗片与铜制外壳直接接触的面。
+此时在HFSS中可以得到窗片的应力分布，窗片的应力主要集中于REFERROR，窗片在具体的加工焊接以及之后的使用时需要对这些部位格外注意，防止窗片在这些部位因为应力过大而导致损毁。与此同时，此时窗片的主要
 \begin{figure}[!htb]
     \centering
     \includegraphics[width=0.35\linewidth]{pic/chapter4/L频段窗应力.png}
