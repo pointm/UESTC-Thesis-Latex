@@ -855,7 +855,22 @@ HFSS模块计算窗片由于介质损耗而产生的体损耗，同时也分析�
     \label{fig:X频段窗片对流辐射散热}
 \end{figure}
 
-本次电磁热力联合仿真的频点为8GHz，为工作频段的中心频点附近。此时的仿真馈入功率为14kW，为二次电子发射所计算的最大功率容量。此时关于材料的热与膨胀系数的设置可以参考文章\cite{thumm_stateart_2020}，此时设置蓝宝石的密度为\( \rho_{Sapphire}= 4 \times 10^3 kg/ m^3\)，各向同性热膨胀系数为\(\alpha_{Sapphire} = 5.5 \times 10 ^{-6}K^{-1}\)，此时杨氏模量为\( E_{Sapphire}= 385 GPa \)，泊松系数为\( \nu_{Sapphire}= 0.22 \)，各向同性导热率为\(k_{Sapphire} =900 W/(m \cdot K)\)。此时蓝宝石材料的抗弯强度可以通过文章\cite{hanyong_diff_2011}中找出，此时抗弯系数为\(\sigma_{f} = 320MPa\)。将这些系数输入之后便可以进行稳态热与稳态机械结构的仿真，并且使用公式\ref{eq:临界温差}可以得出此时蓝宝石的温差的极限值为\(\Delta T_{Sapphire} = 117 ^\circ C\)，与文章中\cite{han_sapphire_2011}的计算结果一致。
+本次电磁热力联合仿真的频点为8GHz，为工作频段的中心频点附近。此时的仿真馈入功率为14kW，为二次电子发射所计算的最大功率容量。此时关于材料的热与膨胀系数的设置可以参考文章\cite{thumm_stateart_2020}，此时设置蓝宝石的密度为\( \rho_{Sapphire}= 4 \times 10^3 kg/ m^3\)，各向同性热膨胀系数为\(\alpha_{Sapphire} = 5.5 \times 10 ^{-6}K^{-1}\)，此时杨氏模量为\( E_{Sapphire}= 385 GPa \)，泊松比为\( \nu_{Sapphire}= 0.22 \)，各向同性导热率为\(k_{Sapphire} =40 W/(m \cdot K)\)。此时蓝宝石材料的抗弯强度可以通过文章\cite{hanyong_diff_2011}中找出，此时抗弯系数为\(\sigma_{f} = 320MPa\)。蓝宝石的比热容\(c_p\)为\(0.8 J/ (g \cdot K)\)。为了方便后续的查阅与对比，将刚才找到的蓝宝石材料属性汇总为表格\ref{tab:AlOStateOfArt}。将这些材料的系数输入ANSYS之后便可以进行稳态热与稳态机械结构的仿真。使用公式\ref{eq:临界温差}可以得出此时蓝宝石的温差的极限值为\(\Delta T_{Sapphire} = 126.76 ^\circ C\)。
+
+\begin{table}[!htb]
+    \caption{蓝宝石材料属性}
+    \label{tab:AlOStateOfArt}
+    \resizebox{\columnwidth}{!}{%
+    \begin{tabular}{ccccccccc}
+    \toprule[1.5pt]
+
+    % \hline
+    材料       & \begin{tabular}[c]{@{}c@{}}比热容 $c_p$\\ $J / (g \cdot K)$\end{tabular} & \begin{tabular}[c]{@{}c@{}}导热率 k\\ $W/(m \cdot K)$\end{tabular} & \begin{tabular}[c]{@{}c@{}}热膨胀系数 $\alpha$\\ $\times 10 ^{-6} K^{-1}$\end{tabular} & \begin{tabular}[c]{@{}c@{}}密度 $\rho$\\ $kg/m^3$\end{tabular} & 泊松比 $\nu$ & \begin{tabular}[c]{@{}c@{}}杨氏模量 E\\ GPa\end{tabular} & \begin{tabular}[c]{@{}c@{}}抗弯系数 $\sigma$\\ MPa\end{tabular} & \begin{tabular}[c]{@{}c@{}}极限温差 $\Delta T$\\ ℃\end{tabular} \\ \hline
+    蓝宝石 & 0.8                                                                  & 40                                                             & 5.5                                                                               & 4000                                                         & 0.22       & 385                                                  & 320                                                         & 126.76                                                          \\ %\hline
+    \bottomrule[1.5pt]
+    \end{tabular}%
+    }
+\end{table}
 
 首先对窗片进行温度场分析，根据图\ref{fig:X输入温度场} (a)显示，此时窗片的温度主要集中于窗片的中心部分，与窗片所传输的电场场强分布相符。并且此时窗片上最大与最小温度差为1.7℃，小于之前所计算出来的温差的极限值，故窗片已经通过了温度差检验，不会因为温差而导致的热应力所损坏。通过观察可以看到，此时窗片的温度分布近似与角向无关，可以沿着半径截取其中某一方向上的温度分布进行进一步的温度分布研究。本次截取的方向为沿着x轴方向，沿着半径截取温度分布的折线图可以见图\ref{fig:X输入温度场} (b)，这个折线图也印证了此时窗片中心温度高四周低的现象，并且可以以此分析得到窗片的平均温度为65℃。
 \begin{figure}[!htb]
@@ -1241,8 +1256,25 @@ ANSYS中可以直接查看到窗片的应力大小，为了方便分析窗片被
     \label{fig:L分割后的铜制外壳}
 \end{figure}
 
-此时针对BeO材料的特性主要参考为文献\cite{thumm_stateart_2020, slack_thermal_1971,kozlovskii_thermal_2014}中所记述的实验数据。综合上述论文中的实验数据，将BeO的关键参数设置如下密度\(\rho_{BeO} = 2850kg/m^3\)，热膨胀系数为\(\alpha = 7.2 \times 10^{-6} K^{-1}\)，杨氏模量为\(E_{BeO} = 385GPa\)，泊松系数为\(\nu_{BeO} = 0.3\)，导热系数为\(k_{BeO} = 260 W/(m \cdot K)\)。此时BeO的抗弯系数为$\sigma_f = 200MPa$，故此时根据公式\ref{eq:临界温差}可以计算其最大最小温度极限差值为45℃，如果窗片的温差超过45℃那么便有因为温差过大进而导致热应力过大，进而引起窗片碎裂的风险。此时窗片HFSS中馈入频点为中心频点1.3GHz，馈入的功率为1kW，接近于PIC求解器所求的窗片的功率容量上限。
+此时针对BeO材料的特性主要参考为文献\cite{thumm_stateart_2020, slack_thermal_1971,kozlovskii_thermal_2014}中所记述的实验数据。综合上述论文中的实验数据，将BeO的关键参数设置如下密度\(\rho_{BeO} = 2850kg/m^3\)，热膨胀系数为\(\alpha = 7.2 \times 10^{-6} K^{-1}\)，杨氏模量为\(E_{BeO} = 385GPa\)，泊松比为\(\nu_{BeO} = 0.3\)，导热率为\(k_{BeO} = 260 W/(m \cdot K)\)。此时BeO的抗弯系数为$\sigma_f = 200MPa$，故此时根据公式\ref{eq:临界温差}可以计算其最大最小温度极限差值为45℃，如果窗片的温差超过45℃那么便有因为温差过大进而导致热应力过大，进而引起窗片碎裂的风险。经过上述分析得到的BeO材料的综合参数被记录于表格\ref{tab:BeOStateOfArt}中。
 
+
+\begin{table}[!htb]
+    \caption{BeO材料属性}
+    \label{tab:BeOStateOfArt}
+    \resizebox{\columnwidth}{!}{%
+    \begin{tabular}{ccccccccc}
+    \toprule[1.5pt]
+
+    % \hline
+    材料       & \begin{tabular}[c]{@{}c@{}}比热容 $c_p$\\ $J / (g \cdot K)$\end{tabular} & \begin{tabular}[c]{@{}c@{}}导热率 k\\ $W/(m \cdot K)$\end{tabular} & \begin{tabular}[c]{@{}c@{}}热膨胀系数 $\alpha$\\ $\times 10 ^{-6} K^{-1}$\end{tabular} & \begin{tabular}[c]{@{}c@{}}密度 $\rho$\\ $kg/m^3$\end{tabular} & 泊松比 $\nu$ & \begin{tabular}[c]{@{}c@{}}杨氏模量 E\\ GPa\end{tabular} & \begin{tabular}[c]{@{}c@{}}抗弯系数 $\sigma$\\ MPa\end{tabular} & \begin{tabular}[c]{@{}c@{}}极限温差 $\Delta T$\\ ℃\end{tabular} \\ \hline
+    氧化铍(BeO) & 1.05                                                                  & 260                                                             & 7.2                                                                               & 2850                                                         & 0.3       & 385                                                  & 200                                                         & 45                                                          \\ %\hline
+    \bottomrule[1.5pt]
+    \end{tabular}%
+    }
+\end{table}
+
+此时窗片HFSS中馈入频点为中心频点1.3GHz，馈入的功率为1kW，接近于PIC求解器所求的窗片的功率容量上限。
 此时窗片中所传播的模式类似于矩形波导的\(TE_{01}\)模式，在实际的传输过程中，位于窗片中心处的电场场强更大，由于氧化铍带有介质损耗，此时窗片中心部分的损耗会更高，产热也会更强。故此时依然不使用ANSYS中自带的的均匀体密度热源或者均匀面密度热源，而使用类似于之前小节中的HFSS计算热源进而导入ANSYS中进行进一步热-力分析的方法。模块连接示意图与之前的图\ref{fig:ANSYSHFSS连接}一致，在此不再重复贴出。
 
 \subsection{L频段脊波导窗的温度分布}
