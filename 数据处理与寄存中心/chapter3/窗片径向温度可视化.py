@@ -17,16 +17,21 @@ legend_size = 18  # 图例的大小
 axis_size = 16  # 坐标轴刻度标签的大小
 plt.figure(figsize=(6, 5.5))  # 设置图片大小
 
-filepath = os.path.dirname(
-    os.path.abspath(__file__)
-)  # 获取当前py文件所在文件夹路径，字体已经安装好啦
-filename = "窗片径向温度分布.txt"
-filepath = os.path.join(filepath, filename)
+# 修改文件路径部分
+filepath = os.path.dirname(os.path.abspath(__file__))
 
-temp = np.loadtxt(filepath, skiprows=0, unpack=True)
-print(temp)
+# 读取两个温度文件
+filename_x = "温度随x的变化.txt"
+filename_y = "温度随y的变化.txt"
 
-plt.plot(temp[1], temp[2], color="red", linewidth=3)
+# 加载X方向数据
+temp_x = np.loadtxt(os.path.join(filepath, filename_x), skiprows=1, unpack=True)
+# 加载Y方向数据
+temp_y = np.loadtxt(os.path.join(filepath, filename_y), skiprows=1, unpack=True)
+
+# 修改绘图部分
+plt.plot(temp_x[1], temp_x[2], color="red", linewidth=3, label="X方向")
+plt.plot(temp_y[1], temp_y[2], color="blue", linewidth=3, linestyle="--", label="Y方向")
 
 # 设置坐标轴标签和标题
 plt.xlabel("距离中心/mm", fontsize=label_size)
@@ -44,6 +49,7 @@ plt.tick_params(axis="both", which="major", labelsize=axis_size)
 plt.tick_params(axis="both", which="minor")
 
 # 设置图例
+# 确保图例显示（如果之前没有这一行需要添加）
 plt.legend(frameon=False, fontsize=legend_size)
 
 # 获取当前轴，准备设置子刻度
@@ -51,7 +57,7 @@ ax = plt.gca()
 # 设置X轴次要刻度步长为1 GHz
 ax.xaxis.set_minor_locator(ticker.MultipleLocator(2.5 / 2))
 # 设置Y轴次要刻度步长为5 dB
-ax.yaxis.set_minor_locator(ticker.MultipleLocator(0.25 / 2))
+ax.yaxis.set_minor_locator(ticker.MultipleLocator(5 / 2))
 
 plt.grid(which="both", linestyle="--", linewidth=0.5)
 
