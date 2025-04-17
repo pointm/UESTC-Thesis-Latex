@@ -54,10 +54,10 @@ plt.legend(frameon=False, fontsize=legend_size)
 
 # 获取当前轴，准备设置子刻度
 ax = plt.gca()
-# 设置X轴次要刻度步长为1 GHz
+# 设置X轴次要刻度步长
 ax.xaxis.set_minor_locator(ticker.MultipleLocator(2.5 / 2))
-# 设置Y轴次要刻度步长为5 dB
-ax.yaxis.set_minor_locator(ticker.MultipleLocator(5 / 2))
+# 设置Y轴次要刻度步长
+ax.yaxis.set_minor_locator(ticker.MultipleLocator(2 / 2))
 
 plt.grid(which="both", linestyle="--", linewidth=0.5)
 
