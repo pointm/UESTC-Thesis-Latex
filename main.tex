@@ -1284,7 +1284,7 @@ ANSYS中可以直接查看到窗片的应力大小，为了方便分析窗片被
     \label{fig:L分割后的铜制外壳}
 \end{figure}
 
-此时针对BeO材料的特性主要参考为文献\cite{thumm_stateart_2020, slack_thermal_1971,kozlovskii_thermal_2014}中所记述的实验数据。综合上述论文中的实验数据，将BeO的关键参数设置如下密度\(\rho_{BeO} = 2850kg/m^3\)，热膨胀系数为\(\alpha = 7.2 \times 10^{-6} K^{-1}\)，杨氏模量为\(E_{BeO} = 385GPa\)，泊松比为\(\nu_{BeO} = 0.3\)，导热率为\(k_{BeO} = 260 W/(m \cdot K)\)，Beo的比热容为\(c_p=1.05J/(g \cdot K)\)。此时BeO的抗弯系数为$\sigma_f = 200MPa$，故此时根据公式\ref{eq:临界温差}可以计算其最大最小温度极限差值为45℃，如果窗片的温差超过45℃那么便有因为温差过大进而导致热应力过大，进而引起窗片碎裂的风险。经过上述分析得到的BeO材料的综合参数被记录于表格\ref{tab:BeOStateOfArt}中。
+此时针对BeO材料的特性主要参考为文献\cite{thumm_stateart_2020, slack_thermal_1971,kozlovskii_thermal_2014}中所记述的实验数据。综合上述论文中的实验数据，将BeO的关键参数设置如下密度\(\rho_{BeO} = 2850kg/m^3\)，热膨胀系数为\(\alpha = 7.2 \times 10^{-6} K^{-1}\)，杨氏模量为\(E_{BeO} = 345GPa\)，泊松比为\(\nu_{BeO} = 0.3\)，导热率为\(k_{BeO} = 260 W/(m \cdot K)\)，Beo的比热容为\(c_p=1.05J/(g \cdot K)\)。此时BeO的抗弯系数为$\sigma_f = 200MPa$，故此时根据公式\ref{eq:临界温差}可以计算其最大最小温度极限差值为45℃，如果窗片的温差超过45℃那么便有因为温差过大进而导致热应力过大，进而引起窗片碎裂的风险。经过上述分析得到的BeO材料的综合参数被记录于表格\ref{tab:BeOStateOfArt}中。
 \begin{table}[!htb]
     \caption{BeO材料属性}
     \label{tab:BeOStateOfArt}
@@ -1294,7 +1294,7 @@ ANSYS中可以直接查看到窗片的应力大小，为了方便分析窗片被
 
     % \hline
     材料       & \begin{tabular}[c]{@{}c@{}}比热容 $c_p$\\ $J / (g \cdot K)$\end{tabular} & \begin{tabular}[c]{@{}c@{}}导热率 k\\ $W/(m \cdot K)$\end{tabular} & \begin{tabular}[c]{@{}c@{}}热膨胀系数 $\alpha$\\ $\times 10 ^{-6} K^{-1}$\end{tabular} & \begin{tabular}[c]{@{}c@{}}密度 $\rho$\\ $kg/m^3$\end{tabular} & 泊松比 $\nu$ & \begin{tabular}[c]{@{}c@{}}杨氏模量 E\\ GPa\end{tabular} & \begin{tabular}[c]{@{}c@{}}抗弯系数 $\sigma$\\ MPa\end{tabular} & \begin{tabular}[c]{@{}c@{}}极限温差 $\Delta T$\\ ℃\end{tabular} \\ \hline
-    氧化铍(BeO) & 1.05                                                                  & 260                                                             & 7.2                                                                               & 2850                                                         & 0.3       & 385                                                  & 200                                                         & 45                                                          \\ %\hline
+    氧化铍(BeO) & 1.05                                                                  & 260                                                             & 7.2                                                                               & 2850                                                         & 0.3       & 345                                                  & 200                                                         & 45                                                          \\ %\hline
     \bottomrule[1.5pt]
     \end{tabular}%
     }
@@ -1410,15 +1410,15 @@ ANSYS中可以直接查看到窗片的应力大小，为了方便分析窗片被
 \subsection{L频段脊波导窗的热形变分布}
 此时导出窗片与整体的形变分布，可以得到如图\ref{fig:L频段窗与整体形变}所示的窗片与整体的形变云图。
 窗片整体的形变量分布如图\ref{fig:L频段窗与整体形变} (a)所示，此时窗片与波导整体的形变量最大为\(1 \times 10 ^{-4}mm\)，主要出现形变的部位为，在实际的焊接加工过程中要注意此处的加工，以防热形变导致焊接不稳固。
-根据图\ref{fig:L频段窗与整体形变} (b)中的数据，窗片的形变量最大为\(4 \times 10 ^{-4}mm\)。其主要出现形变的部位在窗片长轴的两侧，在实际加工以及之后的使用过程中也应该窗片长轴两端，以防窗片因为热形变而与外壳脱焊。结合之前的参数敏感度分析，此时窗片的形变量不应该对窗片的性能造成较大的影响。
+根据图\ref{fig:L频段窗与整体形变} (b)中的数据，窗片的形变量最大为\(6 \times 10 ^{-4}mm\)。其主要出现形变的部位在窗片长轴的两侧，在实际加工以及之后的使用过程中也应该注意窗片长轴两端，以防窗片因为热形变而与外壳脱焊。结合之前的参数敏感度分析，此时窗片的形变量不应该对窗片的性能造成较大的影响。
 综上所述，经过多物理场分析，此时窗片能够在1.3GHz频点处满足1kW功率的要求。
 \begin{figure}[!htb]
     \small
     \centering
     \begin{tabular}{@{\ }c@{\ }c}
-        \includegraphics[width=0.4\textwidth]{pic/chapter4/L频段整体形变.png} & 
+        \includegraphics[width=0.35\textwidth]{pic/chapter4/L频段整体形变.png} & 
         \hspace{5pt}
-        \includegraphics[width=0.4\textwidth]{pic/chapter4/L频段窗形变.png}     \\
+        \includegraphics[width=0.35\textwidth]{pic/chapter4/L频段窗形变.png}     \\
         \mbox{\small (a) L频段窗与波导形变}                                                                               & 
         \mbox{\small (b) L频段窗整体形变}                                                                                  \\
     \end{tabular}
@@ -1426,8 +1426,27 @@ ANSYS中可以直接查看到窗片的应力大小，为了方便分析窗片被
     \label{fig:L频段窗与整体形变}
 \end{figure}
 
+为了进一步的窗片的指导加工工作，有必要对窗片的热形变来源进行分析，此时将窗片置于圆柱坐标系中进行分析，窗片的形变方向可以被分为径向的形变、角向的形变和z轴的纵向形变。窗片的角向形变云图如图\ref{fig:L频段窗不同方向形变} (a)所示，此时窗片发生角向形变最大值为\(6 \times 10^{-5}\)mm，主要出现形变的部位为窗片长轴与侧面的交界处，并且偏向长轴两侧。窗片的纵向形变云图如图\ref{fig:L频段窗不同方向形变} (b)所示，此时窗片发生纵向形变最大值为\(4.98 \times 10^{-5}\)mm，主要出现形变的部位为窗片的正面边缘处。窗片的纵向形变云图如图\ref{fig:L频段窗不同方向形变} (c)所示，此时窗片发生径向形变最大值为\(6 \times 10^{-4}\)mm，主要出现形变的部位为窗片的正面长轴的边缘处，并且主要为铜壳向窗的挤压形变。
+
+根据上述的分析可以得出结论，此时窗片的主要形变来源为窗片的径向形变，窗片在实际应用过程中其两端的圆角矩形面更有可能与铜制外壳的焊接面发生由于挤压而产生的形变。但是这些形变都较为微小，在此功率下暂时无法对窗片的S参数产生非常明显的影响。
+\begin{figure}[!htbp]
+    \small
+    \centering
+    \begin{tabular}{@{\ }c@{\ }c}
+        \includegraphics[width=0.32\textwidth]{pic/chapter4/L角向形变.png} & 
+        \hspace{5pt}
+        \includegraphics[width=0.32\textwidth]{pic/chapter4/L纵向形变.png}     \\
+        \mbox{\small (a) 窗片角向形变}                                                                               & 
+        \mbox{\small (b) 窗片纵向形变}                                                                                  \\[6bp]
+        \multicolumn{2}{c}{\includegraphics[width=0.32\textwidth]{pic/chapter4/L径向形变.png}} \\  % 使用跨列居中
+        \multicolumn{2}{c}{\mbox{\small (c) 窗片径向形变}}
+    \end{tabular}
+    \caption{L频段窗不同方向形变云图}
+    \label{fig:L频段窗不同方向形变}
+\end{figure}
+
 \section{本章小结}
-本章主要进行了L频段(匹配频段为1.14-1.9GHz)的由BeO材料制成的脊波导窗设计。在实际的设计过程中将6-11GHz的窗的设计解决方案直接搬移到L频段时出现了一定的问题，此时窗的尺寸过大，可能导致此时窗的结构过于脆弱，于是将窗的整体结构进行了相应的调整并且进行了重新匹配。在此之后分别使用了最大场强法和二次电子倍增法对窗片的功率容量进行了计算，此时窗片的功率容量为84.6kW。使用了二次电子倍增法计算的功率容量为以30kV/cm为1.18kW。在此之后，针对L频段窗进行了多物理场分析。在馈入1kW的功率之后，窗片的最大温度为20.61℃，最小值为20.53℃，温差为0.08℃，此时温差小于之前所计算的温差极限值，此时窗片通过了温差检验。并且此时窗片的最大应力为3.76MPa，远小于BeO陶瓷的抗弯系数\(sigma_f\)=200MPa，故此时窗片不会因为热应力过大而碎裂。
+本章主要进行了L频段(匹配频段为1.14-1.9GHz)的由BeO材料制成的脊波导窗设计。在实际的设计过程中将6-11GHz的窗的设计解决方案直接搬移到L频段时出现了一定的问题，此时窗的尺寸过大，可能导致此时窗的结构过于脆弱，于是将窗的整体结构进行了相应的调整并且进行了重新匹配。在此之后分别使用了最大场强法和二次电子倍增法对窗片的功率容量进行了计算，此时窗片的功率容量为84.6kW。使用了二次电子倍增法计算的功率容量为以30kV/cm为1.18kW。在此之后，针对L频段窗进行了多物理场分析。在馈入1kW的功率之后，窗片的最大温度为20.61℃，最小值为20.53℃，温差为0.08℃，此时温差小于之前所计算的温差极限值，此时窗片通过了温差检验。并且此时窗片的最大应力为3.76MPa，远小于BeO陶瓷的抗弯系数\(\sigma_f\)=200MPa，故此时窗片不会因为热应力过大而碎裂。
 
 \chapter{窗片实际测试过程中的旋转误差分析}
 \section{引言}
