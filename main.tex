@@ -36,30 +36,27 @@
 % \signatureofdeclaration{signature.pdf} % 用于添加扫描版签字后的原创新声明（使用时取消注释本行，并注释掉上一行）
 % 中文摘要
 \begin{chineseabstract}
-    真空管在高频大功率微波系统中至关重要，它主要被用作于震荡器与放大器。在真空管的实际的应用过程中，为了实现内部真空环境与外界大气环境之间的隔离，需要对微波窗进行相应的设计。微波窗需要在指定频段和功率范围内完成良好的匹配，并且确保实际应用过程中的良好的气密性与稳定性。在实际的应用过程中，设计宽频带紧凑型的微波窗成为了一个重要的研究方向。本文主要设计了6-11GHz频段和L频段的宽频带脊波导窗。同时，进行了W频段微波窗的测试，还对其进行了相关的装配误差分析。本文主要内容如下：
+    真空管在高频大功率微波系统中作为振荡器与放大器至关重要，其微波窗需拥有宽频带匹配与高气密性的特点。本文围绕宽频带紧凑型微波窗设计，开展了 6-11GHz、L 频段脊波导窗仿真设计及 W 频段窗测试与误差分析，主要内容如下：
 
-    1. 仿真设计了6-11GHz的宽频带脊波导圆窗结构。为满足6-11GHz频段的高效微波传输需求，设计了一种宽频带脊波导圆窗结构。该微波窗采用双脊波导和圆柱形窗片设计，反射系数（\(S_{11}\)）在6-11GHz范围内小于-20dB。进一步的参数敏感性分析表明，过渡段厚度（\(t_{rh}\)）对性能影响显著，其最大容许偏差为0.47mm。通过最大场强法（击穿场强30kV/cm）和二次电子倍增法分别计算，功率容量分别为3.1kW和14.8kW，后者作为更可靠的参考值。
-    多物理场分析显示，在输入功率14.8kW、外壳采用空气强对流冷却条件下，窗片温差仅为2℃，远低于蓝宝石材料的安全温差极限值（117℃）。此外，热应力低于蓝宝石的抗弯强度，因此窗片不会因热应力而损坏。热变形量较小，结合敏感性分析可知，其对工作参数无显著影响。    
-    为便于加工测试，设计了窗片与标准波导WR112间的阶梯过渡段，并通过仿真验证其性能。结果表明，优化后的整体结构在6-11GHz内反射系数均低于-20dB，完全符合测试要求。
+    1. 采用双脊波导与圆柱形窗片结构，实现 6-11GHz 频段内反射系数（\(S_{11}\)）＜-20dB。参数分析表明过渡段厚度\(t_{rh}\)容许偏差 0.47mm，功率容量通过最大场强法（3.1kW）与二次电子倍增法（14.8kW）验证。多物理场分析显示，5kW 功率下窗片温差 11℃（＜126℃安全极限），热应力低于蓝宝石抗弯强度，热变形对性能无显著影响。优化后的阶梯过渡段与标准波导 WR112 匹配良好，全频段反射系数满足测试要求。
 
-    2. 仿真设计了L频段的宽频带脊波导窗。针对L频段应用需求，设计了一种宽频带脊波导窗。基于6-11GHz脊波导圆窗的设计经验，将窗片形状改进为圆角矩形柱状，其余结构仍采用双脊波导形式。通过最大场强法和二次电子倍增法计算，确定窗片功率容量分别为XXkW和84.6kW，后者为优选值；同时，二次电子倍增法（击穿场强30kV/cm）计算得到功率容量为1.18kW。
-    针对L频段窗开展多物理场分析，在1kW功率输入下，配合空气强对流冷却，窗片温差仅为0.08℃，远低于安全极限值，顺利通过温差检验。窗片最大应力为3.76MPa，远低于BeO陶瓷的抗弯强度，因此不会因热应力导致破裂。
+    2. 仿真设计了L频段的宽频带脊波导窗。针对L频段应用需求，设计了一种宽频带脊波导窗。基于6-11GHz脊波导圆窗的设计基础，将窗片形状改进为圆角矩形柱状，其余结构仍采用双脊波导形式。通过最大场强法和二次电子倍增法计算，确定窗片功率容量分别为85kW和1.18kW，后者为优选值。
+    针对L频段窗开展多物理场分析，在1kW功率输入下，配合空气强对流冷却，窗片温差仅为0.24℃，远低于安全极限值，顺利通过温差检验。窗片最大应力为3.76MPa，远低于BeO陶瓷的抗弯强度，因此不会因热应力导致破裂。
 
-    3. 对W频段的窗进行了测试与误差分析。为评估W频段窗的旋转误差影响，将反射系数最优时的窗片旋转角度设为0°，并定义窗片中心竖直线为x轴。使用高度规对窗片四周每隔45°选取的点进行测量，记录这些点相对于窗片圆心的z轴高度误差。基于上述数据，建立窗片旋转状态的数学模型。通过罗德里格斯公式计算窗片在指定旋转角度下的理论高度差，采用最小二乘法拟合实际旋转情况。拟合结果显示，旋转轴偏离窗片中心1.49mm，与x轴夹角为0.52rad，窗片旋转角度为0.0037rad，表明旋转误差极小。根据拟合结果建模发现，当窗片旋转至90°时，反射系数匹配效果最差，与实验趋势一致。研究表明，焊接加工中的旋转误差会显著影响窗片性能，这为未来工艺改进提供了重要指导。
+    3. 对W频段的窗进行了测试与误差分析。为评估W频段窗的旋转误差影响，将反射系数最优时的窗片旋转角度设为0°，并定义窗片中心竖直线为x轴。使用高度规对窗片四周每隔45°选取的点进行测量，记录这些点相对于窗片圆心的z轴高度误差。基于上述数据，建立窗片旋转状态的数学模型。计算窗片在指定旋转角度下的理论高度差，采用最小二乘法拟合实际旋转情况。拟合结果显示，旋转轴偏离窗片中心1.49mm，与x轴夹角为0.52rad，窗片旋转角度为0.0037rad，表明旋转误差极小。根据拟合结果建模发现，当窗片旋转至90°时，反射系数匹配效果最差，与实验趋势一致。研究表明，焊接加工中的旋转误差会显著影响窗片性能，这为未来工艺改进提供了重要指导。
 
     \chinesekeyword{L频段，微波窗，宽频带，脊波导，真空管} % 中文关键词
 \end{chineseabstract}
 % 英文摘要
 \begin{englishabstract}
-    Vacuum tubes play a critical role in high-frequency, high-power microwave systems, primarily functioning as oscillators and amplifiers. In practical applications of vacuum tubes, to achieve isolation between the internal vacuum environment and the external atmosphere, it is necessary to design corresponding microwave windows. These windows must ensure good matching within specified frequency bands and power ranges while maintaining excellent airtightness and stability during operation. An important research focus has been the design of broadband compact microwave windows. This thesis mainly designs broadband ridge waveguide windows for the 6-11GHz band and the L-band, conducts testing on W-band microwave windows, and performs related assembly error analysis.
+    Vacuum tubes are of critical importance in high-frequency and high-power microwave systems as oscillators and amplifiers. The microwave windows of vacuum tubes need to possess the characteristics of wide - band matching and high airtightness. This thesis focuses on the design of wide - band compact microwave windows and carries out the simulation design of ridge waveguide windows in the 6 - 11GHz and L frequency bands, as well as the testing and error analysis of W - band windows. The main contents are as follows:
 
-    1. Simulation Design of Broadband Circular Ridge Waveguide Window for 6-11GHz Band: A broadband circular ridge waveguide window structure was designed to meet the efficient microwave transmission needs of the 6-11GHz band. The window uses a dual-ridge waveguide and cylindrical window piece design, achieving an \(S_{11}\) less than -20dB across the 6-11GHz range. Further sensitivity analysis shows that the transition section thickness (\(t_{rh}\)) significantly impacts performance, with a maximum permissible deviation of 0.47mm. Power handling capacities were calculated using both the maximum electric field strength method (3.1kW at a breakdown field strength of 30kV/cm) and secondary electron multiplication (14.8kW), with the latter being considered more reliable. Multiphysics analysis indicates that under an input power of 14.8kW and strong air convection cooling, the temperature difference across the window is merely 2°C, far below the safety limit of sapphire material (117°C). Thermal stress is also lower than the flexural strength of sapphire, indicating no risk of damage due to thermal stress. Additionally, thermal deformation is minimal, suggesting negligible impact on operational parameters. For ease of processing and testing, a stepped transition segment between the window and standard WR112 waveguide was designed and verified through simulation, showing satisfactory reflection coefficients below -20dB across the 6-11GHz band.
+1. A structure with double - ridge waveguides and cylindrical window sheets is adopted, achieving a reflection coefficient (\(S_{11}\)) < - 20dB in the 6 - 11GHz frequency band. Parameter analysis shows that the allowable deviation of the transition section thickness \(t_{rh}\) is 0.47mm. The power capacity is verified by the maximum electric field strength method (3.1kW) and the secondary electron multiplication method (14.8kW). Multiphysics analysis indicates that under a power of 5kW and with air strong convection cooling for the casing, the temperature difference of the window sheet is only 11℃ (less than the safety limit of 126℃). The thermal stress is lower than the flexural strength of sapphire, and thermal deformation has no significant impact on performance. The optimized stepped transition section matches well with the standard waveguide WR112, and the reflection coefficient across the entire frequency band meets the testing requirements.
 
-    2. Simulation Design of Broadband Ridge Waveguide Window for the L-band: Based on the experience from designing the 6-11GHz window, a broadband ridge waveguide window tailored for the L-band was developed, featuring rounded rectangular columnar window pieces while retaining the dual-ridge waveguide design. Calculations using the maximum electric field strength method and secondary electron multiplication method determined power handling capacities of XXkW and 84.6kW respectively, with the latter being the preferred value; the secondary electron multiplication method also yielded a capacity of 1.18kW at 30kV/cm breakdown field strength. Multi-physics analysis for the L-band window, under 1kW input power and strong air convection cooling, showed a temperature difference of only 0.08°C, 
-    
-    well below safety limits, and passed thermal differential inspection. Maximum stress of 3.76MPa is far below the flexural strength of BeO ceramic, ensuring no risk of fracture due to thermal stress.
+2. A wide - band ridge waveguide window for the L frequency band is designed through simulation. Aiming at the application requirements of the L frequency band, a wide - band ridge waveguide window is designed. Based on the design of the 6 - 11GHz ridge waveguide circular window, the shape of the window sheet is improved to a rounded rectangular column, while the rest of the structure still adopts the double - ridge waveguide form. Through calculations by the maximum electric field strength method and the secondary electron multiplication method, the power capacities of the window sheet are determined to be 85kW and 1.18kW respectively, with the latter being the preferred value.
+For the L - band window, multiphysics analysis is carried out. Under an input power of 1kW and with air strong convection cooling, the temperature difference of the window sheet is only 0.24℃, far lower than the safety limit, and it successfully passes the temperature difference test. The maximum stress of the window sheet is 3.76MPa, far lower than the flexural strength of BeO ceramics, so it will not break due to thermal stress.
 
-    3. Testing and Error Analysis of W-band Windows: To assess the impact of rotational errors on W-band windows, the optimal rotation angle for the best reflection coefficient was set to 0°, defining the vertical line through the center as the x-axis. Using a height gauge, measurements were taken every 45° around the circumference of the window, recording z-axis height differences relative to the window's center. Mathematical modeling of the window's rotation state was established based on these data. Theoretical height differences at specific rotation angles were calculated using Rodrigues' formula, and actual rotations were fitted using the least squares method. Fitting results indicate a rotation axis offset by 1.49mm from the window's center, forming a 0.52rad angle with the x-axis, and a window rotation angle of 0.0037rad, suggesting minimal rotational error. Modeling based on fitting results found that when the window rotates to 90°, reflection coefficient matching deteriorates, consistent with experimental trends. This study highlights that rotational errors during welding and fabrication significantly affect window performance, providing crucial guidance for future process improvements.
+3. Testing and error analysis of the W - band window are conducted. To evaluate the influence of the rotation error of the W - band window, the rotation angle of the window sheet when the reflection coefficient is optimal is set as 0°, and the central vertical line of the window sheet is defined as the x - axis. A height gauge is used to measure points selected every 45° around the window sheet, and the z - axis height errors of these points relative to the center of the window sheet are recorded. Based on the above data, a mathematical model of the rotation state of the window sheet is established. The theoretical height differences of the window sheet at specified rotation angles are calculated, and the least - squares method is used to fit the actual rotation situation. The fitting results show that the rotation axis deviates from the center of the window sheet by 1.49mm, the angle with the x - axis is 0.52rad, and the rotation angle of the window sheet is 0.0037rad, indicating extremely small rotation errors. Modeling according to the fitting results reveals that when the window sheet is rotated to 90°, the matching effect of the reflection coefficient is the worst, which is consistent with the experimental trend. The research shows that the rotation error in welding processing will significantly affect the performance of the window sheet, providing important guidance for future process improvements.
 
 \englishkeyword{L-band, Microwave window, Broadband,Ridge waveguide, Vacuum tube} % 英文关键词
 \end{englishabstract}
@@ -693,7 +690,7 @@ $$
 \end{figure}
 
 完成最大场强所在位置的标定之后，可以开始对脊波导窗功率容量进行进一步的分析。此时使用第二章中的计算公式\ref{eq:击穿阈值估算}进行初步分析，因为CST使用的默认激励功率为有效值1W，此时相当于\(P_{1}=0.5W\)，根据仿真结果，此时\(E_1 = 17773V/m\)，使用空气的击穿场强\(3 \times 10^6V/m\)作为击穿最大电场场强值。综上所述，此时估算的最大功率容量为\(P_{max}=14.2kW\)。但是为了确保估算结果的准确性，本文采用了两种不同的仿真方式对估算结果的功率容量进行对照。
-\subsection{使用最大场强法计算脊波导窗的功率容量}
+\subsection{使用最大场强法计算脊波导窗的功率容量}\label{subsec:X最大场强功率容量}
 最大场强法主要是通过对端口的输入功率进行扫参，当仿真器件的最大场强到达击穿阈值时便判定为击穿。根据经验值，室温常压下的空气的击穿场强是30kV/cm。故在进行仿真的时候，如果瞬时电场的最大场强值达到30kV/cm的空气击穿场强时便被视为击穿。但是在实际的窗片加工的过程中，窗片的实际功率容量并不全与这个方法所计算出来的功率容量相一致，实际情况下由于环境的不同，空气的击穿场强也会随着产生变化。故此方法得到的功率容量的值仅供参考，在实际应用过程中需要针对最大场强法进行计算的功率容量进行修正。
 
 此时在低频点(6GHz) 处设定电场监视器，并且使用后处理模板提取电场监视器的电场场强的最大值作为跟根据仿真结果\ref{fig:输入窗最大场强结果}显示，在馈入端口的功率到达3.1kW的时候，窗片内的最大场强达到30kV/cm。故使用最大场强法进行分析时，窗片的功率容量应该在3.1kW。
@@ -704,7 +701,7 @@ $$
     \label{fig:输入窗最大场强结果}
 \end{figure}
 
-\subsection{使用二次电子倍增计算脊波导窗的功率容量}
+\subsection{使用二次电子倍增计算脊波导窗的功率容量}\label{subsec:X二次电子倍增功率容量}
 正如前面小节\ref{sec:电子倍增现象理论}中所说，电子倍增现象是影响真空器件在太空中的功率容量的重要原因。为了更加完全验证器件的功率容量，除了前面的最大场强分析法，有必要使用二次电子倍增理论对器件的功率容量进行进一步的分析。
 
 前面已经使用CST针对器件的S参数进行了仿真并且已经验明原先的器件的S参数符合设计要求，本次将使用CST中的SPARK3D模块进行先验仿真，并使用PIC模块对原先的器件进行基于二次电子倍增的详细功率容量仿真。
@@ -976,7 +973,35 @@ ANSYS中可以直接查看到窗片的应力大小，为了方便分析窗片被
     \caption{6-11GHz脊波导圆窗形变云图}
     \label{fig:X输入窗形变}
 \end{figure}
-        
+
+\subsection{14kW输入时的窗片损坏风险}
+为了分析使用二次电子发射时的最大功率容量时窗片的损坏风险，此时将窗片的输入功率从5kW增加到14kW。使用HFSS-ANSYS联合仿真得到窗片的应力结果如图\ref{fig:X14kW时候的应力云图}所示。
+
+此时窗片的应力分布和之前的5kW输入时的应力分布类似，但是绝对数值发生了变化。此时窗片正面应力的最大值为279.68MPa，已经可以与蓝宝石的抗弯强度\(\sigma_f = 320\)MPa相比，如果在焊接过程中引入一定的应力，窗片的内部应力极容易大于抗弯强度进而导致窗片的损毁。
+
+其次窗片的不同方向的应力所占比与原先的类似，但是此时z轴方向的挤压应力占主要比例。此时z轴方向的应力最大值为267.49MPa，出现在铜壳的圆角矩形过渡段的长边中点与窗片所接触处再稍微往上处。此时z轴纵向应力也极为接近蓝宝石的抗弯强度。这表示，此结构的圆形窗片在14kW的馈入功率中，可能会因为圆角矩形过渡段与窗片接触处的纵向的应力而导致损毁。
+
+这部分仿真也进一步说明了在实际窗片设计过程中，使用多物理场验证功率容量结果的必要性。
+如果直接使用前面小节\ref{subsec:X二次电子倍增功率容量}中的二次电子发射法或者小节\ref{subsec:X最大场强功率容量}的最大场强法作为实际窗片的功率容量。那么很容易导致窗片在实际的应用过程中因为应力过大而损坏。
+\begin{figure}[!htb]
+    \small
+    \centering
+    \begin{tabular}{@{\ }c@{\ }c}
+        \includegraphics[width=0.29\textwidth]{pic/chapter3/14k窗片正面应力分布.png} & 
+        \hspace{5pt}
+        \includegraphics[width=0.29\textwidth]{pic/chapter3/14kXx轴径向应力.png}     \\
+        \mbox{\small (a) 窗片正面应力分布}                                                                               & 
+        \mbox{\small (b) x轴径向应力}                                                           \\[6bp]
+        \includegraphics[width=0.29\textwidth]{pic/chapter3/14kXy角向应力.png} & 
+        \hspace{5pt}
+        \includegraphics[width=0.29\textwidth]{pic/chapter3/14kXz轴径向应力.png}     \\
+        \mbox{\small (a) y轴角向应力}                                                                               & 
+        \mbox{\small (b) z轴纵向应力}             
+    \end{tabular}
+    \caption{6-11GHz脊波导圆窗14kW时应力云图}
+    \label{fig:X14kW时候的应力云图}
+\end{figure}
+
 \section{脊波导窗模式变换结构设计}
 \subsection{模式变换结构类型选择}
 根据之前\ref{fig:6-11GHzDRW}的脊波导几何参数可以看出，此时的脊波导并非公用的标准脊波导，没有标准的同轴转脊波导的模式转换器。如果想要进行进一步的脊波导窗的测试，有必要设计脊波导转同轴的模式转换器。此时结合实际的测试情况，由于之前已经有标准矩形波导转同轴的模式转换器，并且在需要带宽内满足反射系数$S_{11}$<-25dB的反射系数要求。故设计脊波导到标准矩形波导的模式转换器。根据查表显示，标准矩形波导WR112的参数为28.499*12.624mm，本波导的截止频率为5.25GHz，低于所需要频段的最低频点。并且为了标准矩形波导到脊波导之间测试件的纵向长度足够短足够紧凑，本文选取的模式变换主要结构为阶梯过渡，而不是渐变过渡。
@@ -1052,7 +1077,12 @@ ANSYS中可以直接查看到窗片的应力大小，为了方便分析窗片被
 
 
 \section{本章小结}
-本小节首先针对需求设计了一款能够用于6-11GHz的脊波导圆窗，窗片材质选取为蓝宝石，设计完成后满足在频段6-11GHz内反射系数\(S_{11}\)<-20dB的需求。并且之后针对脊波导窗进行了关于参数敏感度相关的分析，分析结果表示，此时过渡段的厚度trh的影响较大，最大可扰动范围为0.47mm。在此之后，针对脊波导窗片的功率容量进行了相应的计算，在计算的途中，分别使用了最大场强法、基于二次电子倍增的分析方法。其中最大场强法分析时，如果此时击穿场强为30kV/cm，那么其功率容量为3.1kW；使用二次电子倍增法所计算的窗的功率容量为14.8kW。之后，本文对窗的多物理场方面进行了相应的分析，结果显示此时输入功率为14.8kW，窗片在外壳铜使用空气强对流降温的情况下，其温差为2℃，远小于窗片材料的温差极限值117℃。并且此时窗片的热应力小于蓝宝石材料的抗弯强度\(\sigma_f = 320\)MPa，其不会因为热应力而导致损毁。并且因为热导致的形变大小较小，结合参数的敏感度分析发现热形变不会导致窗片的工作参数产生较大的变化。之后为了方便窗片进行进一步的加工测试，设计了窗片与标准波导WR112之间的阶梯过渡段并进行了仿真。仿真结果显示整体结构在6-11GHz内反射系数低于-20dB，满足测试需求。
+本小节首先针对需求设计了一款能够用于6-11GHz的脊波导圆窗，窗片材质选取为蓝宝石，设计完成后满足在频段6-11GHz内反射系数\(S_{11}\)<-20dB的需求。并且之后针对脊波导窗进行了关于参数敏感度相关的分析，分析结果表示，此时过渡段的厚度trh的影响较大，最大可扰动范围为0.47mm。
+在此之后，针对脊波导窗片的功率容量进行了相应的计算，在计算的途中，分别使用了最大场强法、基于二次电子倍增的分析方法。其中最大场强法分析时，如果此时击穿场强为30kV/cm，那么其功率容量为3.1kW；使用二次电子倍增法所计算的窗的功率容量为14.8kW。
+之后，本文对窗的多物理场方面进行了相应的分析，此时窗片的输入功率为5kW，窗片在外壳铜使用空气强对流降温的情况下，其温差为11.37℃，远小于窗片材料的温差极限值126.76℃。
+并且此时窗片的热应力最大值为84.06MPa小于蓝宝石材料的抗弯强度\(\sigma_f = 320\)MPa，其不会因为热应力而导致损毁。分析不同方向的应力大小时发现，宝石窗的径向拉伸应力为35MPa，小于材料的拉伸极限300MPa。窗片的z轴纵向应力与y轴角向应力均低于材料的抗弯强度。故此时窗片也不会因为应力过大而损毁。
+并且因为热导致的形变大小较小，结合参数的敏感度分析发现热形变不会导致窗片的工作参数产生较大的变化。
+之后为了方便窗片进行进一步的加工测试，设计了窗片与标准波导WR112之间的阶梯过渡段并进行了仿真。仿真结果显示整体结构在6-11GHz内反射系数低于-20dB，满足测试需求。
 
 \chapter{L 波段宽频带脊波导窗的设计}
 \section{引言}
@@ -1447,7 +1477,13 @@ ANSYS中可以直接查看到窗片的应力大小，为了方便分析窗片被
 \end{figure}
 
 \section{本章小结}
-本章主要进行了L频段(匹配频段为1.14-1.9GHz)的由BeO材料制成的脊波导窗设计。在实际的设计过程中将6-11GHz的窗的设计解决方案直接搬移到L频段时出现了一定的问题，此时窗的尺寸过大，可能导致此时窗的结构过于脆弱，于是将窗的整体结构进行了相应的调整并且进行了重新匹配。在此之后分别使用了最大场强法和二次电子倍增法对窗片的功率容量进行了计算，此时窗片的功率容量为84.6kW。使用了二次电子倍增法计算的功率容量为以30kV/cm为1.18kW。在此之后，针对L频段窗进行了多物理场分析。在馈入1kW的功率之后，窗片的最大温度为20.61℃，最小值为20.53℃，温差为0.08℃，此时温差小于之前所计算的温差极限值，此时窗片通过了温差检验。并且此时窗片的最大应力为3.76MPa，远小于BeO陶瓷的抗弯系数\(\sigma_f\)=200MPa，故此时窗片不会因为热应力过大而碎裂。
+本章主要进行了L频段(匹配频段为1.14-1.9GHz)的由BeO材料制成的脊波导窗设计。
+在实际的设计过程中将6-11GHz的窗的设计解决方案直接搬移到L频段时出现了一定的问题，此时窗的尺寸过大，可能导致此时窗的结构过于脆弱，于是将窗的整体结构进行了相应的调整并且进行了重新匹配。
+在此之后分别使用了最大场强法和二次电子倍增法对窗片的功率容量进行了计算，此时窗片的功率容量为84.6kW。使用了二次电子倍增法计算的功率容量为以30kV/cm为1.18kW。
+在此之后，针对L频段窗进行了多物理场分析。经过分析，当馈入1kW的功率之后，散热之后的窗片的温差为0.24℃，此时温差小于之前所计算的温差极限值，此时窗片通过了温差检验。并且此时窗片的最大应力为6.25MPa，远小于BeO陶瓷的抗弯系数\(\sigma_f\)=200MPa，故此时窗片不会因为热应力过大而碎裂。
+之后针对窗片的拉伸应力进行了分析，此时窗片的拉伸应力大小为1.87MPa，小于BeO陶瓷的极限拉伸应力值，此时窗片无法因为拉伸应力而损毁。
+最后对窗片的形变与主要形变方向进行了分析。此时窗片的主要形变方向为径向的压缩形式的形变，最大值为\(6 \times 10^{-4}\)mm，此时主要形变的部位为窗片的长轴与铜制外壳的接触部分上。
+综合以上分析，此时窗片能够在1.3GHz频点处满足1kW功率的要求。
 
 \chapter{窗片实际测试过程中的旋转误差分析}
 \section{引言}
@@ -1706,9 +1742,12 @@ ANSYS中可以直接查看到窗片的应力大小，为了方便分析窗片被
 \section{全文总结}
 作为真空管内至关重要的组成部分，窗片对真空管的电磁传输特性、密封性及输出功率水平具有显著影响。因此，设计出具备宽频带特性、低反射率且结构既紧凑又方便加工的窗片显得尤为重要。本文主要对6-11GHz的脊波导圆窗，L频段的窗进行了仿真。并且测试了W频段的窗，顺便对其加工焊接过程中出现的旋转误差进行了分析。接下来，将对整篇文章的核心工作进行概述。
 
-1. 仿真设计了6-11GHz的蓝宝石脊波导圆窗。设计完成后满足在频段6-11GHz内反射系数\(S_{11}\)<-20dB的需求。并且之后针对脊波导窗进行了关于参数敏感度相关的分析，分析结果表示，此时过渡段的厚度trh的影响较大，最大可扰动范围为0.47mm。针对脊波导窗片的功率容量进行了相应的计算，其中使用最大场强法分析时，如果此时击穿场强为30kV/cm，那么脊波导窗片的功率容量为3.1kW ；使用二次电子倍增法所计算的窗的功率容量为14.8kW 。对窗的多物理场方面进行了相应的分析，结果显示此时输入功率为14.8kW，窗片在外壳铜使用空气强对流降温的情况下，其窗片极限温差为2℃，远小于窗片材料的温差极限值117℃。并且此时窗片的热应力小于蓝宝石材料的抗弯强度\(\sigma_f = 320\)MPa，其不会因为热应力而导致损毁。并且，由于热导致的形变较小，结合参数的敏感度分析发现，这种热形变不会引起窗片工作参数的显著变化。之后为了方便窗片进行进一步的加工测试，设计了窗片与标准波导WR112之间的阶梯过渡段并进行了仿真。仿真结果显示整体结构在6-11GHz内反射系数低于-20dB，满足测试需求。
+1. 仿真设计了6-11GHz的蓝宝石脊波导圆窗。设计完成后满足在频段6-11GHz内反射系数\(S_{11}\)<-20dB的需求。并且之后针对脊波导窗进行了关于参数敏感度相关的分析，分析结果表示，此时过渡段的厚度trh的影响较大，最大可扰动范围为0.47mm。
+针对脊波导窗片的功率容量进行了相应的计算，其中使用最大场强法分析时，如果此时击穿场强为30kV/cm，那么脊波导窗片的功率容量为3.1kW ；使用二次电子倍增法所计算的窗的功率容量为14.8kW 。对窗的多物理场方面进行了相应的分析，结果显示输入功率为5kW时，窗片在外壳铜使用空气强对流降温的情况下，其窗片极限温差为11.37℃，远小于窗片材料的温差极限值126℃。并且此时窗片的热应力小于蓝宝石材料的抗弯强度\(\sigma_f = 320\)MPa，其不会因为热应力而导致损毁。
+此时窗片在各个方向上的应力分量也进行了分析，结果显示此时窗片的应力分量均小于材料的屈服强度\(\sigma_y = 200\)MPa，径向拉伸应力叶晓雨蓝宝石的拉伸极限300MPa，窗片不会因为应力过大而碎裂。
+并且，由于热导致的形变较小，结合参数的敏感度分析发现，这种热形变不会引起窗片工作参数的显著变化。之后为了方便窗片进行进一步的加工测试，设计了窗片与标准波导WR112之间的阶梯过渡段并进行了仿真。仿真结果显示整体结构在6-11GHz内反射系数低于-20dB，满足测试需求。
 
-2. 进行了L频段(匹配频段为1.14-1.9GHz)的由BeO材料制成的脊波导窗设计。在实际设计过程中，直接将6-11GHz窗的设计方案应用于L频段时遇到了问题。窗的尺寸过大，可能导致结构过于脆弱。为此，调整了窗的形状，并进行了重新匹配。当击穿电场强度为30kV/cm时，使用最大场强法计算得到的窗片功率容量为84.6kW。采用二次电子倍增法计算时，窗片的功率容量为1.18kW。在此之后，针对L频段窗进行了多物理场分析。在馈入1kW的功率之后，窗片的最大温度为20.61℃，最小值为20.53℃，温差为0.08℃，此时温差小于之前所计算的温差极限值，此时窗片通过了温差检验。并且此时窗片的最大应力为3.76MPa，远小于BeO陶瓷的抗弯系数\(sigma_f\)=200MPa，故此时窗片不会因为热应力过大而碎裂。
+2. 进行了L频段(匹配频段为1.14-1.9GHz)的由BeO材料制成的脊波导窗设计。在实际设计过程中，直接将6-11GHz窗的设计方案应用于L频段时遇到了问题。窗的尺寸过大，可能导致结构过于脆弱。为此，调整了窗的形状，并进行了重新匹配。当击穿电场强度为30kV/cm时，使用最大场强法计算得到的窗片功率容量为84.6kW。采用二次电子倍增法计算时，窗片的功率容量为1.18kW。在此之后，针对L频段窗进行了多物理场分析。在馈入1kW的功率之后，窗片的最大温度为20.75℃，最小值为20.51℃，温差为0.24℃，此时温差小于之前所计算的温差极限值，此时窗片通过了温差检验。并且此时窗片的最大应力为6.25MPa，远小于BeO陶瓷的抗弯系数\(\sigma_f\)=200MPa，并且此时窗片的拉伸应力的最大值为1.87MPa，远小于材料的拉伸极限。综上所述，窗片工作于1kW时，不会因为热应力过大而碎裂。
 
 3. 分析了W频段95GHz窗测试过程中，实际测试结果与预期仿真结果之间产生偏差的原因。研究使用了6-11GHz脊波导窗的旋转误差仿真结果来阐释窗片旋转误差对脊波导窗工作特性的严重影响作为引入。当波导原本传播的是线极化模式时，如果窗片整体绕z轴旋转，这一旋转会给工作特性带来额外的变化。其次在实际的测量过程中，发现此时的W频段窗片会因为整体绕着电磁波传播的方向(文中称之为z轴方向)旋转进而对窗片的反射系数\(S_{11}\)产生影响。在此之后，以测量反射系数最佳的窗片旋转角度设置为0°，并且此时窗片竖直的过圆心的连线定义为x轴。然后，使用高度规测量圆形窗片四周的装配高度误差。接着，利用这些高度差对窗片的旋转情况进行建模。通过罗德里格斯公式计算窗片在指定旋转后的高度差。最后，采用最小二乘法拟合窗片的旋转情况。此时拟合的结果显示旋转轴距离窗片中心1.49 mm ，与x轴之间的夹角为0.52 rad ，窗片的旋转角度为0.0037 rad 。然后根据拟合得到数据对窗片的实际情况进行了建模，此时建模得到的结果显示，在窗片旋转角度达到90°的时候，窗片的反射系数匹配情况达到最差，与测试的趋势相符。本次测量最后说明，窗片在焊接加工时，其旋转误差会对窗片的工作特性产生严重影响。这一发现为后续的加工焊接提供了一定的警示作用。
 
