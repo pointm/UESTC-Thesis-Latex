@@ -9,19 +9,19 @@ script_dir = os.path.dirname(os.path.abspath(__file__))
 
 # 重构后的文件数据结构 (章节路径, 文件名)
 # files = [
-#     ("chapter3", "X6GHZ-12.5kW.txt"),
-#     ("chapter3", "X6GHZ-14.4kW.txt"),
-#     ("chapter3", "X6GHZ-14.9kW.txt"),
-#     ("chapter3", "X6GHZ-14.8kW.txt"),
-#     ("chapter3", "X6GHZ-15.3kW-kick.txt"),
+#     (r"chapter3/二次电子数目", "X6GHZ-12.5kW.txt"),
+#     (r"chapter3/二次电子数目", "X6GHZ-14.4kW.txt"),
+#     (r"chapter3/二次电子数目", "X6GHZ-14.9kW.txt"),
+#     (r"chapter3/二次电子数目", "X6GHZ-14.8kW.txt"),
+#     (r"chapter3/二次电子数目", "X6GHZ-15.3kW-kick.txt"),
 # ]
 # y_max = 2e4  # 设置y轴显示的最大值，根据需求调整
 
 files = [
-    ("chapter4", "L-1.15kW-BACK.txt"),
-    ("chapter4", "L-1.175kW-BACK.txt"),
-    ("chapter4", "L-1.2kW-KICK.txt"),
-    ("chapter4", "L-1.25kW-KICK.txt"),
+    (r"chapter4/二次电子数目", "L-1.15kW-BACK.txt"),
+    (r"chapter4/二次电子数目", "L-1.175kW-BACK.txt"),
+    (r"chapter4/二次电子数目", "L-1.2kW-KICK.txt"),
+    (r"chapter4/二次电子数目", "L-1.25kW-KICK.txt"),
 ]
 # 新增y轴控制参数
 y_max = 6e4  # 设置y轴显示的最大值，根据需求调整
