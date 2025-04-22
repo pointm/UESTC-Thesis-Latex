@@ -18,45 +18,50 @@ legend_size = 18  # 图例的大小
 axis_size = 16  # 坐标轴刻度标签的大小
 # 预设配置字典（修改部分）
 configs = {
-    "window": {
+    "xwindow": {
         "chaptername": "chapter3",
         "s2p_file": "6-11GHz窗S曲线.s2p",
         "denserperiod": "6-11ghz",
         "x_minor_step": 1e9,
         "y_minor_step": 5,
-        "figsize": (6, 5.5),  # 新增图形尺寸配置
+        "figsize": (6, 5.5),
     },
-    "waveguide": {
+    "Xwaveguide": {
         "chaptername": "chapter3",
         "s2p_file": "X波段脊波导验证.s2p",
-        "denserperiod": "8-12ghz",
+        "denserperiod": "6-11ghz",
         "x_minor_step": 0.5e9,
         "y_minor_step": 10,
-        "figsize": (6, 5.5),  # 示例尺寸配置
+        "figsize": (6, 5.5),
+    },
+    "Xwindowshelled": {
+        "chaptername": "chapter3",
+        "s2p_file": "X加上铜壳后的S曲线.s2p",
+        "denserperiod": "6-11ghz",
+        "x_minor_step": 0.5e9,
+        "y_minor_step": 5,
+        "figsize": (6, 5.5),
     },
 }
 
 # 通过修改这里切换配置 ↓
-config_selector = "waveguide"  # 可选 'window' 或 'waveguide'
+config_selector = "Xwindowshelled"  # 可选 'window' 或 'waveguide'
 selected_config = configs[config_selector]
 
 # 加载TOUCHSTONE数据（修改部分）
-xbandwindow = rf.Network(
+sparadata = rf.Network(
     os.path.join(
         script_dir, selected_config["chaptername"], selected_config["s2p_file"]
     )
 )
 
-# filedir = r"chapter3/X频段脊波导S参数/X波段脊波导验证.s2p"
-# xbandwindow = rf.Network(os.path.join(script_dir, filedir))
-
-denserperiod = "6-11ghz"  # 加粗的频域范围
+denserperiod = selected_config["denserperiod"]  # 加粗的频域范围
 
 # 绘制 S11 参数
-xbandwindow.s11.plot_s_db(label=r"$\mathrm{S_{11}}$", lw=2)
+sparadata.s11.plot_s_db(label=r"$\mathrm{S_{11}}$", lw=2)
 
-xbandwindow.s21.plot_s_db(label=r"$\mathrm{S_{21}}$", lw=2)
-xbandwindow.s11[denserperiod].plot_s_db(
+sparadata.s21.plot_s_db(label=r"$\mathrm{S_{21}}$", lw=2)
+sparadata.s11[denserperiod].plot_s_db(
     lw=3, label="目标频段反射", color="red"
 )  # 标出感兴趣的频段，表粗的线的宽度为3
 
