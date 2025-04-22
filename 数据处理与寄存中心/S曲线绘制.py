@@ -16,11 +16,36 @@ plt.rcParams["mathtext.fontset"] = "stix"  # 设置数学公式字体为stix
 label_size = 18  # xy轴标签的大小
 legend_size = 18  # 图例的大小
 axis_size = 16  # 坐标轴刻度标签的大小
-plt.figure(figsize=(6, 5.5))  # 设置图片大小
+# 预设配置字典（修改部分）
+configs = {
+    "window": {
+        "chaptername": "chapter3",
+        "s2p_file": "6-11GHz窗S曲线.s2p",
+        "denserperiod": "6-11ghz",
+        "x_minor_step": 1e9,
+        "y_minor_step": 5,
+        "figsize": (6, 5.5),  # 新增图形尺寸配置
+    },
+    "waveguide": {
+        "chaptername": "chapter3",
+        "s2p_file": "X波段脊波导验证.s2p",
+        "denserperiod": "8-12ghz",
+        "x_minor_step": 0.5e9,
+        "y_minor_step": 10,
+        "figsize": (6, 5.5),  # 示例尺寸配置
+    },
+}
 
-# 加载TOUCHSTONE数据
-chaptername = "chapter3"
-xbandwindow = rf.Network(os.path.join(script_dir, chaptername, "6-11GHz窗S曲线.s2p"))
+# 通过修改这里切换配置 ↓
+config_selector = "waveguide"  # 可选 'window' 或 'waveguide'
+selected_config = configs[config_selector]
+
+# 加载TOUCHSTONE数据（修改部分）
+xbandwindow = rf.Network(
+    os.path.join(
+        script_dir, selected_config["chaptername"], selected_config["s2p_file"]
+    )
+)
 
 # filedir = r"chapter3/X频段脊波导S参数/X波段脊波导验证.s2p"
 # xbandwindow = rf.Network(os.path.join(script_dir, filedir))
@@ -56,10 +81,9 @@ plt.legend(frameon=False, fontsize=legend_size)
 
 # 获取当前轴，准备设置子刻度
 ax = plt.gca()
-# 设置X轴次要刻度步长为1 GHz
-ax.xaxis.set_minor_locator(ticker.MultipleLocator(1e9))
-# 设置Y轴次要刻度步长为5 dB
-ax.yaxis.set_minor_locator(ticker.MultipleLocator(10 / 2))
+# 设置X/Y轴次要刻度（修改部分）
+ax.xaxis.set_minor_locator(ticker.MultipleLocator(selected_config["x_minor_step"]))
+ax.yaxis.set_minor_locator(ticker.MultipleLocator(selected_config["y_minor_step"]))
 
 plt.grid(which="both", linestyle="--", linewidth=0.5)
 # 显示图表
