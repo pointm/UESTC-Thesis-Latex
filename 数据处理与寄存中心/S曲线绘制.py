@@ -13,16 +13,16 @@ plt.rcParams["font.family"] = (
 )
 plt.rcParams["mathtext.fontset"] = "stix"  # 设置数学公式字体为stix
 # 设置字体的大小，
-label_size = 18  # xy轴标签的大小
-legend_size = 18  # 图例的大小
-axis_size = 16  # 坐标轴刻度标签的大小
+label_size = 20  # xy轴标签的大小
+legend_size = 20  # 图例的大小
+axis_size = 18  # 坐标轴刻度标签的大小
 # 预设配置字典（修改部分）
 configs = {
     "xwindow": {
         "chaptername": "chapter3",
         "s2p_file": "6-11GHz窗S曲线.s2p",
         "denserperiod": "6-11ghz",
-        "x_minor_step": 1e9,
+        "x_minor_step": 0.5e9,
         "y_minor_step": 5,
         "figsize": (6, 5.5),
     },
@@ -42,10 +42,18 @@ configs = {
         "y_minor_step": 5,
         "figsize": (6, 5.5),
     },
+    "Lwaveguide": {
+        "chaptername": "chapter4",
+        "s2p_file": "L波段脊波导.s2p",
+        "denserperiod": "1.13-1.4ghz",
+        "x_minor_step": 0.1e9,
+        "y_minor_step": 10,
+        "figsize": (6, 5.5),
+    },
 }
 
 # 通过修改这里切换配置 ↓
-config_selector = "Xwindowshelled"  # 可选 'window' 或 'waveguide'
+config_selector = "Xwaveguide"  # 可选 'window' 或 'waveguide'
 selected_config = configs[config_selector]
 
 # 加载TOUCHSTONE数据（修改部分）
@@ -92,4 +100,5 @@ ax.yaxis.set_minor_locator(ticker.MultipleLocator(selected_config["y_minor_step"
 
 plt.grid(which="both", linestyle="--", linewidth=0.5)
 # 显示图表
+plt.tight_layout()
 plt.show()
