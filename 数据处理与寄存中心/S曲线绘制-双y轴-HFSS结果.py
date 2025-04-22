@@ -2,11 +2,13 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import matplotlib.ticker as ticker
 import os
+import numpy as np
+from matplotlib import transforms
 
 script_dir = os.path.dirname(os.path.abspath(__file__))
 # 读取CSV文件
-filename = "S Parameter Plot 1.csv"
-df = pd.read_csv(os.path.join(script_dir, filename))
+filedir = r"chapter2/盒型窗验证S曲线/S Parameter Plot 1.csv"
+datafile = pd.read_csv(os.path.join(script_dir, filedir))
 
 
 # 图片预处理部分
@@ -26,8 +28,8 @@ fig, axis_y1 = plt.subplots(figsize=(6.4, 5.5))
 
 # 绘制S21曲线（左轴）
 axis_y1.plot(
-    df["Freq [GHz]"],
-    df["dB(S(2,1)) []"],
+    datafile["Freq [GHz]"],
+    datafile["dB(S(2,1)) []"],
     "b-",  # 移除了冗余的color参数
     label=r"$\mathrm{S_{21}}$",  # 添加r前缀处理转义字符
     lw=2,
@@ -51,8 +53,8 @@ axis_y1.tick_params(axis="x", labelsize=axis_size)  # 新增X轴刻度字体设�
 # 创建次Y轴绘制S11曲线
 axis_y2 = axis_y1.twinx()
 axis_y2.plot(
-    df["Freq [GHz]"],
-    df["dB(S(1,1)) []"],
+    datafile["Freq [GHz]"],
+    datafile["dB(S(1,1)) []"],
     "r--",  # 移除了冗余的color参数
     label=r"$\mathrm{S_{11}}$",  # 添加r前缀处理转义字符
     lw=2,
@@ -69,7 +71,7 @@ axis_y2.tick_params(
     labelsize=axis_size,  # 新增：设置右轴刻度标签大小
 )
 
-# 设置图例（修改此处）
+# 设置图例
 lines = axis_y1.get_lines() + axis_y2.get_lines()  # 合并两个轴的图例
 labels = [line.get_label() for line in lines]
 plt.legend(
@@ -82,6 +84,6 @@ plt.legend(
 )  # 保持与之前相同的位置
 
 
-# 调整布局并保存
-plt.tight_layout()  # 修正拼写错误（原代码中为 tight_layout）
+plt.tight_layout()
+
 plt.show()
