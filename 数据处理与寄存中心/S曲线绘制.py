@@ -13,7 +13,7 @@ plt.rcParams["font.family"] = (
 )
 plt.rcParams["mathtext.fontset"] = "stix"  # 设置数学公式字体为stix
 # 设置字体的大小，
-label_size = 16  # xy轴标签的大小
+label_size = 18  # xy轴标签的大小
 legend_size = 18  # 图例的大小
 axis_size = 16  # 坐标轴刻度标签的大小
 plt.figure(figsize=(6, 5.5))  # 设置图片大小
@@ -21,6 +21,10 @@ plt.figure(figsize=(6, 5.5))  # 设置图片大小
 # 加载TOUCHSTONE数据
 chaptername = "chapter3"
 xbandwindow = rf.Network(os.path.join(script_dir, chaptername, "6-11GHz窗S曲线.s2p"))
+
+# filedir = r"chapter3/X频段脊波导S参数/X波段脊波导验证.s2p"
+# xbandwindow = rf.Network(os.path.join(script_dir, filedir))
+
 denserperiod = "6-11ghz"  # 加粗的频域范围
 
 # 绘制 S11 参数
@@ -55,7 +59,7 @@ ax = plt.gca()
 # 设置X轴次要刻度步长为1 GHz
 ax.xaxis.set_minor_locator(ticker.MultipleLocator(1e9))
 # 设置Y轴次要刻度步长为5 dB
-ax.yaxis.set_minor_locator(ticker.MultipleLocator(5))
+ax.yaxis.set_minor_locator(ticker.MultipleLocator(10 / 2))
 
 plt.grid(which="both", linestyle="--", linewidth=0.5)
 # 显示图表

@@ -2,9 +2,17 @@ import math
 import numpy as np
 import matplotlib.pyplot as plt
 
-# 新增中文字体配置 ================
-plt.rcParams["font.sans-serif"] = ["SimHei"]  # Windows系统字体
-plt.rcParams["axes.unicode_minus"] = False  # 解决负号显示问题
+# 图片预处理部分
+plt.style.use("fast")  # 调用配色方案
+# 设置字体的最优方案，中文为宋体，英文为Times New Roman
+plt.rcParams["font.family"] = (
+    "Times New Roman, SimSun"  # 设置字体族，中文为SimSun，英文为Times New Roman
+)
+plt.rcParams["mathtext.fontset"] = "stix"  # 设置数学公式字体为stix
+# 设置字体的大小，
+label_size = 16  # xy轴标签的大小
+legend_size = 18  # 图例的大小
+axis_size = 16  # 坐标轴刻度标签的大小
 # ================================
 
 # 参数定义 (单位转换: 1e-3 转换为米)
@@ -161,7 +169,7 @@ plt.rcParams.update(
 )
 
 # 图表初始化
-fig = plt.figure(figsize=(10, 6))
+fig = plt.figure(figsize=(7.5, 6.5))
 ax = fig.add_subplot(111)
 
 # 绘制主曲线
