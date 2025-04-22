@@ -14,7 +14,7 @@ plt.rcParams["font.family"] = (
 plt.rcParams["mathtext.fontset"] = "stix"  # 设置数学公式字体为stix
 # 设置字体的大小，
 label_size = 20  # xy轴标签的大小
-legend_size = 20  # 图例的大小
+legend_size = 15  # 图例的大小
 axis_size = 18  # 坐标轴刻度标签的大小
 # 预设配置字典（修改部分）
 configs = {
@@ -50,10 +50,34 @@ configs = {
         "y_minor_step": 10,
         "figsize": (6, 5.5),
     },
+    "Lwindoworiginal": {
+        "chaptername": "chapter4",
+        "s2p_file": "L频段圆窗.s2p",
+        "denserperiod": "1.13-1.4ghz",
+        "x_minor_step": 0.1e9,
+        "y_minor_step": 25 / 2,
+        "figsize": (6, 5.5),
+    },
+    "Lwindow": {
+        "chaptername": "chapter4",
+        "s2p_file": "L波段窗圆角矩形窗.s2p",
+        "denserperiod": "1.13-1.4ghz",
+        "x_minor_step": 0.1e9,
+        "y_minor_step": 20 / 4,
+        "figsize": (6, 5.5),
+    },
+    "Lwindowwithshell": {
+        "chaptername": "chapter4",
+        "s2p_file": "L频段窗加上铜制外壳.s2p",
+        "denserperiod": "1.13-1.4ghz",
+        "x_minor_step": 0.1e9,
+        "y_minor_step": 20 / 4,
+        "figsize": (6, 5.5),
+    },
 }
 
 # 通过修改这里切换配置 ↓
-config_selector = "Xwaveguide"  # 可选 'window' 或 'waveguide'
+config_selector = "Lwindowwithshell"
 selected_config = configs[config_selector]
 
 # 加载TOUCHSTONE数据（修改部分）
