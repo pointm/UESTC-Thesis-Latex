@@ -7,7 +7,8 @@ from matplotlib import transforms
 
 script_dir = os.path.dirname(os.path.abspath(__file__))
 # 读取CSV文件
-filedir = r"chapter2/盒型窗验证S曲线/S Parameter Plot 1.csv"
+# filedir = r"chapter2/盒型窗验证S曲线/S Parameter Plot 1.csv"
+filedir = r"chapter3/加上铜制外壳后的S参数.csv"
 datafile = pd.read_csv(os.path.join(script_dir, filedir))
 
 
@@ -74,15 +75,22 @@ axis_y2.tick_params(
 # 设置图例
 lines = axis_y1.get_lines() + axis_y2.get_lines()  # 合并两个轴的图例
 labels = [line.get_label() for line in lines]
+# plt.legend(
+#     lines,
+#     labels,
+#     frameon=False,
+#     fontsize=legend_size,
+#     # loc="upper right",
+#     bbox_to_anchor=(0.4, 0.9),
+# )  # 保持与之前相同的位置
 plt.legend(
     lines,
     labels,
     frameon=False,
     fontsize=legend_size,
     # loc="upper right",
-    bbox_to_anchor=(0.4, 0.9),
+    bbox_to_anchor=(0.3, 0.4),
 )  # 保持与之前相同的位置
-
 
 plt.tight_layout()
 
