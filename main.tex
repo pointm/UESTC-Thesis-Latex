@@ -1402,7 +1402,7 @@ ANSYS中可以直接查看到窗片的应力大小，为了方便分析窗片被
     \label{fig:L频段Spark3D功率容量仿真结果}
 \end{figure}
 
-为了研究二次电子倍增的主要发生位置，需要考察电子的初始分布与击穿时的分布。电子的初始分布位置如图\ref{fig:L频段Spark3D电子的击穿位置} (a)所示，击穿时的电子分布如图\ref{fig:L频段Spark3D电子的击穿位置} (b)所示，图中电子颜色越接近于红色代表着此时电子的能量越高。综合两个图来看，可以看到此时二次电子倍增主要发生在脊波导的脊处，其次是圆角矩形过渡波导与脊波导的交界处。
+为了研究二次电子倍增的主要发生位置，需要考察电子的初始分布与击穿时的分布。电子的初始分布位置如图\ref{fig:L频段Spark3D电子的击穿位置} (a)所示，发生二次电子倍增现象时的电子分布如图\ref{fig:L频段Spark3D电子的击穿位置} (b)所示，图中电子颜色越接近于红色代表着此时电子的能量越高。综合两个图来看，可以看到此时二次电子倍增主要发生在脊波导的脊处，其次是圆角矩形过渡波导与脊波导的交界处。
 \begin{figure}[!htb]
     \small
     \centering
@@ -1420,23 +1420,57 @@ ANSYS中可以直接查看到窗片的应力大小，为了方便分析窗片被
 \subsubsection{使用CST中的PIC模块进行功率容量的仿真}
 有了之前的Spark3D所展示的基于电子倍增效应计算的功率容量的仿真结果，此时可以进行CST中使用PIC求解器进行关于电子倍增效应。
 
-首先根据之前的仿真结果，应该将初始电子填充在窗片的脊波导的脊与脊波导和窗片之间的过渡段之中，具体的填充区域示意图如图\ref{fig:L波段CST电子填充方法} (a)所示。为了保证求解的真实可靠性，综合前面的分析，本次每个区域中填充电子的密度不低于$10^9 m^{-3}$，并且电子的初始能量分布采用麦克斯韦分布。
-
+首先根据之前的仿真结果，应该将初始电子填充在窗片的脊波导的脊与脊波导和窗片之间的过渡段之中，具体的填充区域示意图如图\ref{fig:L波段CST电子填充方法} (a)所示，填充初始电子的具体分布如图\ref{fig:L波段CST电子填充方法} (b)所示。为了保证求解的真实可靠性，综合前面的分析，本次每个区域中填充电子的密度不低于$10^9 m^{-3}$，并且电子的初始能量分布采用麦克斯韦分布。
 \begin{figure}[!htb]
     \small
     \centering
     \begin{tabular}{@{\ }c@{\ }c}
-        \includegraphics[width=0.32\textwidth]{pic/chapter4/L波段CST电子填充方法.png} & 
+        \includegraphics[width=0.3\textwidth]{pic/chapter4/L波段CST电子填充方法.png} & 
         \hspace{5pt}
-        \includegraphics[width=0.32\textwidth]{pic/chapter4/LSP3D平面上的电场.png}     \\
-        \mbox{\small (a) 所选取的平面}                                                                               & 
-        \mbox{\small (b) }                                                                                  \\
+        \includegraphics[width=0.3\textwidth]{pic/chapter4/LSP3D电子初始分布侧视图.png}     \\
+        \mbox{\small (a) 初始电子填充示意图}                                                                               & 
+        \mbox{\small (b) 初始电子分布}                                                                                  \\
     \end{tabular}
     \caption{L波段CST中PIC的初始电子填充区域}
     \label{fig:L波段CST电子填充方法}
 \end{figure}
 
-在完成了PIC求解器中的电子填充之后，此时便可以设置激励信号进行仿真。由于期间比较容易在低频点击穿，故此时设置的连续波的频率为1.14GHz。并且在进行一些初步仿真之后发现初始电子的消失时间大概为150ns，为了确保查看电子数目随着时间的变化的趋势足够充分，故总仿真时长不应低于初始电子消失时间的两倍，本次仿真的总时长被设定为320ns。经过不同功率1.14GHz连续波的激励之后，查看器件中电子数目随着时间的变化趋势如图\ref{fig:L波段PIC基于二次电子仿真计算功率容量结果}所示。综上上述分析，此时的器件的功率容量大致上为1175W。
+在完成了PIC求解器中的电子填充之后，此时便可以设置激励信号进行仿真。由于期间比较容易在低频点击穿，故此时设置的连续波的频率为1.14GHz。并且在进行一些初步仿真之后发现初始电子的消失时间大概为150ns，为了确保查看电子数目随着时间的变化的趋势足够充分，故总仿真时长不应低于初始电子消失时间的两倍，本次仿真的总时长被设定为320ns。
+
+输入不同功率连续波时的电子数目随时间的变化也是不同的，具体可以使用发生二次电子倍增现象和未发生二次电子倍增现象进行分类。在通入连续波激励信号后，初始电子随时间的演变如图\ref{fig:L未发生二次电子倍增} 所示，时间上的演变顺序从左到右。从图\ref{fig:L未发生二次电子倍增} (a)所示的初始电子填充到(b)和(c)的电子数目逐渐减少，表明此时微波窗无法因为二次电子倍增而损毁。
+\begin{figure}[!htb]
+    \small
+    \centering
+    \begin{tabular}{@{\ }c@{\ }c@{\ }c}
+        \includegraphics[width=0.2\textwidth]{pic/chapter4/L电子初始分布顶视图.png} & 
+        \hspace{5pt}
+        \includegraphics[width=0.2\textwidth]{pic/chapter4/L电子分布-消逝-顶视图.png}&
+        \hspace{5pt}
+        \includegraphics[width=0.2\textwidth]{pic/chapter4/L电子分布-完全消亡-顶视图.png}      \\
+        \mbox{\small (a) 窗片中的初始电子}                                                                               & 
+        \mbox{\small (b) 电子减少} & 
+        \mbox{\small (c) 电子消失(即未发生击穿)}                                                                                  \\
+    \end{tabular}
+    \caption{脊波导窗未因二次电子倍增损毁}
+    \label{fig:L未发生二次电子倍增}
+\end{figure}
+
+此时使用更大功率的连续波进行激励的话，窗片便有可能损毁，发生二次电子倍增现象如图\ref{fig:L发生二次电子倍增}所示。在进行连续波激励之后，此时电子的分布演变为从\ref{fig:L发生二次电子倍增} (a)到(b)。此时窗片的二次倍增电子主要出现于脊波导的脊处，与原先使用Spark3D进行的仿真的结论相一致。
+\begin{figure}[!htb]
+    \small
+    \centering
+    \begin{tabular}{@{\ }c@{\ }c}
+        \includegraphics[width=0.22\textwidth]{pic/chapter4/L电子初始分布顶视图.png} & 
+        \hspace{5pt}
+        \includegraphics[width=0.22\textwidth]{pic/chapter4/L电子分布-二次电子倍增-顶视图.png}     \\
+        \mbox{\small (a) 初始电子分布}                                                                               & 
+        \mbox{\small (b) 二次电子倍增后的分部}                                                                                  \\
+    \end{tabular}
+    \caption{L频段窗片发生二次电子倍增现象}
+    \label{fig:L发生二次电子倍增}
+\end{figure}
+
+经过不同功率1.14GHz连续波的激励之后，查看器件中电子数目随着时间的变化趋势如图\ref{fig:L波段PIC基于二次电子仿真计算功率容量结果}所示。综上上述分析，此时的器件的功率容量大致为1175W。
 \begin{figure}[!htb]
     \centering
     \includegraphics[width=0.5\linewidth]{pic/chapter4/particle_time_chapter4.pdf}
@@ -1444,6 +1478,19 @@ ANSYS中可以直接查看到窗片的应力大小，为了方便分析窗片被
     \label{fig:L波段PIC基于二次电子仿真计算功率容量结果}
 \end{figure}
 
+结合之前的仿真结果，可以将L频段窗片的功率容量总结如下表\ref{tab:L频段脊波导窗功率容量}所示。此时可以得出结论，L频段的窗片更容易因为二次电子发射而导致脊波导脊之间的打火击穿。
+\begin{table}[!htb]
+    \centering
+    \caption{1.13-1.6 GHz L 频段脊波导窗功率容量计算总结}
+    \label{tab:L频段脊波导窗功率容量}
+    \begin{tabular}{@{}cccc@{}}
+    \toprule[1.5pt]
+    \multicolumn{2}{c}{主要方法}             & 功率容量/kW & 适用环境 \\ \midrule
+    \multicolumn{2}{c}{最大场强法}            & 84.6     & 大气环境 \\
+    \multirow{2}{*}{二次电子发射法} & Spark3D仿真 & 1到1.02    & 真空环境 \\
+                             & PIC仿真     & 1.175    & 真空环境 \\ \bottomrule[1.5pt]
+    \end{tabular}
+    \end{table}
 \section{关于L波段脊波导窗片的多物理场分析}
 类似于之前的小节，本小节针对L波段脊波导窗进行了多物理场的分析。为了模拟窗片加工焊接完成后的分析，本次依然选择将铜制外壳按照脊波导、过渡段与窗片、脊波导三个部分进行纵向分割。分割后的铜制外壳如图\ref{fig:L分割后的铜制外壳} (a)所示。此时使用HFSS进行S参数相关的仿真可以得出结论，铜制外壳的创建与分割无法对原有的窗片S参数产生明显的影响，具体的S参数仿真结果如图\ref{fig:L分割后的铜制外壳} (b)所示。
 \begin{figure}[!htb]
