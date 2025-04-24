@@ -7,8 +7,28 @@ from matplotlib import transforms
 
 script_dir = os.path.dirname(os.path.abspath(__file__))
 # 读取CSV文件
+
+
+# 预设配置字典（修改部分）
+configs = {
+    "boxconfig": {
+        "filedir": r"chapter2/盒型窗验证S曲线/S Parameter Plot 1.csv",
+        "bbox_to_anchor": (0.62, 0.5),
+        "figsize": (6.5, 5.5),
+    },
+    "xshell": {
+        "filedir": r"chapter3/加上铜制外壳后的S参数.csv",
+        "bbox_to_anchor": (0.5, 0.5),
+        "figsize": (6.5, 5.5),
+    },
+}
+
+# 通过修改这里切换配置 ↓
+config_selector = "xshell"
+selected_config = configs[config_selector]
+
 # filedir = r"chapter2/盒型窗验证S曲线/S Parameter Plot 1.csv"
-filedir = r"chapter3/加上铜制外壳后的S参数.csv"
+filedir = selected_config["filedir"]
 datafile = pd.read_csv(os.path.join(script_dir, filedir))
 
 
@@ -20,12 +40,12 @@ plt.rcParams["font.family"] = (
 )
 plt.rcParams["mathtext.fontset"] = "stix"  # 设置数学公式字体为stix
 # 设置字体的大小，
-label_size = 18  # xy轴标签的大小
-legend_size = 18  # 图例的大小
-axis_size = 16  # 坐标轴刻度标签的大小
+label_size = 20  # xy轴标签的大小
+legend_size = 20  # 图例的大小
+axis_size = 18  # 坐标轴刻度标签的大小
 
 # 创建画布和主Y轴
-fig, axis_y1 = plt.subplots(figsize=(6.4, 5.5))
+fig, axis_y1 = plt.subplots(figsize=selected_config["figsize"])
 
 # 绘制S21曲线（左轴）
 axis_y1.plot(
@@ -89,7 +109,7 @@ plt.legend(
     frameon=False,
     fontsize=legend_size,
     # loc="upper right",
-    bbox_to_anchor=(0.3, 0.4),
+    bbox_to_anchor=selected_config["bbox_to_anchor"],
 )  # 保持与之前相同的位置
 
 plt.tight_layout()
