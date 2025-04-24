@@ -749,6 +749,20 @@ $$
     \caption{X波段脊波导Spark3D中的电场}
     \label{fig:X波段Spark3D中的电场}
 \end{figure}
+此时直接观察整体的电场分布，较为难以对脊波导窗中的电场分布有一个较为综合的认识。结合之前\ref{fig:X频段脊波导窗低频点场强仿真} (b)所示的最大电场所在位置，此时在脊波导脊的一侧处，即此时图\ref{fig:XSP最大场强截面图} (a)所示的平面，进行截面处理。得到的截面上的电场强度如图\ref{fig:XSP最大场强截面图} (b)所示。此时观察截面上的电场分布示意图，可以得知，此时最大场强主要位于过渡圆角矩形波导和脊波导的交界处。
+\begin{figure}[!htb]
+    \small
+    \centering
+    \begin{tabular}{@{\ }c@{\ }c}
+        \includegraphics[width=0.4\textwidth]{pic/chapter3/XSP3D电场截面示意.png} & 
+        \hspace{5pt}
+        \includegraphics[width=0.4\textwidth]{pic/chapter3/XSP3D截面上的电场分布.png}     \\
+        \mbox{\small (a) 截面所在位置}                                                                               & 
+        \mbox{\small (b) 截面上的电场分布}                                                                                  \\
+    \end{tabular}
+    \caption{Spark3D中最大场强截面图}
+    \label{fig:XSP最大场强截面图}
+\end{figure}
 
 如图\ref{fig:XSP3D电子放置} (a)所示，在仿真开始的时候Spark3D模块会在器件中放入一定数目的种子电子(图中放置的种子电子数目为8千个)并且使用设定频率的连续波进行激励。如果发生击穿的话，如图\ref{fig:XSP3D电子放置} (b)所示，Spark3D中也会使用能量进行电子标注，并且显示电子倍增的位置。图中\ref{fig:XSP3D电子放置} (b)显示的发生电子倍增的位置为圆角矩形过渡波导的下端面的中心位置，这也是之前所示的电场强度最大的位置。
 \begin{figure}[!htb]
@@ -765,7 +779,7 @@ $$
     \label{fig:XSP3D电子放置}
 \end{figure}
 
-当一定时间后，初始被放置在器件中的电子数目没有归零的话，就判定为器件被击穿。结合以上分析与初始设定，此时使用Spark3D初步仿真得到窗片的功率容量为10kW，具体的Spark3d的仿真结果如图\ref{fig:X波段Spark3D中的功率}所示。图中横轴为仿真时间，纵轴为电子总数目。
+当一定时间后，初始被放置在器件中的电子数目没有归零的话，就判定为器件被击穿。结合以上分析与初始设定，此时使用Spark3D初步仿真得到窗片的功率容量为10kW，具体的Spark3d的仿真结果如图\ref{fig:X波段Spark3D中的功率}所示。图中横轴为仿真时间，纵轴为电子总数目。由于Spark3D中初始电子放置的位置随机，实际进行仿真时计算出的功率容量会产生相应的波动，但是大体上来说，使用Spark3D进行初步的仿真得到的功率容量为9到10kW之间。
 \begin{figure}[!htb]
     \centering
     \includegraphics[width=0.5\linewidth]{pic/chapter3/X波段Spark3D中的功率.png}
@@ -805,15 +819,61 @@ $$
 
 根据文章\cite{li_2021_novel_multipactor}中的描述，如果器件中的电子数目在信号驱动的情况下呈现出指数函数式的增长，那么就被视为期间会因为二次电子发射而击穿，如果器件中电子的数目随着信号的激励呈现出持续下降的趋势就被视为没有击穿。关于具体的种子粒子的放置，文献\cite{gonzalez_2015_experimental}在仿真同轴波导的时候，初始的种子粒子数目为500，判断其被击穿的条件为仿真过程中电子总数大于$10^4$；文献\cite{gonzalez_2016_multipactor}在仿真同轴波导时，初始的电子数目为$10^{12}$个，等效的电子密度为$4.83 \times 10^{17} m^{-3}$，由于激励信号并非使用正弦函数，故击穿的条件被设定为“20间隙击穿”法则；文献\cite{you_2015_highly}中在脊波导器件的最窄处填充了8000个电子，并且也是因为电子数目在正弦信号驱动情况下呈现指数增长才被视为击穿，如果是持续下降的电子趋势就被视为没有击穿。
 
-综合上述文献的描述与仿真速度精度的要求，本文决定在填充初始电子时候选择电场强度最强的部分进行立方体形状的麦克斯韦能量分布的粒子源填充，而不是所有空白区域全部都进行初始能量相同的电子填充，并且填充的电子的密度不低于$10^9 m^{-1}$。如果器件中电子的数目随着信号的激励呈现出持续下降的趋势就被视为没有击穿；如果总粒子数目呈现出指数函数式的增长，那么在总粒子数目达到$5 \times 10^5$个之后便被视为击穿。根据Spark3D和之前图\ref{fig:X频段脊波导窗低频点场强仿真}中的预先仿真，可以得知此时的电场场强最强的部分是脊波导的脊，以及脊波导和窗中间的过渡部分的圆角矩形部分，具体的填充区域示意图可见\ref{fig:X粒子填充区域}中所示。
+综合上述文献的描述与仿真速度精度的要求，本文决定在填充初始电子时候选择电场强度最强的部分进行立方体形状的麦克斯韦能量分布的粒子源填充，而不是所有空白区域全部都进行初始能量相同的电子填充，并且填充的电子的密度不低于$10^9 m^{-1}$。如果器件中电子的数目随着信号的激励呈现出持续下降的趋势就被视为没有击穿；如果总粒子数目呈现出指数函数式的增长，那么在总粒子数目达到$5 \times 10^5$个之后便被视为击穿。根据Spark3D和之前图\ref{fig:X频段脊波导窗低频点场强仿真}中的预先仿真，可以得知此时的电场场强最强的部分是脊波导的脊，以及脊波导和窗中间的过渡部分的圆角矩形部分，具体的填充区域示意图可见图\ref{fig:X粒子填充区域}所示。其中，图\ref{fig:X粒子填充区域} (a) 展示了初始电子填充区域的大致范围的斜视图，图\ref{fig:X粒子填充区域} (b) 展示了被放置在窗片中的初始电子。
 \begin{figure}[!htb]
+    \small
     \centering
-    \includegraphics[width=0.25\linewidth]{pic/chapter3/粒子填充区域斜视图.png}
-    \caption{X波段脊波导窗粒子填充区域}
+    \begin{tabular}{@{\ }c@{\ }c}
+        \includegraphics[width=0.3\textwidth]{pic/chapter3/粒子填充区域斜视图.png} & 
+        \hspace{5pt}
+        \includegraphics[width=0.4\textwidth]{pic/chapter3/XPIC初始电子位置.png}     \\
+        \mbox{\small (a) 粒子填充区域}                                                                               & 
+        \mbox{\small (b) 被放置在窗片中的初始电子}                                                                                  \\
+    \end{tabular}
+    \caption{6-11GHz脊波导窗电子填充示意图}
     \label{fig:X粒子填充区域}
 \end{figure}
 
-在进行好了材料二次电子发射曲线、正弦连续波激励信号、初始麦克斯韦能量分布的电子的粒子填充和明确了因为电子倍增现象而击穿的规则之后，便可以对器件进行基于电子倍增现象的功率容量的仿真。仿真得到的整体粒子数目随着馈入连续波时间的变化而产生的变化的曲线被展示与图片\ref{fig:X波段脊波导窗基于电子倍增现象的功率容量仿真}中。从图片中可以看到，在馈入能量达到14.8kW之前，器件中粒子数目随着时间的变化呈现为持续下降的趋势；在能量到达15kW时电子数目达到动态平衡；但是在馈入连续波能量达到15.3kW之后，粒子数目呈现出持续增长趋势。根据上述分析便可以得出结论，X波段脊波导窗片在使用电子倍增理论进行仿真时，其功率容量为14.9kW。
+
+
+在进行好了材料二次电子发射曲线、正弦连续波激励信号、初始麦克斯韦能量分布的电子的粒子填充和明确了因为电子倍增现象而击穿的规则之后，便可以对器件进行基于电子倍增现象的功率容量的仿真。
+
+此时调整输入的连续正弦波的功率，当输入功率较小时，窗片中的电子数目逐渐变少，呈现出如图\ref{fig:X频段窗电子逐渐变少}的情况，此时说明窗片在真空中暂时不会因为二次电子倍增现象而发生损毁的现象。
+\begin{figure}[!htb]
+    \small
+    \centering
+    \begin{tabular}{@{\ }c@{\ }c@{\ }c}
+        \includegraphics[width=0.3\textwidth]{pic/chapter3/XPIC初始电子位置.png} & 
+        \hspace{5pt}
+        \includegraphics[width=0.3\textwidth]{pic/chapter3/XPIC电子逐渐消散.png}&
+        \hspace{5pt}
+        \includegraphics[width=0.3\textwidth]{pic/chapter3/XPIC电子完全消散.png}      \\
+        \mbox{\small (a) 窗片中的初始电子}                                                                               & 
+        \mbox{\small (b) 电子减少} & 
+        \mbox{\small (c) 电子逐渐消失(即未发生击穿)}                                                                                  \\
+    \end{tabular}
+    \caption{脊波导窗未因为二次电子倍增而损毁}
+    \label{fig:X频段窗电子逐渐变少}
+\end{figure}
+
+当输入连续正弦波功率到达一定程度之后，此时窗片中的电子会因为被轰击到窗片内壁上而发生二次电子倍增现象。此时电子整体上会呈现出如图\ref{fig:X频段窗电子逐渐增多}所示的情况，这种电子数目逐渐增加的趋势就代表着窗片会因为二次电子倍增现象而被击穿。此时观察电子数目主要增加的区域为圆角矩形波导区域进行匹配的部分，并且位于圆角矩形波导长边的中段，这与之前在Spark3D模块中进行仿真的部分所得到的结论一致。
+\begin{figure}[!htb]
+    \small
+    \centering
+    \begin{tabular}{@{\ }c@{\ }c}
+        \includegraphics[width=0.3\textwidth]{pic/chapter3/XPIC初始电子位置.png} & 
+        \hspace{5pt}
+        \includegraphics[width=0.3\textwidth]{pic/chapter3/XPIC发生击穿电子.png}     \\
+        \mbox{\small (a) 窗片中的初始电子}                                                                               & 
+        \mbox{\small (b) 电子数目增加}                                                                                  \\
+    \end{tabular}
+    \caption{脊波导窗出现二次电子倍增现象}
+    \label{fig:X频段窗电子逐渐增多}
+\end{figure}
+
+仿真得到的整体粒子数目随着馈入连续波时间的变化而产生的变化的曲线被展示与图片\ref{fig:X波段脊波导窗基于电子倍增现象的功率容量仿真}中。从图片中可以看到，在馈入能量达到14.8kW之前，器件中粒子数目随着时间的变化呈现为持续下降的趋势；在能量到达15kW时电子数目达到动态平衡；但是在馈入连续波能量达到15.3kW之后，粒子数目呈现出持续增长趋势。
+
+根据上述分析便可以得出结论，X波段脊波导窗片在使用电子倍增理论进行仿真时，其功率容量为14.9kW。
 \begin{figure}[!htb]
     \centering
     \includegraphics[width=0.5\linewidth]{pic/chapter3/particle_time_chapter3.pdf}
@@ -821,7 +881,20 @@ $$
     \label{fig:X波段脊波导窗基于电子倍增现象的功率容量仿真}
 \end{figure}
 
+经过此小节的分析，现在可以对使用两种方法所计算的窗片的功率容量进行总结。使用最大功率容量法进行仿真得到的结果主要适用于大气中工作时的功率容量，使用二次电子发射法所计算的结果主要适用于真空中工作时的功率容量。具体计算的功率容量结果详见于表格\ref{tab:X频段脊波导窗功率容量}。
 
+\begin{table}[!htb]
+    \centering
+    \caption{6-11GHz脊波导窗功率容量计算总结}
+    \label{tab:X频段脊波导窗功率容量}
+    \begin{tabular}{@{}cccc@{}}
+    \toprule[1.5pt]
+    \multicolumn{2}{c}{主要方法}             & 功率容量/kW & 适用环境 \\ \midrule
+    \multicolumn{2}{c}{最大场强法}            & 3.1     & 大气环境 \\
+    \multirow{2}{*}{二次电子发射法} & Spark3D仿真 & 9到10    & 真空环境 \\
+                             & PIC仿真     & 14.9    & 真空环境 \\ \bottomrule[1.5pt]
+    \end{tabular}
+    \end{table}
 \section{脊波导窗的多物理场分析}
 在实际的窗片使用过程中，由于介质材料存在介质损耗，故窗片会产热。又由于窗片和金属波导的热膨胀系数\(\alpha\)不一致，故在窗片产热之后，二者的接触面会产生热应力。如果热应力过大的话，窗片可能会产生不可逆的损坏。其次，窗片上温度的分布在实际的使用过程中也是十分重要的，如果由于散热机构设计的问题导致窗片上温度的差值过大，可能会导致其内部热应力过大而损毁。故在进行实际的装配加工之前，对窗片的多物理场仿真分析是必不可少的。
 \subsection{仿真环境的搭建}
@@ -841,7 +914,7 @@ HFSS模块计算窗片由于介质损耗而产生的体损耗，同时也分析�
     \small
     \centering
     \begin{tabular}{@{\ }c@{\ }c}
-        \includegraphics[width=0.3\textwidth]{pic/chapter3/铜制外壳分割后.png} & 
+        \includegraphics[width=0.35\textwidth]{pic/chapter3/铜制外壳分割后.png} & 
         \hspace{5pt}
         \includegraphics[width=0.4\textwidth]{pic/chapter3/分割后的S参数.png}     \\
         \mbox{\small (a)铜制外壳分割示意图}                                                                               & 
@@ -1292,32 +1365,73 @@ ANSYS中可以直接查看到窗片的应力大小，为了方便分析窗片被
 
 \begin{figure}[!htb]
     \centering
-    \includegraphics[width=0.45\linewidth]{pic/chapter4/L波段加上铜外壳后的S参数.png}
+    \includegraphics[width=0.43\linewidth]{pic/chapter4/L波段加上铜外壳后的S参数.png}
     \caption{L波段加上铜外壳后的S参数}
     \label{fig:L波段加上铜外壳后的S参数}
 \end{figure}
 
-此时对导入Spark3D之后的电场强度进行观察，观察结果图\ref{fig:L波段Spark3D仿真结果} (a)所示，此时窗片整体中电场强度较高的部分集中在脊波导窗片的脊之间，其次便是脊波导与窗片之间过渡段靠近脊波导的那一条边，这个仿真结果与X波段中脊波导窗的仿真结果相类似。此时在Spark3D中按照之前所查到的参数，设置好每一种材料的二次电子发射系数。并且将馈入窗的能量设置为1.14GHz连续波，此时由于Spark3D中的电子为随机散布，为了确保仿真结果的准确性相比于Spark3D的初始电子数目三百进行相应的增加，于是将窗中的初始电子数目设置为8000。在Spark3D中进行好上述材料的曲线设置之后，此时判断击穿的标准依然是窗的电子数目随着时间的变化呈现出下降的趋势及被视为不被击穿，如果呈现出如指数一般的急剧上升趋势或者先下降后上升的趋势则被视为已经击穿。观察此时如图\ref{fig:L波段Spark3D仿真结果} (b)的Spark3D的仿真结果，可以看到此时的窗的功率容量为1012W。
+此时对导入Spark3D之后的电场强度进行观察，观察结果图\ref{fig:LSP3D电场强度斜视图}所示，此时窗片整体中电场强度较高的部分集中在脊波导窗片的脊之间，其次便是脊波导与窗片之间过渡段靠近脊波导的那一条边，这个仿真结果与X波段中脊波导窗的仿真结果相类似。
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=0.35\linewidth]{pic/chapter4/L波段Spark3D电场.png}
+    \caption{L频段Spark3D电场强度整体视图}
+    \label{fig:LSP3D电场强度斜视图}
+\end{figure}
+为了更准确地理解电场强度的分布，在脊波导窗中电场最强的位置添加了一个平面。这个位置位于脊的一侧，具体可参见图\ref{fig:L频段Spark3D电场强度平面视图} (a)。通过这个平面，我们可以观察其上的电场分布情况。
+\begin{figure}[!htb]
+    \small
+    \centering
+    \begin{tabular}{@{\ }c@{\ }c}
+        \includegraphics[width=0.32\textwidth]{pic/chapter4/LSP3D截取平面.png} & 
+        \hspace{5pt}
+        \includegraphics[width=0.32\textwidth]{pic/chapter4/LSP3D平面上的电场.png}     \\
+        \mbox{\small (a) 所选取的平面}                                                                               & 
+        \mbox{\small (b) }                                                                                  \\
+    \end{tabular}
+    \caption{L频段Spark3D电场强度平面视图}
+    \label{fig:L频段Spark3D电场强度平面视图}
+\end{figure}
+
+此时在Spark3D中按照之前所查到的参数，设置好每一种材料的二次电子发射系数。并且将馈入窗的能量设置为1.14GHz连续波，此时由于Spark3D中的电子为随机散布，为了确保仿真结果的准确性相比于Spark3D的初始电子数目三百进行相应的增加，于是将窗中的初始电子数目设置为8000。
+
+在Spark3D中进行好上述材料的曲线以及初始电子的设置之后，判断击穿的标准依然是窗的电子数目随着时间的变化呈现出下降的趋势及被视为不被击穿，如果呈现出如指数一般的急剧上升趋势或者先下降后上升的趋势则被视为已经击穿。观察此时如图\ref{fig:L频段Spark3D功率容量仿真结果}的Spark3D的仿真结果，可以看到此时的窗的功率容量为1012W。考虑到Spark3D中初始电子的随机分布，此时的功率容量的结果会在1000到1020W波动。
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=0.45\linewidth]{pic/chapter4/Spark3D中的电子随时间的变化.png}
+    \caption{L频段Spark3D功率容量仿真结果}
+    \label{fig:L频段Spark3D功率容量仿真结果}
+\end{figure}
+
+为了研究二次电子倍增的主要发生位置，需要考察电子的初始分布与击穿时的分布。电子的初始分布位置如图\ref{fig:L频段Spark3D电子的击穿位置} (a)所示，击穿时的电子分布如图\ref{fig:L频段Spark3D电子的击穿位置} (b)所示，图中电子颜色越接近于红色代表着此时电子的能量越高。综合两个图来看，可以看到此时二次电子倍增主要发生在脊波导的脊处，其次是圆角矩形过渡波导与脊波导的交界处。
+\begin{figure}[!htb]
+    \small
+    \centering
+    \begin{tabular}{@{\ }c@{\ }c}
+        \includegraphics[width=0.4\textwidth]{pic/chapter4/LSP3D电子初始位置.png} & 
+        \hspace{5pt}
+        \includegraphics[width=0.4\textwidth]{pic/chapter4/LSP3D电子击穿时的位置.png}     \\
+        \mbox{\small (a) 初始电子}                                                                               & 
+        \mbox{\small (b) 二次电子倍增时的电子}                                                                                  \\
+    \end{tabular}
+    \caption{L频段Spark3D电子分布}
+    \label{fig:L频段Spark3D电子的击穿位置}
+\end{figure}
+
+\subsubsection{使用CST中的PIC模块进行功率容量的仿真}
+有了之前的Spark3D所展示的基于电子倍增效应计算的功率容量的仿真结果，此时可以进行CST中使用PIC求解器进行关于电子倍增效应。
+
+首先根据之前的仿真结果，应该将初始电子填充在窗片的脊波导的脊与脊波导和窗片之间的过渡段之中，具体的填充区域示意图如图\ref{fig:L波段CST电子填充方法} (a)所示。为了保证求解的真实可靠性，综合前面的分析，本次每个区域中填充电子的密度不低于$10^9 m^{-3}$，并且电子的初始能量分布采用麦克斯韦分布。
 
 \begin{figure}[!htb]
     \small
     \centering
     \begin{tabular}{@{\ }c@{\ }c}
-        \includegraphics[width=0.4\textwidth]{pic/chapter4/L波段Spark3D电场.png} & 
+        \includegraphics[width=0.32\textwidth]{pic/chapter4/L波段CST电子填充方法.png} & 
         \hspace{5pt}
-        \includegraphics[width=0.4\textwidth]{pic/chapter4/Spark3D中的电子随时间的变化.png}     \\
-        \mbox{\small (a)Spark3D中的电场强度}                                                                               & 
-        \mbox{\small (b)Spark3D中的电子随时间的变化}                                                                                  \\
+        \includegraphics[width=0.32\textwidth]{pic/chapter4/LSP3D平面上的电场.png}     \\
+        \mbox{\small (a) 所选取的平面}                                                                               & 
+        \mbox{\small (b) }                                                                                  \\
     \end{tabular}
-    \caption{L波段Spark3D仿真结果}
-    \label{fig:L波段Spark3D仿真结果}
-\end{figure}
-
-\subsubsection{使用CST中的PIC模块进行功率容量的仿真}
-有了之前的Spark3D所展示的基于电子倍增效应计算的功率容量的仿真结果，此时可以进行CST中使用PIC求解器进行关于电子倍增效应。首先根据之前的仿真结果，应该将初始电子填充在窗片的脊波导的脊与脊波导和窗片之间的过渡段之中，具体的填充区域如图\ref{fig:L波段CST电子填充方法}所示，为了保证求解的真实可靠性，综合前面的分析，本次每个区域中填充电子的密度不低于$10^9 m^{-3}$。
-\begin{figure}[!htb]
-    \centering
-    \includegraphics[width=0.25\linewidth]{pic/chapter4/L波段CST电子填充方法.png}
     \caption{L波段CST中PIC的初始电子填充区域}
     \label{fig:L波段CST电子填充方法}
 \end{figure}
