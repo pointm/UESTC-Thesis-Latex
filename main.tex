@@ -1726,6 +1726,90 @@ ANSYS中可以直接查看到窗片的应力大小，为了方便分析窗片被
 
 出现如图\ref{fig:脊波导圆窗旋转分组}所示的这种$S_{11}$曲线根据$\psi$出现周期性的变化的原因是脊波导传输的模式为类$TE_{01}$模式，这个模式类似于矩形波导的$TE_{01}$模式，是一种线极化模式。这种线极化模式使得窗片的工作性能不仅仅与最开始窗片绕着x轴旋转的角度$\theta$相关，也与窗片后续绕着全局坐标轴z转动的角度$\psi$相关。并且由于绕着z轴旋转到45°和135°时，窗片相对于电场的偏转状态相似故产生的S曲线也类似。
 
+S曲线出现周期性是因为窗片的结构在发生周期性地变化的时候，引起了电场地周期性变化。为了印证这一点，将对不同\(\psi\)角度的电场进行截屏以进行分析。经过仿真注意到此时扰动对电场的影响主要集中在窗片上，故接下来将着重对旋转后的窗片上的电场强度进行分析。旋转前后的窗片上的电场分布与中轴面xOy上面的电场分布详见图\ref{fig:X旋转轴与窗片电场}中所示。观察不同\(\psi\)的窗片上的电场分布，可以看到在\(\psi\)=0°和180°的窗片上的电场分布拥有相似的电场分布，只是\(\psi\)=0的窗片上的电场分布相当于180°的情况的电场分布绕着z轴旋转了180°。同理可得此时\(\psi\)=45°和135°的窗片上的电场分布也相似，只是此时需要将其中某个角度的电场分布旋转180°才可以与另一个相同。
+\begin{figure}[!htb]
+    \small
+    \centering
+    \begin{tabular}{@{\ }c@{\ }c@{\ }c}
+        \includegraphics[width=0.25\textwidth]{pic/chapter5/X0旋转轴.png} & 
+        \hspace{5pt}
+        \includegraphics[width=0.23\textwidth]{pic/chapter5/X0电场整体.png}   &
+        \hspace{5pt}
+        \includegraphics[width=0.23\textwidth]{pic/chapter5/X0电场切面.png}       \\
+        \mbox{\small (a) \(\psi\)=0° 旋转轴}                                                                               & 
+        \mbox{\small (b) \(\psi\)=0° 窗片电场}    & 
+        \mbox{\small (c) \(\psi\)=0° 中轴面yOz电场}                                                                              \\[6bp]
+        \includegraphics[width=0.25\textwidth]{pic/chapter5/X45旋转轴.png} & 
+        \hspace{5pt}
+        \includegraphics[width=0.23\textwidth]{pic/chapter5/X45电场整体.png} & 
+        \hspace{5pt}
+        \includegraphics[width=0.23\textwidth]{pic/chapter5/X45电场切面.png}     \\
+        \mbox{\small (d) \(\psi\)=45° 旋转轴}                                                                               & 
+        \mbox{\small (e) \(\psi\)=45° 窗片电场}  & 
+        \mbox{\small (f) \(\psi\)=45° 中轴面yOz电场}                                                                                  \\[6bp]
+        \includegraphics[width=0.25\textwidth]{pic/chapter5/X90旋转轴.png} & 
+        \hspace{5pt}
+        \includegraphics[width=0.23\textwidth]{pic/chapter5/X90电场整体.png}& 
+        \hspace{5pt}
+        \includegraphics[width=0.23\textwidth]{pic/chapter5/X90电场切面.png}     \\
+        \mbox{\small (g) \(\psi\)=90° 旋转轴}                                                                               & 
+        \mbox{\small (h) \(\psi\)=90° 窗片电场}  & 
+        \mbox{\small (i) \(\psi\)=90° 中轴面yOz电场}                                                                                  \\[6bp]
+        \includegraphics[width=0.25\textwidth]{pic/chapter5/X135旋转轴.png} & 
+        \hspace{5pt}
+        \includegraphics[width=0.23\textwidth]{pic/chapter5/X135电场整体.png}& 
+        \hspace{5pt}
+        \includegraphics[width=0.23\textwidth]{pic/chapter5/X135电场切面.png}     \\
+        \mbox{\small (j) \(\psi\)=135° 旋转轴}                                                                               & 
+        \mbox{\small (k) \(\psi\)=135° 窗片电场}    & 
+        \mbox{\small (l) \(\psi\)=135° 中轴面yOz电场}                                                                                 \\[6bp]
+        \includegraphics[width=0.25\textwidth]{pic/chapter5/X180旋转轴.png} & 
+        \hspace{5pt}
+        \includegraphics[width=0.23\textwidth]{pic/chapter5/X180电场整体.png}  & 
+        \hspace{5pt}
+        \includegraphics[width=0.23\textwidth]{pic/chapter5/X180电场切面.png}   \\
+        \mbox{\small (m) \(\psi\)=180° 旋转轴}                                                                               & 
+        \mbox{\small (n) \(\psi\)=180° 窗片电场}  & 
+        \mbox{\small (o) \(\psi\)=180° 中轴面yOz电场}                                                                                 \\[6bp]
+    \end{tabular}
+    \caption{脊波导窗旋转轴示意图与对应电场强度}
+    \label{fig:X旋转轴与窗片电场}
+\end{figure}
+
+此时图\ref{fig:X旋转轴与窗片电场} (h)中的\(\psi\)=90°中的电场分布与其它角度没有类似的电场分布，根据之前S曲线的计算，此时\(\psi\)=90°的窗片的S曲线与\(\theta\)=0°的未发生偏转的窗片的S曲线最相似。那么此时\(\psi\)=90°的电场分布也应该与未发生偏转的窗片的电场分布相类似。观察图\ref{fig:X未发生偏转} (a)所示的未发生偏转的窗片的电场分布，发现此时确实与\(\psi\)=90°的电场分布相类似，与之前的猜想一致。
+\begin{figure}[!htb]
+    \small
+    \centering
+    \begin{tabular}{@{\ }c@{\ }c}
+        \includegraphics[width=0.3\textwidth]{pic/chapter5/X未旋转电场整体.png} &
+        \hspace{5pt}
+        \includegraphics[width=0.3\textwidth]{pic/chapter5/X未旋转电场切面.png}     \\
+        \mbox{\small (a) 未发生偏转电场整体}                                                                               &
+        \mbox{\small (b) 未发生偏转电场切面}                                                                                  \\
+    \end{tabular}
+    \caption{未发生偏转窗片电场强度分布}
+    \label{fig:X未发生偏转}
+\end{figure}
+
+
+为了更进一步的从定量的方向上意识到，S曲线的类似性蕴含了结构的类似性进而导致了电场分布的类似性。将图中不同\(\psi\)角度的窗片在x轴上的电场强度进行导出，进而进行对比分析。导出后的不同\(\psi\)所对应的x轴上的电场如图\ref{fig:X轴上电场强度对比}所示。此时从\ref{fig:X轴上电场强度对比} (a)可以看出，此时\(\psi\)=90°的窗片的x轴上的电场强度分部与未发生旋转的窗片的x轴上的电场强度分布最相似。类似的，\(\psi\)=45°和135°的窗片的x轴上的电场强度分布最相似。也与\(\psi\)=0°和180°的窗片的x轴上的电场强度分布最相似。这也将之前的猜想进行了印证。
+\begin{figure}[!htb]
+    \small
+    \centering
+    \begin{tabular}{@{\ }c@{\ }c@{\ }c}
+        \includegraphics[width=0.3\textwidth]{pic/chapter5/XTHETA0PSI90.png} & 
+        \hspace{5pt}
+        \includegraphics[width=0.3\textwidth]{pic/chapter5/XPSI45PSI135.png}&
+        \hspace{5pt}
+        \includegraphics[width=0.3\textwidth]{pic/chapter5/XPSI0PSI180.png}      \\
+        \mbox{\small (a) \(\psi=\)90°与\(\theta=\)0°(即未发生旋转)}                                                                               & 
+        \mbox{\small (b) \(\psi=\)45°与135°} & 
+        \mbox{\small (c) \(\psi=\)0°与180°}                                                                                  \\
+    \end{tabular}
+    \caption{不同\(\theta\)与\(\psi\)角度下的x轴上电场强度对比}
+    \label{fig:X轴上电场强度对比}
+\end{figure}
+
 由此可见，圆形窗片的旋转装配误差并不单单只是跟窗片绕着x轴的倾斜角$\theta$相关，也会跟窗片绕着z轴旋转的角度$\psi$相关。
 
 经过上述的仿真分析，我们可以总结出此时旋转误差引起的S参数的影响的特点。首先，是针对旋转角度\(\theta\)的敏感性，较小的\(\theta\)角度就可以引起非常明显的S参数的变化。其次就是关于\(\psi\)角度的周期性，在\(\psi\)角度旋转到一定度数之后，\(S_{11}\)会周期性的出现跟一定角度前一样的结果，由于本次只测量了\(\psi\)0-180°中的旋转情况，这种周期性转化为关于\(\psi\)=90°的对称性。出现这种变化的主要原因是传输的模式为线极化模式，当窗片的旋转轴与电场的极化方向的夹角出现变化时，会导致窗片的S曲线出现不一样的结果。下一小节将使用W频段的95GHz窗片的测试结果与仿真结果对此结论进行进一步的验证。
