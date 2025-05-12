@@ -13,9 +13,9 @@ plt.rcParams["font.family"] = (
 )
 plt.rcParams["mathtext.fontset"] = "stix"  # 设置数学公式字体为stix
 # 设置字体的大小，
-label_size = 20  # xy轴标签的大小
-legend_size = 15  # 图例的大小
-axis_size = 18  # 坐标轴刻度标签的大小
+label_size = 23  # xy轴标签的大小
+legend_size = 20  # 图例的大小
+axis_size = 20  # 坐标轴刻度标签的大小
 # 预设配置字典（修改部分）
 configs = {
     "xwindow": {
@@ -47,7 +47,7 @@ configs = {
         "s2p_file": "L波段脊波导.s2p",
         "denserperiod": "1.13-1.4ghz",
         "x_minor_step": 0.1e9,
-        "y_minor_step": 10,
+        "y_minor_step": 25 / 2,
         "figsize": (6, 5.5),
     },
     "Lwindoworiginal": {
@@ -64,7 +64,7 @@ configs = {
         "denserperiod": "1.13-1.4ghz",
         "x_minor_step": 0.1e9,
         "y_minor_step": 20 / 4,
-        "figsize": (6, 5.5),
+        "figsize": (7, 6),
     },
     "Lwindowwithshell": {
         "chaptername": "chapter4",
@@ -114,7 +114,10 @@ plt.tick_params(axis="both", which="major", labelsize=axis_size)
 plt.tick_params(axis="both", which="minor")
 
 # 设置图例
-plt.legend(frameon=False, fontsize=legend_size)
+# plt.legend(frameon=False, fontsize=legend_size)
+plt.legend(
+    frameon=False, fontsize=legend_size, bbox_to_anchor=(0.5, 0.5)
+)  # 遮住时候用，没遮住不用
 
 # 获取当前轴，准备设置子刻度
 ax = plt.gca()

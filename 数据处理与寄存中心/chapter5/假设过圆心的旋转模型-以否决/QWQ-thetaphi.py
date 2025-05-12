@@ -4,11 +4,18 @@ from scipy.optimize import least_squares, minimize  # 添加minimize导入
 import matplotlib.pyplot as plt
 
 
-# 字体配置
-plt.rcParams["font.serif"] = ["SimSun", "Times New Roman"]
-plt.rcParams["font.family"] = "serif"
-plt.rcParams["font.size"] = 15
-plt.rcParams["axes.unicode_minus"] = False
+# 图片预处理部分
+plt.style.use("fast")  # 调用配色方案
+# 设置字体的最优方案，中文为宋体，英文为Times New Roman
+plt.rcParams["font.family"] = (
+    "Times New Roman, SimSun"  # 设置字体族，中文为SimSun，英文为Times New Roman
+)
+plt.rcParams["mathtext.fontset"] = "stix"  # 设置数学公式字体为stix
+# 设置字体的大小，
+label_size = 20  # xy轴标签的大小
+legend_size = 19  # 图例的大小
+axis_size = 18  # 坐标轴刻度标签的大小
+
 # 新增方法选择开关
 METHOD = "linear"  # 可选 'linear' 或 'nonlinear'
 
@@ -138,22 +145,21 @@ def new_method():
     print(f"旋转轴的倾斜角度 θ = {result.x[1]:.5f} rad")
 
     # 新增可视化部分
-    plt.figure(figsize=(6.5, 5))
+    plt.figure(figsize=(6, 4.5))
     # 计算预测值
     predicted_h = 2 * R * np.sin(result.x[1]) * np.sin((alpha_rad - result.x[0]) / 2)
     # 绘制测量值
-    plt.scatter(alpha_deg, h_values, label="测量值", marker="o", color="red")
+    plt.scatter(alpha_deg, h_values, label="测量值", marker="x", color="blue")
     # 绘制预测值
-    plt.scatter(
-        alpha_deg, predicted_h, label="预测值", marker="x", color="blue", linewidths=1.5
-    )
+    plt.plot(alpha_deg, predicted_h, "r-", label="理论计算值", marker="o")
 
-    plt.xlabel("旋转角度α (度)")
-    plt.ylabel("Δz (mm)")
-    # plt.title("测量值与预测值对比")
-    plt.legend()
-    plt.grid(True)
-    plt.xticks(np.arange(0, 360, 45))
+    plt.xlabel("旋转角度α (度)", fontsize=label_size)  # 添加字体大小
+    plt.ylabel("Δz (mm)", fontsize=label_size)  # 添加字体大小
+    plt.xticks(np.arange(0, 360, 45), fontsize=axis_size)  # 设置刻度字体
+    plt.yticks(fontsize=axis_size)  # 设置刻度字体
+    plt.legend(fontsize=legend_size)  # 添加图例字体大小
+    plt.tight_layout()
+    plt.grid(True, linestyle="--", alpha=0.7)
     plt.show()
 
 

@@ -11,9 +11,9 @@ plt.rcParams["font.family"] = (
 )
 plt.rcParams["mathtext.fontset"] = "stix"  # 设置数学公式字体为stix
 # 设置字体的大小，
-label_size = 20  # xy轴标签的大小
-legend_size = 20  # 图例的大小
-axis_size = 18  # 坐标轴刻度标签的大小
+label_size = 23  # xy轴标签的大小
+legend_size = 23  # 图例的大小
+axis_size = 20  # 坐标轴刻度标签的大小
 
 filepath = os.path.dirname(os.path.abspath(__file__))
 filename = "TOTALV3.1S参数.txt"
@@ -51,6 +51,7 @@ ax.xaxis.set_minor_locator(ticker.MultipleLocator(1))
 ax.yaxis.set_minor_locator(ticker.MultipleLocator(10))
 
 plt.grid(which="both", linestyle="--", linewidth=0.5)
+plt.tight_layout()
 
 plt.show()
 pass

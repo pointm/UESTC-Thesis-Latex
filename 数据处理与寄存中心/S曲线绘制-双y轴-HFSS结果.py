@@ -40,9 +40,9 @@ plt.rcParams["font.family"] = (
 )
 plt.rcParams["mathtext.fontset"] = "stix"  # 设置数学公式字体为stix
 # 设置字体的大小，
-label_size = 20  # xy轴标签的大小
+label_size = 23  # xy轴标签的大小
 legend_size = 20  # 图例的大小
-axis_size = 18  # 坐标轴刻度标签的大小
+axis_size = 20  # 坐标轴刻度标签的大小
 
 # 创建画布和主Y轴
 fig, axis_y1 = plt.subplots(figsize=selected_config["figsize"])

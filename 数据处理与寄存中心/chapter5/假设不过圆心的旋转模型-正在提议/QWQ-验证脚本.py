@@ -2,11 +2,17 @@ import math
 import matplotlib.pyplot as plt
 import numpy as np
 
-# 字体配置
-plt.rcParams["font.serif"] = ["SimSun", "Times New Roman"]
-plt.rcParams["font.family"] = "serif"
-plt.rcParams["font.size"] = 15
-plt.rcParams["axes.unicode_minus"] = False
+# 图片预处理部分
+plt.style.use("fast")  # 调用配色方案
+# 设置字体的最优方案，中文为宋体，英文为Times New Roman
+plt.rcParams["font.family"] = (
+    "Times New Roman, SimSun"  # 设置字体族，中文为SimSun，英文为Times New Roman
+)
+plt.rcParams["mathtext.fontset"] = "stix"  # 设置数学公式字体为stix
+# 设置字体的大小，
+label_size = 20  # xy轴标签的大小
+legend_size = 19  # 图例的大小
+axis_size = 18  # 坐标轴刻度标签的大小
 
 
 def qwq_part1():
@@ -67,16 +73,24 @@ def qwq_part1():
         print(f"Angle: {angle_deg}°, 实际Δz: {delta_z:.4f}, 计算Δz: {computed:.4f}")
 
     # 可视化结果
-    plt.figure(figsize=(10, 6))
+    plt.figure(figsize=(6, 4.5))
     plt.plot(angles_deg, computed_dz, "r-", label="理论计算值", marker="o")
-    plt.scatter(angles_deg, actual_dz, s=100, label="实际测量值", zorder=3)
+    plt.scatter(
+        angles_deg,
+        actual_dz,
+        marker="x",
+        color="blue",
+        s=100,
+        label="实际测量值",
+        zorder=3,
+    )
 
-    # plt.title("Δz 随角度变化对比")
-    plt.xlabel("角度 (度)")
-    plt.ylabel("Δz (mm)")
-    plt.xticks(range(0, 360, 45))
+    plt.xlabel("角度 / 度", fontsize=label_size)
+    plt.ylabel("Δz / mm", fontsize=label_size)
+    plt.xticks(range(0, 360, 45), fontsize=axis_size)
+    plt.yticks(fontsize=axis_size)
     plt.grid(True, linestyle="--", alpha=0.7)
-    plt.legend()
+    plt.legend(fontsize=legend_size)
     plt.tight_layout()
     plt.show()
 

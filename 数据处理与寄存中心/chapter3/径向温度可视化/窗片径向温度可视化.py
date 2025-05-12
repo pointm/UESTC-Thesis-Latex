@@ -12,9 +12,9 @@ plt.rcParams["font.family"] = (
 )
 plt.rcParams["mathtext.fontset"] = "stix"  # 设置数学公式字体为stix
 # 设置字体的大小，
-label_size = 16  # xy轴标签的大小
-legend_size = 18  # 图例的大小
-axis_size = 16  # 坐标轴刻度标签的大小
+label_size = 23  # xy轴标签的大小
+legend_size = 20  # 图例的大小
+axis_size = 20  # 坐标轴刻度标签的大小
 plt.figure(figsize=(6, 5.5))  # 设置图片大小
 
 # 修改文件路径部分
@@ -60,7 +60,8 @@ ax.xaxis.set_minor_locator(ticker.MultipleLocator(2.5 / 2))
 ax.yaxis.set_minor_locator(ticker.MultipleLocator(2 / 2))
 
 plt.grid(which="both", linestyle="--", linewidth=0.5)
+plt.tight_layout()
 
-plt.grid()
+# plt.grid()
 plt.show()
 pass

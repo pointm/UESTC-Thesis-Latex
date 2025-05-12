@@ -12,9 +12,9 @@ plt.rcParams["font.family"] = (
 plt.rcParams["mathtext.fontset"] = "stix"  # 设置数学公式字体为stix
 
 # 设置字体的大小，
-label_size = 20  # xy轴标签的大小
-legend_size = 20  # 图例的大小
-axis_size = 18  # 坐标轴刻度标签的大小
+label_size = 23  # xy轴标签的大小
+legend_size = 23  # 图例的大小
+axis_size = 20  # 坐标轴刻度标签的大小
 
 # 提取文件的路径
 filepath = os.path.dirname(os.path.abspath(__file__))
@@ -67,7 +67,7 @@ ax.yaxis.set_minor_locator(ticker.MultipleLocator(5 / 2))
 # plt.title("输入功率与最大电场强度关系", fontsize=14)
 plt.xlabel("输入功率 / kW", fontsize=label_size)
 plt.ylabel("最大电场强度 / kV / cm", fontsize=label_size)
-plt.grid(True, linestyle="--", alpha=0.7)
+plt.grid(which="both", linestyle="--", linewidth=0.5)
 plt.tick_params(axis="both", which="major", labelsize=axis_size)  # 坐标轴刻度
 
 # 显示图表

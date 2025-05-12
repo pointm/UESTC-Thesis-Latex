@@ -128,18 +128,16 @@ For the L - band window, multiphysics analysis is carried out. Under an input po
     \label{fig:布儒斯特窗}
 \end{figure}
 
-为了获得更宽的带宽，此前也有使用脊波导作为窗片输能波导的先例，几个常见的解决方案如图\ref{fig:脊波导窗常见设计方案}所示。此时三篇论文中对窗片的形状选取均使用了方形窗片的形态，重新设计的主要为方形窗片与脊波导之间的匹配过渡部分。论文\cite{nie_drwwindow1_2012}中使用了双脊波导、方形窗片和矩形波导作为窗片和脊波导之间过渡匹配的方案，具体示意图如图\ref{fig:脊波导窗常见设计方案} (a)所示。此方案得到了20-40 GHz范围内VSWR < 1.2(等效于\(S_{11}\)<-20 dB)的仿真匹配结果。论文\cite{wu_drwwindow2_2020}使用了在窗片和波导之间使用阶梯匹配的方案，得到了在6-19 GHz范围内，\(S_{11}\)<-25 dB的仿真匹配结果。论文\cite{zhang_drwwindow3_2021}使用在窗片、脊波导之间的矩形波导的上下部分加上真空的补偿波导方法来进行进一步的匹配，得到了在6-18 GHz的范围内\(S_{11}\)<-28 dB的匹配结果。
+为了获得更宽的带宽，此前也有使用脊波导作为窗片输能波导的先例，几个常见的解决方案如图\ref{fig:脊波导窗常见设计方案}所示。这两篇论文中对窗片的形状选取均使用了方形窗片的形态，重新设计的主要为方形窗片与脊波导之间的匹配过渡部分。论文\cite{nie_drwwindow1_2012}中使用了双脊波导、方形窗片和矩形波导作为窗片和脊波导之间过渡匹配的方案，此方案得到了20-40 GHz范围内VSWR < 1.2(等效于\(S_{11}\)<-20 dB)的仿真匹配结果。论文\cite{zhang_drwwindow3_2021}的具体示意图如图\ref{fig:脊波导窗常见设计方案} (a)所示，使用在窗片、脊波导之间的矩形波导的上下部分加上真空的补偿波导方法来进行进一步的匹配，得到了在6-18 GHz的范围内\(S_{11}\)<-28 dB的匹配结果。论文\cite{wu_drwwindow2_2020}的解决方案如图\ref{fig:脊波导窗常见设计方案} (b)所示，其使用了在窗片和波导之间使用阶梯匹配的方案，得到了在6-19 GHz范围内，\(S_{11}\)<-25 dB的仿真匹配结果。
 \begin{figure}[!htb]
     \small
     \centering
     \begin{tabular}{@{\ }c@{\ }c}
-        \includegraphics[width=0.35\textwidth]{pic/chapter1/前人的脊波导窗1.png} & 
+        \includegraphics[width=0.35\textwidth]{pic/chapter1/前人的脊波导窗3.png} & 
         \hspace{5pt}
         \includegraphics[width=0.35\textwidth]{pic/chapter1/前人的脊波导窗2.png}     \\
-        \mbox{\small (a) 矩形波导匹配\citing{nie_drwwindow1_2012}}                                                                               & 
-        \mbox{\small (b) 阶梯过渡匹配\citing{wu_drwwindow2_2020}}                                                                                  \\[6bp]
-        \multicolumn{2}{c}{\includegraphics[width=0.45\textwidth]{pic/chapter1/前人的脊波导窗3.png}} \\  % 使用跨列居中
-        \multicolumn{2}{c}{\mbox{\small (c) 补偿波导匹配\citing{zhang_drwwindow3_2021}}}
+        \mbox{\small (a) 补偿波导匹配\citing{zhang_drwwindow3_2021}}                                                                               & 
+        \mbox{\small (b) 阶梯过渡匹配\citing{wu_drwwindow2_2020}}                                   
     \end{tabular}
     \caption{脊波导窗常见设计方案}
     \label{fig:脊波导窗常见设计方案}
@@ -243,7 +241,7 @@ For the L - band window, multiphysics analysis is carried out. Under an input po
 此时如果N为偶数，那么式子\ref{eq:合并后的总反射系数表达式}就有\(N/2\)项，如果N为记述，式子\ref{eq:合并后的总反射系数表达式}就有\((N-1)/2\)项。总而言之，\(\Gamma\)是一个关于\(\theta\)的傅里叶余弦级数式。通过增加总项数\(N\)以及调配每一段的\(Z_{C_i}\)，可以将总反射系数\(\Gamma\)的幅值设计近似为任意所需要的函数，进而达到匹配的需求。
 \begin{figure}[!htb]
     \centering
-    \includegraphics[width=0.75\textwidth]{pic/chapter2/多节阻抗匹配示意图.png}
+    \includegraphics[width=0.8\textwidth]{pic/chapter2/多节阻抗匹配示意图.png}
     \caption{多节阻抗变换器}
     \label{fig:多节阻抗变换器}
 \end{figure}
@@ -377,7 +375,7 @@ For the L - band window, multiphysics analysis is carried out. Under an input po
             1 & 0 \\
             jB_{d} & 1
         \end{bmatrix} \\
-        & \quad \times 
+        & \quad \cdot 
         \begin{bmatrix}
             \cos{\gamma l} & j\sin{\gamma l} \\
             j\sin{\gamma l} & \cos{\gamma l}
@@ -462,7 +460,7 @@ For the L - band window, multiphysics analysis is carried out. Under an input po
 
 现在以工作频段为6.57 -9.99 GHz 的标准矩形波导WR112为例子，使用本章节中的盒型窗理论编写Python代码，匹配中心频点8.28 GHz 的传统盒型窗。此时选择窗片的材料为相对介电常数为\( \varepsilon_r = 9.4\)的蓝宝石进行匹配。在进行运算之后，得到窗片的厚度wt与匹配段纵向长度trh之间的对应关系如图\ref{fig:传统盒型窗匹配长度与窗片厚度关系}所示。图中的橙黄色区域蓝宝石窗片厚度低于0.6mm，会使得蓝宝石窗片的焊接后的气密性降低，并且会影响窗片机械强度。图中灰色区域床波段电长度小于0.1，会使得按照计算参数进行设计的盒型窗的匹配频点出现频偏。故应该在没有被橙色区域与灰色区域覆盖的区域选择蓝色点进行设计。
 \begin{figure}[!htb]
-    \includegraphics[width=0.45\linewidth]{pic/chapter2/传统盒型窗匹配长度与窗片厚度关系.png}
+    \includegraphics[width=0.65\linewidth]{pic/chapter2/传统盒型窗匹配长度与窗片厚度关系.png}
     \caption{传统盒型窗匹配长度与窗片厚度关系}
     \label{fig:传统盒型窗匹配长度与窗片厚度关系}
 \end{figure}
@@ -473,11 +471,11 @@ For the L - band window, multiphysics analysis is carried out. Under an input po
     \small
     \centering
     \begin{tabular}{@{}c@{\hspace{5pt}}c@{}}
-        \includegraphics[width=0.35\textwidth]{pic/chapter2/HFSS仿真结果.png} & 
-        \includegraphics[width=0.35\textwidth]{pic/chapter2/理论计算结果.png} \\
+        \includegraphics[width=0.45\textwidth]{pic/chapter2/HFSS仿真结果.png} & 
+        \includegraphics[width=0.45\textwidth]{pic/chapter2/理论计算结果.png} \\
         \mbox{\small (a) HFSS计算的S参数结果} & 
         \mbox{\small (b) 理论计算结果} \\
-        \multicolumn{2}{c}{\includegraphics[width=0.25\textwidth]{pic/chapter2/HFSS盒型窗建模.png}} \\  % 使用跨列居中
+        \multicolumn{2}{c}{\includegraphics[width=0.35\textwidth]{pic/chapter2/HFSS盒型窗建模.png}} \\  % 使用跨列居中
         \multicolumn{2}{c}{\mbox{\small (c) HFSS盒型窗建模}}
     \end{tabular}
     \caption{传统盒型窗仿真与计算结果}
@@ -569,11 +567,9 @@ $$
 \end{equation}
 传统盒型窗的特征方程说明了，为了确保传统薄窗片盒型窗的正常匹配，窗片的厚度$t$必须小于一个阈值，过厚的窗片便不能应用原先的等式\ref{eq:B_d}进行等效电路进而进行计算。
 
-其次，根据之前\ref{sec:PillBoxTheory}中提到的，传统模式的盒型窗的单侧匹配电长度不能低于0.1倍电长度，因为盒型窗需要两端匹配段，那么可以得到盒型窗匹配段连带窗片部分的电长度不会低于0.2倍电长度。这一点难以保证盒型窗在实际进行匹配时候的结构紧凑性。
-
-最后，根据文献\cite{huxiongli_bandwidth_pill}，传统意义上的盒型窗的相对带宽最宽可以做到15\% 到20\% 。如果想要进一步的提升盒型窗的带宽，只能对其结构进行相应的改进，例如将窗片的厚度进行进一步的削减，这一步骤可能会影响窗片的机械结构强度与窗片整体结构的气密性。
-
-并且在现阶段，除了传统薄窗片盒型窗之外，窗片的宽带实现方案结构不够紧凑，这影响了真空器件的小型化进程。此外，这些方案也面临加工焊接的难题，这一点直接影响了器件的加工与制作。
+其次，根据之前\ref{sec:PillBoxTheory}中提到的，传统模式的盒型窗的两侧匹配电长度均不能低于0.1倍电长度，这一点难以保证盒型窗在实际进行匹配时候的结构紧凑性。
+最后，根据文献\cite{huxiongli_bandwidth_pill}，传统意义上的盒型窗的相对带宽最宽可以做到15\% 到20\% 。如果想要进一步的提升盒型窗的带宽，例如将窗片的厚度进行进一步的削减，可能会影响窗片的机械结构强度与窗片整体结构的气密性。
+并且在现阶段，除了传统薄窗片盒型窗之外，窗片的宽带实现方案结构不够紧凑，这影响了真空器件的小型化进程。此外，这些方案也面临加工焊接困难的问题，这一点直接影响了器件的加工与制作。
 
 所以需要一种微波窗的设计方案，它应使微波窗具有宽匹配频带和紧凑结构。此外，该方案还需便于进行窗片的进一步加工处理。本章节将利用脊波导的主模带宽宽的特性，设计一种宽频带脊波导窗。
 
@@ -652,7 +648,7 @@ $$
 
 \begin{figure}[!htb]
     \centering
-    \includegraphics[width=0.5\linewidth]{pic/chapter3/脊波导窗S参数.png}
+    \includegraphics[width=0.6\linewidth]{pic/chapter3/脊波导窗S参数.png}
     \caption{输入窗的S参数}
     \label{fig:输入窗的S参数}
 \end{figure}
@@ -660,8 +656,8 @@ $$
 
 \subsection{脊波导窗的参数敏感度分析}\label{subsec:脊波导窗的参数敏感度分析}
 为了方便对后续的窗片加工进行误差方面进行指导，了解反射系数\(S_{11}\)与参数之间的敏感度关系。有必要进行反射系数与窗片参数敏感度相关的仿真。
-
-在进行初步的敏感度分析仿真之后，将最为敏感的几个参数筛选出来在此进行讨论。在之后的加工过程中，确保这几个参数所相关的几何参数在之后的加工过程中更应该格外注意精度相关的控制。本次仿真能够通过参数敏感度检验的前提是，参数在范围内变化时反射系数在频段6-11GHz内始终满足\(S_{11}<-20dB\)。
+在进行初步的敏感度分析仿真之后，将最为敏感的几个参数筛选出来在此进行讨论。在之后的加工过程中，确保这几个参数所相关的几何参数在之后的加工过程中更应该格外注意精度相关的控制。
+在进行初步的敏感度分析仿真之后，将最为敏感的几个参数筛选出来在此进行讨论。本次仿真能够通过参数敏感度检验的前提是，参数在范围内变化时反射系数在频段6-11GHz内始终满足\(S_{11}\)<-20dB。
 
 首先针对过渡段的参数进行相关的扰动与扫参来进行参数敏感度分析，具体的扫参结果如图\ref{fig:X频段脊波导窗过渡段参数敏感度分析}所示。具体的扫参结果如图\ref{fig:X频段脊波导窗过渡段参数敏感度分析}所示。根据图\ref{fig:X频段脊波导窗过渡段参数敏感度分析}(a)的仿真结果，过渡段长度在加工过程中应保持在15.85mm<ta<16.55mm 范围内。图\ref{fig:X频段脊波导窗过渡段参数敏感度分析}(b)显示，过渡段宽度应控制在9.8mm<tb<11.35mm 之间。最后，依据图\ref{fig:X频段脊波导窗过渡段参数敏感度分析}(c)，过渡段厚度的理想范围是1.35mm<trh<1.82mm 。
 
@@ -693,7 +689,7 @@ $$
         \mbox{\small (a)窗片半径wr敏感度分析}                                                                               & 
         \mbox{\small (b)窗片厚度wt敏感度分析}                                                                                  \\
     \end{tabular}
-    \caption{6-11GHz脊波导窗窗片参数敏感度分析}
+    \caption{6-11 GHz脊波导窗窗片参数敏感度分析}
     \label{fig:X频段脊波导窗窗片参数敏感度分析}
 \end{figure}
 
@@ -840,7 +836,7 @@ $$
 由于CST的默认激励端口的信号为脉冲激励，并不符合实际上使用时候的输入信号模型，应该改为连续波激励。本次仿真所使用的是连续正弦信号激励，由于在实际使用的过程中，在低频更容易被击穿，故本次连续波激励信号的频率被设定为原规定频域(6-10 GHz)的最低频点6 GHz处。此时的连续波激励信号的时域图如图\ref{fig:X波导窗连续波激励信号}所示，连续信号的激励的时长并不是6.4ns，图中横轴只是为了方便查看信号而进行的缩放。经过初步的CST PIC仿真与设置粒子轨迹监视器发现，在正常工作功率范围内的连续波信号的激励情况下初始电子的消失时间约为90ns。根据以前的实验经验，连续波的激励时间和总仿真时间应该不低于这个时间的两倍，故连续波的正常激励时间和总仿真时间被设定为200ns。
 \begin{figure}[!htb]
     \centering
-    \includegraphics[width=0.5\linewidth]{pic/chapter3/X波段脊波导窗连续波激励信号.png}
+    \includegraphics[width=0.6\linewidth]{pic/chapter3/X波段脊波导窗连续波激励信号.png}
     \caption{X波段脊波导窗连续波激励信号}
     \label{fig:X波导窗连续波激励信号}
 \end{figure}
@@ -1189,9 +1185,9 @@ ANSYS中可以直接查看到窗片的应力大小，为了方便分析窗片被
     \small
     \centering
     \begin{tabular}{@{\ }c@{\ }c}
-        \includegraphics[width=0.35\textwidth]{pic/chapter3/一端口馈入.png} & 
+        \includegraphics[width=0.45\textwidth]{pic/chapter3/一端口馈入.png} & 
         \hspace{5pt}
-        \includegraphics[width=0.35\textwidth]{pic/chapter3/二端口馈入.png}     \\
+        \includegraphics[width=0.45\textwidth]{pic/chapter3/二端口馈入.png}     \\
         \mbox{\small (a)脊波导馈入能量}                                                                               & 
         \mbox{\small (b)标准矩形波导馈入能量}                                                                                  \\
     \end{tabular}
@@ -1207,7 +1203,7 @@ ANSYS中可以直接查看到窗片的应力大小，为了方便分析窗片被
     \begin{tabular}{@{\ }c@{\ }c}
         \includegraphics[width=0.35\textwidth]{pic/chapter3/脊波导窗整体测试结构.png} & 
         \hspace{5pt}
-        \includegraphics[width=0.35\textwidth]{pic/chapter3/脊波导窗整体S参数.png}     \\
+        \includegraphics[width=0.4\textwidth]{pic/chapter3/脊波导窗整体S参数.png}     \\
         \mbox{\small (a)脊波导窗的整体测试结构}                                                                               & 
         \mbox{\small (b)脊波导窗整体测试结构S参数}                                                                                  \\
     \end{tabular}
@@ -1275,12 +1271,12 @@ ANSYS中可以直接查看到窗片的应力大小，为了方便分析窗片被
     \small
     \centering
     \begin{tabular}{@{\ }c@{\ }c}
-        \includegraphics[width=0.19\textwidth]{pic/chapter4/L波段窗纵向长度ORI.png} & 
+        \includegraphics[width=0.29\textwidth]{pic/chapter4/L波段窗纵向长度ORI.png} & 
         \hspace{5pt}
-        \includegraphics[width=0.19\textwidth]{pic/chapter4/L波段圆形窗片.png}     \\
+        \includegraphics[width=0.29\textwidth]{pic/chapter4/L波段圆形窗片.png}     \\
         \mbox{\small (a)L波段脊波导圆窗纵向长度}                                                                               & 
         \mbox{\small (b)L波段脊波导圆窗参数}                                                           \\[6bp]
-        \multicolumn{2}{c}{\includegraphics[width=0.35\textwidth]{pic/chapter4/L波段圆角矩形过渡段ORI.png}} \\  % 使用跨列居中
+        \multicolumn{2}{c}{\includegraphics[width=0.45\textwidth]{pic/chapter4/L波段圆角矩形过渡段ORI.png}} \\  % 使用跨列居中
         \multicolumn{2}{c}{\mbox{\small (c)L波段脊波导圆角矩形过渡段参数}}             
     \end{tabular}
     \caption{L波段脊波导圆窗的详细几何参数}
@@ -1290,7 +1286,7 @@ ANSYS中可以直接查看到窗片的应力大小，为了方便分析窗片被
 对L 波段脊波导圆窗进行关于S参数的仿真，可以得到S参数如图\ref{fig:L波段脊圆波导窗的S参数}所示，可以看到在1.14-1.4GHz 的频段之内，反射系数$S_{11}<-25dB$，满足匹配要求，可以作为设计窗片所需的脊波导。
 \begin{figure}[!htb]
     \centering
-    \includegraphics[width=0.45\linewidth]{pic/chapter4/L波段脊圆波导窗的S参数.png}
+    \includegraphics[width=0.5\linewidth]{pic/chapter4/L波段脊圆波导窗的S参数.png}
     \caption{L波段脊圆波导窗的S参数}
     \label{fig:L波段脊圆波导窗的S参数}
 \end{figure}
@@ -1311,7 +1307,7 @@ ANSYS中可以直接查看到窗片的应力大小，为了方便分析窗片被
 根据之前\ref{sec:频带搬移时候出现的问题分析}节中的分析，将从X波段进行频段搬移的窗片结构进行改造。将原先的圆形窗片在电场强度较弱的地方直接进行削除的操作，操作的示意图如图\ref{fig:L频段改造}。示意图中展示了窗片的截面，将圆形窗片上下两端以直线进行削除，削除的类似于飞机跑道的结果从外形上看起来更像是倒圆角的矩形。为了方便进一步的加工，将不按照被消除上下端的圆窗进行进一步设计，而按照\ref{fig:L频段改造}里面最后的倒圆角的矩形窗片示意图进行进一步地设计。
 \begin{figure}[!htb]
     \centering
-    \includegraphics[width=0.45\linewidth]{pic/chapter4/L脊波导窗片改造.png}
+    \includegraphics[width=0.6\linewidth]{pic/chapter4/L脊波导窗片改造.png}
     \caption{L频段窗片改造示意图}
     \label{fig:L频段改造}
 \end{figure}
@@ -1320,7 +1316,7 @@ ANSYS中可以直接查看到窗片的应力大小，为了方便分析窗片被
 
 \begin{figure}[!htb]
     \centering
-    \includegraphics[width=0.3\linewidth]{pic/chapter4/L波段脊波导窗整体结构.png}
+    \includegraphics[width=0.5\linewidth]{pic/chapter4/L波段脊波导窗整体结构.png}
     \caption{L波段脊波导窗的整体结构}
     \label{fig:L波段脊波导窗的整体结构}
 \end{figure}
@@ -1330,12 +1326,12 @@ ANSYS中可以直接查看到窗片的应力大小，为了方便分析窗片被
     \small
     \centering
     \begin{tabular}{@{\ }c@{\ }c}
-        \includegraphics[width=0.19\textwidth]{pic/chapter4/L波段脊波导窗纵向长度.png} & 
+        \includegraphics[width=0.35\textwidth]{pic/chapter4/L波段脊波导窗纵向长度.png} & 
         \hspace{5pt}
-        \includegraphics[width=0.19\textwidth]{pic/chapter4/L波段圆角矩形窗片尺寸.png}     \\
+        \includegraphics[width=0.35\textwidth]{pic/chapter4/L波段圆角矩形窗片尺寸.png}     \\
         \mbox{\small (a)L波段脊波导窗纵向长度}                                                                               & 
         \mbox{\small (b)L波段脊波导圆角矩形窗参数}                                                           \\[6bp]
-        \multicolumn{2}{c}{\includegraphics[width=0.25\textwidth]{pic/chapter4/L波段过渡段尺寸.png}} \\  % 使用跨列居中
+        \multicolumn{2}{c}{\includegraphics[width=0.4\textwidth]{pic/chapter4/L波段过渡段尺寸.png}} \\  % 使用跨列居中
         \multicolumn{2}{c}{\mbox{\small (c)新设计L波段脊波导圆角矩形过渡段参数}}             
     \end{tabular}
     \caption{L波段脊波导窗的详细几何参数}
@@ -1386,7 +1382,7 @@ ANSYS中可以直接查看到窗片的应力大小，为了方便分析窗片被
 综合上述文献的参数，将BeO的二次电子发射曲线在Vaughan模型中的关键参数设定为$\delta_{max}=2.8 , E_{max}=420 , E_1 = 40 eV$，并且入射电子的能量范围为从10到2900eV，设置好关键参数之后的曲线如图\ref{fig:BeO二次电子发射曲线}所示。
 \begin{figure}[!htb]
     \centering
-    \includegraphics[width=0.3\linewidth]{pic/chapter4/BeO二次电子发射曲线.png}
+    \includegraphics[width=0.5\linewidth]{pic/chapter4/BeO二次电子发射曲线.png}
     \caption{BeO二次电子发射曲线}
     \label{fig:BeO二次电子发射曲线}
 \end{figure}
@@ -1413,7 +1409,7 @@ ANSYS中可以直接查看到窗片的应力大小，为了方便分析窗片被
 对导入Spark3D之后的电场强度进行观察，观察结果图\ref{fig:LSP3D电场强度斜视图}所示，窗片整体中电场强度较高的部分集中在脊波导窗片的脊之间，其次便是脊波导与窗片之间过渡段靠近脊波导的那一条边，这个仿真结果与X波段中脊波导窗的仿真结果相类似。
 \begin{figure}[!htb]
     \centering
-    \includegraphics[width=0.35\linewidth]{pic/chapter4/L波段Spark3D电场.png}
+    \includegraphics[width=0.45\linewidth]{pic/chapter4/L波段Spark3D电场.png}
     \caption{L频段Spark3D电场强度整体视图}
     \label{fig:LSP3D电场强度斜视图}
 \end{figure}
@@ -1500,11 +1496,11 @@ ANSYS中可以直接查看到窗片的应力大小，为了方便分析窗片被
     \small
     \centering
     \begin{tabular}{@{\ }c@{\ }c}
-        \includegraphics[width=0.22\textwidth]{pic/chapter4/L电子初始分布顶视图.png} & 
+        \includegraphics[width=0.35\textwidth]{pic/chapter4/L电子初始分布顶视图.png} & 
         \hspace{5pt}
-        \includegraphics[width=0.22\textwidth]{pic/chapter4/L电子分布-二次电子倍增-顶视图.png}     \\
+        \includegraphics[width=0.35\textwidth]{pic/chapter4/L电子分布-二次电子倍增-顶视图.png}     \\
         \mbox{\small (a) 初始电子分布}                                                                               & 
-        \mbox{\small (b) 二次电子倍增后的分部}                                                                                  \\
+        \mbox{\small (b) 二次电子倍增后的分布}                                                                                  \\
     \end{tabular}
     \caption{L频段窗片发生二次电子倍增现象}
     \label{fig:L发生二次电子倍增}
@@ -1940,7 +1936,7 @@ S曲线出现周期性是因为窗片的结构在发生周期性地变化的时�
 将窗片反射系数$S_{11}$测试结果最好的地方定义为0°，按照逆时针旋转窗片，每旋转45°测量一次窗片顶面圆周相对于圆心的高度差。具体测量得到的窗片相对于圆心的高度差被绘制在图\ref{fig:W频段圆周高度差测试结果}中。经过高度规的测试发现，窗片边沿的高度差随着角度的变化而呈现出正弦趋势的变化，之前使用S曲线仿真得到的窗片发生旋转的结论得到了进一步的印证。但是具体的旋转角度与旋转的方向仍需要进一步的计算分析。
 \begin{figure}[!htb]
     \centering
-    \includegraphics[width=0.35\linewidth]{pic/chapter5/可视化高度差.png}
+    \includegraphics[width=0.5\linewidth]{pic/chapter5/可视化高度差.png}
     \caption{W频段圆周高度差测试结果}
     \label{fig:W频段圆周高度差测试结果}
 \end{figure}
@@ -1977,7 +1973,7 @@ S曲线出现周期性是因为窗片的结构在发生周期性地变化的时�
 设定测量的反射系数结果最好的那个方向为x轴，窗片顶面圆心为原点O，窗片顶面所在平面为xOy平面。窗片底面圆心到顶面的圆心所连向量，为z轴法向量方向。假设圆窗片的上面沿着直线l发生弧度为\(\theta\)的旋转，旋转轴l到圆心的最短距离是d，旋转轴l与x轴的夹角为\(\psi\)。旋转轴偏离圆心的旋转的情况可以见于示意图\ref{fig:旋转轴偏离圆心的旋转情况}，与之前类似，夸大了旋转轴与x轴的夹角\(\psi\)和窗片绕着旋转轴的旋转角度\(\theta\)。
 \begin{figure}[!htb]
     \centering
-    \includegraphics[width=0.35\linewidth]{pic/chapter5/不过圆心旋转示意图.png}
+    \includegraphics[width=0.45\linewidth]{pic/chapter5/不过圆心旋转示意图.png}
     \caption{旋转轴偏离圆心的旋转情况}
     \label{fig:旋转轴偏离圆心的旋转情况}
 \end{figure}
@@ -2009,7 +2005,7 @@ S曲线出现周期性是因为窗片的结构在发生周期性地变化的时�
 将拟合完成后的数据带入\ref{eq:不过圆心旋转之后的z值}进行计算，得到不同初始角度窗片边缘点相对应的高度差。将计算值与原先的测量值绘制在图\ref{fig:测量z值与计算z值}中，可以看到计算得到的高度差结果与测量得到的高度差结果的拟合程度非常高。按照结果对窗片进行旋转后的建模，并且进行反射系数\(S_{11}\)值的计算并且与原先测量得到的反射系数值进行对比，以验证此旋转轴未过圆心的猜想的正确性。
 \begin{figure}[!htb]
     \centering
-    \includegraphics[width=0.35\linewidth]{pic/chapter5/不过圆心高度差拟合.png}
+    \includegraphics[width=0.47\linewidth]{pic/chapter5/不过圆心高度差拟合.png}
     \caption{拟合参数结果与测试结果对比}
     \label{fig:测量z值与计算z值}
 \end{figure}
@@ -2018,7 +2014,7 @@ S曲线出现周期性是因为窗片的结构在发生周期性地变化的时�
 首先针对原先窗所在的由铜制外壁所包裹的空气腔体进行仿真，根据图\ref{fig:W频段测试示意图}进行初步建模，仿真的频段跟测试的频段相同都是92-98GHz，并且窗片的材料特性为\(\varepsilon_r = 9.4, \tan \delta = 0.0004\)。初步建模的外观如图\ref{fig:W波段误差分析建模}所示，图中标注了矩形波导口、渐变过渡段和圆柱形窗片部分。
 \begin{figure}[!htb]
     \centering
-    \includegraphics[width=0.25\linewidth]{pic/chapter5/W频段误差分析建模.png}
+    \includegraphics[width=0.35\linewidth]{pic/chapter5/W频段误差分析建模.png}
     \caption{W频段误差分析建模}
     \label{fig:W波段误差分析建模}
 \end{figure}
