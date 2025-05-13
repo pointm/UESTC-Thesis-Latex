@@ -948,8 +948,8 @@ HFSS模块计算窗片由于介质损耗而产生的体损耗，同时也分析�
         \includegraphics[width=0.35\textwidth]{pic/chapter3/铜制外壳分割后.png} & 
         \hspace{5pt}
         \includegraphics[width=0.4\textwidth]{pic/chapter3/分割后的S参数.png}     \\
-        \mbox{\small (a)铜制外壳分割示意图}                                                                               & 
-        \mbox{\small (b)分割后使用HFSS进行S参数的验证}                                                                                  \\
+        \mbox{\small (a) 铜制外壳分割示意图}                                                                               & 
+        \mbox{\small (b) HFSS仿真的S参数}                                                                                  \\
     \end{tabular}
     \caption{6-11GHz频段窗片铜制外壳分割与S参数验证}
     \label{fig:X频段铜制外壳分割后}
@@ -1018,14 +1018,14 @@ HFSS模块计算窗片由于介质损耗而产生的体损耗，同时也分析�
         \hspace{5pt}
         \includegraphics[width=0.3\textwidth]{pic/chapter3/窗片温度沿半径分布.png}     \\
         \mbox{\small (a) 温度分布云图}                                                                               & 
-        \mbox{\small (b) 温度沿x方向和y方向的变化曲线}                                                                                  \\
+        \mbox{\small (b) 温度沿x、y方向变化趋势}                                                                                  \\
     \end{tabular}
     \caption{窗片温度分布}
     \label{fig:X输入温度场}
 \end{figure}
 
 \subsection{计算热应力分布}
-ANSYS中可以直接查看到窗片的应力大小，为了方便分析窗片被安装在波导上之后的热应力大小，设置波导纵向的两侧端口为固定端面。为了使得应力分析更符合真实情况，窗片与中间铜制外壳之间的接触面被设定为Rough接触条件，此接触条件禁止接触面切向滑动但是允许其发生法向分离。铜制外壳切片之间的接触面的边界条件设定为Bonded，即完全不会因为形变发生任何位移或者滑动。边界条件的设置可以详见图\ref{fig:X频段接触面边界条件}所示。
+ANSYS中可以直接查看到窗片的应力大小，为了方便分析窗片被安装在波导上之后的热应力大小，设置波导纵向的两侧端口为固定端面。结合论文\cite{dajunzhao_capasity_2023}中的仿真边界条件设置，为了使得应力分析更符合真实情况，窗片与中间铜制外壳之间的接触面被设定为Rough接触条件，此接触条件禁止接触面切向滑动但是允许其发生法向分离。铜制外壳切片之间的接触面的边界条件设定为Bonded，即完全不会因为形变发生任何位移或者滑动。边界条件的设置可以详见图\ref{fig:X频段接触面边界条件}所示。
 \begin{figure}[!htb]
     \small
     \centering
@@ -1540,7 +1540,7 @@ ANSYS中可以直接查看到窗片的应力大小，为了方便分析窗片被
         \hspace{5pt}
         \includegraphics[width=0.4\textwidth]{pic/chapter4/L频段分割铜制外壳后的S曲线.png}     \\
         \mbox{\small (a) 分割后的外壳示意图}                                                                               & 
-        \mbox{\small (b) 分割后的S参数}                                                                                  \\
+        \mbox{\small (b) HFSS仿真的S参数}                                                                                  \\
     \end{tabular}
     \caption{L频段窗分割后的铜制外壳与分割后的S参数}
     \label{fig:L分割后的铜制外壳}
@@ -1631,7 +1631,7 @@ ANSYS中可以直接查看到窗片的应力大小，为了方便分析窗片被
 \begin{figure}[!htb]
     \centering
     \includegraphics[width=0.45\linewidth]{pic/chapter4/L频段窗应力.png}
-    \caption{L频段窗应力分布}
+    \caption{L频        段窗应力分布}
     \label{fig:L频段窗应力分布}
 \end{figure}
 
