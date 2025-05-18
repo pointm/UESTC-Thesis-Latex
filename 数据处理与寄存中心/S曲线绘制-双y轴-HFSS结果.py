@@ -21,10 +21,15 @@ configs = {
         "bbox_to_anchor": (0.5, 0.5),
         "figsize": (6.5, 5.5),
     },
+    "lshell": {
+        "filedir": r"chapter4/加上铜制外壳后的S曲线.csv",
+        "bbox_to_anchor": (0.5, 0.5),
+        "figsize": (6.5, 5.5),
+    },
 }
 
 # 通过修改这里切换配置 ↓
-config_selector = "xshell"
+config_selector = "lshell"
 selected_config = configs[config_selector]
 
 # filedir = r"chapter2/盒型窗验证S曲线/S Parameter Plot 1.csv"
