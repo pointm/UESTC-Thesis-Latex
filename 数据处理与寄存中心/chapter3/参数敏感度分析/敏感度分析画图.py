@@ -76,7 +76,7 @@ configs = {
 }
 
 # 通过修改这里切换配置 ↓
-config_selector = "TRH"
+config_selector = "WT"
 selected_config = configs[config_selector]
 
 # 加载TOUCHSTONE数据（修改部分）- 改为加载全部三个文件
