@@ -153,8 +153,8 @@ def new_method():
     # 绘制预测值
     plt.plot(alpha_deg, predicted_h, "r-", label="理论计算值", marker="o")
 
-    plt.xlabel("旋转角度α (度)", fontsize=label_size)  # 添加字体大小
-    plt.ylabel("Δz (mm)", fontsize=label_size)  # 添加字体大小
+    plt.xlabel("角度 / 度", fontsize=label_size)  # 添加字体大小
+    plt.ylabel("Δz / mm", fontsize=label_size)  # 添加字体大小
     plt.xticks(np.arange(0, 360, 45), fontsize=axis_size)  # 设置刻度字体
     plt.yticks(fontsize=axis_size)  # 设置刻度字体
     plt.legend(fontsize=legend_size)  # 添加图例字体大小

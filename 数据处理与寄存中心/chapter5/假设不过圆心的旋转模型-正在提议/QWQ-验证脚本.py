@@ -81,7 +81,7 @@ def qwq_part1():
         marker="x",
         color="blue",
         s=100,
-        label="实际测量值",
+        label="测量值",
         zorder=3,
     )
 
